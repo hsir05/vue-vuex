@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="pf-layer">
+  <div id="app" >
     <router-view/>
   </div>
 </template>

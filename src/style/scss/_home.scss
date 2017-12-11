@@ -1,53 +1,53 @@
-.main-home {
-  background: url(//ali.bczcdn.com/pap/build/static/media/bg.21813cd0.png);
-  background-position: bottom;
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  flex-direction: column; -webkit-flex-direction: column; /*flex-direction 属性规定灵活项目的方向,column:垂直显示,row:水平显示*/
-  display: flex; display: -webkit-flex; width: 100%;
-  box-align: center; -webkit-box-align: center; -moz-box-align: center; /*box- align属性指定box的子元素如何对齐*/
-  .cover-wrap {
-    display: flex; display: -webkit-flex;
-    flex-grow: 1; -webkit-flex-grow: 1; /*flex-grow 属性用于设置或检索弹性盒的扩展比率*/
-    flex-shrink: 0; -webkit-flex-shrink: 0; /*flex-shrink 属性用于设置或检索弹性盒的收缩比率*/
-    flex-direction: column; -webkit-flex-direction: column; /*flex-direction 属性规定灵活项目的方向,column:垂直显示,row:水平显示*/
-    justify-content: center; -webkit-justify-content: center; /*justify-content 用于设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式*/
-    width: 100%;
-    box-align: center; -webkit-box-align: center; -moz-box-align: center; /*box- align属性指定box的子元素如何对齐*/
-    align-items: center; -webkit-align-items: center; /*定义flex子项在flex容器的当前行的侧轴（纵轴）方向上的对齐方式*/
-    .pic-cover-layer {
-      width: 2.1rem; height: 2.1rem; margin: .1rem 0;
-      img {
-        width: 100%;
-      }
-    }
-    .cover-title {
-      width: 100%; font-size: .22rem; text-align: center; line-height: 34px;
-    }
-  }
-  // 信息
-  .study-sub-tasks {
-    display: flex; display: -webkit-flex;
-    justify-content: center; -webkit-justify-content: center; /*justify-content 用于设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式*/
-    width: 100%; font-size: rem(15);
-    .sub-tasks-item {
-      padding: 0 rem(15); text-align: center; height: rem(42);
-      .sub-tasks-num {line-height: rem(24); color: #d68843;}
-    }
-  }
-  // 功能
-  .study-function {
-    display: flex; display: -webkit-flex;
-    flex-grow: 1; -webkit-flex-grow: 1; /*flex-grow 属性用于设置或检索弹性盒的扩展比率*/
-    flex-shrink: 0; -webkit-flex-shrink: 0; /*flex-shrink 属性用于设置或检索弹性盒的收缩比率*/
-    flex-direction: column; -webkit-flex-direction: column; /*flex-direction 属性规定灵活项目的方向,column:垂直显示,row:水平显示*/
-    justify-content: center; -webkit-justify-content: center; /*justify-content 用于设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式*/
-    width: 100%;
-    .func-menu-line {
-      text-align: center; margin-top: rem(10);
-      .func-button {
-        display: inline-block; width: rem(110); height: rem(45); border-radius: rem(5); margin: 0 2%;
-      }
-    }
-  }
-}
+// .main-home {
+//   background: url(//ali.bczcdn.com/pap/build/static/media/bg.21813cd0.png);
+//   background-position: bottom;
+//   background-size: 100% auto;
+//   background-repeat: no-repeat;
+//   flex-direction: column; -webkit-flex-direction: column; /*flex-direction 属性规定灵活项目的方向,column:垂直显示,row:水平显示*/
+//   display: flex; display: -webkit-flex; width: 100%;
+//   box-align: center; -webkit-box-align: center; -moz-box-align: center; /*box- align属性指定box的子元素如何对齐*/
+//   .cover-wrap {
+//     display: flex; display: -webkit-flex;
+//     flex-grow: 1; -webkit-flex-grow: 1; /*flex-grow 属性用于设置或检索弹性盒的扩展比率*/
+//     flex-shrink: 0; -webkit-flex-shrink: 0; /*flex-shrink 属性用于设置或检索弹性盒的收缩比率*/
+//     flex-direction: column; -webkit-flex-direction: column; /*flex-direction 属性规定灵活项目的方向,column:垂直显示,row:水平显示*/
+//     justify-content: center; -webkit-justify-content: center; /*justify-content 用于设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式*/
+//     width: 100%;
+//     box-align: center; -webkit-box-align: center; -moz-box-align: center; /*box- align属性指定box的子元素如何对齐*/
+//     align-items: center; -webkit-align-items: center; /*定义flex子项在flex容器的当前行的侧轴（纵轴）方向上的对齐方式*/
+//     .pic-cover-layer {
+//       width: 2.1rem; height: 2.1rem; margin: .1rem 0;
+//       img {
+//         width: 100%;
+//       }
+//     }
+//     .cover-title {
+//       width: 100%; font-size: .22rem; text-align: center; line-height: 34px;
+//     }
+//   }
+//   // 信息
+//   .study-sub-tasks {
+//     display: flex; display: -webkit-flex;
+//     justify-content: center; -webkit-justify-content: center; /*justify-content 用于设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式*/
+//     width: 100%; font-size: rem(15);
+//     .sub-tasks-item {
+//       padding: 0 rem(15); text-align: center; height: rem(42);
+//       .sub-tasks-num {line-height: rem(24); color: #d68843;}
+//     }
+//   }
+//   // 功能
+//   .study-function {
+//     display: flex; display: -webkit-flex;
+//     flex-grow: 1; -webkit-flex-grow: 1; /*flex-grow 属性用于设置或检索弹性盒的扩展比率*/
+//     flex-shrink: 0; -webkit-flex-shrink: 0; /*flex-shrink 属性用于设置或检索弹性盒的收缩比率*/
+//     flex-direction: column; -webkit-flex-direction: column; /*flex-direction 属性规定灵活项目的方向,column:垂直显示,row:水平显示*/
+//     justify-content: center; -webkit-justify-content: center; /*justify-content 用于设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式*/
+//     width: 100%;
+//     .func-menu-line {
+//       text-align: center; margin-top: rem(10);
+//       .func-button {
+//         display: inline-block; width: rem(110); height: rem(45); border-radius: rem(5); margin: 0 2%;
+//       }
+//     }
+//   }
+// }
