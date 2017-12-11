@@ -18,6 +18,7 @@ const router = new VueRouter({
 
 // Mint UI
 import Mint from 'mint-ui'
+import 'mint-ui/lib/style.css'
 Vue.use(Mint)
 
 // ramda

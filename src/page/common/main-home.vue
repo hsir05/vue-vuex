@@ -1,6 +1,6 @@
 <template>
   <div class="main-home">
-    这尼玛是首页
+    <route-view></route-view>
   </div>
 </template>
 
