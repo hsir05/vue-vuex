@@ -26,6 +26,12 @@
       margin-bottom: px2rem(32px);
       text-align: center;
   }
+  @media (min-width: 640px) { /*当屏幕尺寸大于640px时，应用下面的CSS样式*/
+    .wechat{
+      height:px2rem(350px);
+    }
+
+  }
   .linksBtn{
     text-align: center;
   }
