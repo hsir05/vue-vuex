@@ -11,11 +11,13 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api/aiwei/stat/**': {
-        //  target: 'http://192.168.12.241:8099',
-        //  target: 'http://arcs.dev.congred.com',
-         target: 'http://arcs-test.congred.com/',
-         changeOrigin: true
+        target: 'http://arcs.dev.congred.com',
+        changeOrigin: true
       }
+      // '/wav/**': {
+      //   target: 'http://127.0.0.1:8080',
+      //   changeOrigin: true
+      // }
     },
 
     // Various Dev Server settings

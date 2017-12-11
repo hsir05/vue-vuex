@@ -1,0 +1,49 @@
+{
+  "data": {
+    "list": [
+      {
+        "id": 0,
+        "create_time": "2017-11-27 14:14:39",
+        "word": "soap",
+        "cn": "肥皂",
+        "grade": "年级",
+        "unit": "单元",
+        "main_photo": ["http://ali.bczcdn.com/pap/6_62_61_20160615175509_72134_c.jpg"],
+        "word_photo": [
+          "http://ali.bczcdn.com/pap/6_62_61_20160615175509_72134_c.jpg"
+        ],
+        "contrast_photo": [
+          "http://ali.bczcdn.com/pap/12-1-soap-3.20160601.400x300.jpg"
+        ],
+        "contrast_audio": [
+          "http://ali.bczcdn.com/pap/8_65_164_20161020174941_9819_c.mp3"
+        ],
+        "word_audio": [
+          "http://ali.bczcdn.com/pap/8_65_164_20161020174941_9819_c.mp3"
+        ]
+      },
+      {
+        "id": 1,
+        "create_time": "2017-11-27 14:14:39",
+        "word": "boat",
+        "cn": "小船",
+        "grade": "年级",
+        "unit": "单元",
+        "main_photo": ["http://ali.bczcdn.com/pap/6_62_61_20160615175509_72134_c.jpg"],
+        "word_photo": [
+          "http://ali.bczcdn.com/pap/6_62_61_20160615175509_72134_c.jpg"
+        ],
+        "contrast_photo": [
+          "http://ali.bczcdn.com/pap/12-1-soap-3.20160601.400x300.jpg"
+        ],
+        "contrast_audio": [
+          "http://ali.bczcdn.com/pap/8_65_164_20161020174941_9819_c.mp3"
+        ],
+        "word_audio": [
+          "http://ali.bczcdn.com/pap/8_65_164_20161020174941_9819_c.mp3"
+        ]
+      }
+    ]
+  },
+  "status": 0
+}
