@@ -10,10 +10,14 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api/capital/**': {
-        target: 'https://arcs.congred.com',
+      '/api/aiwei/stat/**': {
+        target: 'http://arcs.dev.congred.com',
         changeOrigin: true
       }
+      // '/wav/**': {
+      //   target: 'http://127.0.0.1:8080',
+      //   changeOrigin: true
+      // }
     },
 
     // Various Dev Server settings

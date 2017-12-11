@@ -1,0 +1,36 @@
+{
+  "data": {
+    "list": [
+      {
+        "syllable": "e",
+        "audio_right": [
+          "http://ali.bczcdn.com/pap/8_65_164_20161020174941_9819_c.mp3"
+        ],
+        "pic_photo": [
+          "http://ali.bczcdn.com/pap/6_62_61_20160615175509_72134_c.jpg"
+        ],
+        "definitions": [
+          {
+            "word": "ten",
+            "pic_right": [
+              "http://ali.bczcdn.com/pap/6_62_61_20160615175509_72134_c.jpg"
+            ],
+            "audio_right": [
+              "http://ali.bczcdn.com/pap/8_65_164_20161020174941_9819_c.mp3"
+            ]
+          },
+          {
+            "word": "vet",
+            "pic_right": [
+              "http://ali.bczcdn.com/pap/6_62_61_20160615175509_72134_c.jpg"
+            ],
+            "audio_right": [
+              "http://ali.bczcdn.com/pap/8_65_164_20161020174941_9819_c.mp3"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "status": 0
+}

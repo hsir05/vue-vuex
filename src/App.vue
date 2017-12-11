@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="pf-layer">
     <router-view/>
   </div>
 </template>
@@ -10,5 +10,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+  @import "./style/style";
 </style>

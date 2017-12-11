@@ -1,4 +1,4 @@
-var root = '/api/capital'
+var root = '/api/aiwei/stat'
 
 var request = require('superagent')
 

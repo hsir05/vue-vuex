@@ -1,11 +1,14 @@
 // $static:"/admin/static";
 $static:"/static";
+@import url("//unpkg.com/mint-ui/lib/style.css");
 // base
 @import "base/color";
-@import "base/base";
 @import "base/mixin";
+@import "base/base";
 @import "base/reset";
 @import "base/font";
+@import "base/html";
 // style
 @import "scss/admin";
 @import "scss/public";
+@import "scss/home";
