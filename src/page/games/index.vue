@@ -29,7 +29,7 @@
 <!-- 22222 -->
     <div class="game-img-wrop" v-if="1">
       <div class="game-t-img" v-for="(pict, p) in picts" :class="'img-'+p">
-          <img :src="preUrl + pict">
+          <img :src="preUrl + pict" width="100%"height="100%">
       </div>
       <div class="game-wo">
         <span class="first">
