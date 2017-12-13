@@ -206,28 +206,39 @@ margin: 0 auto;
  .game-t-img{
 
    margin: px2rem(160px) auto;
-   background: white;
+  //  background: white;
   border-radius: px2rem(10px);
   overflow: hidden;
+  position: relative;
   ul{
     width: 1000px;
-    height: px2rem(326px);
-    position: relative;
+    height: px2rem(330px);
+
   }
   li{
-    height: px2rem(326px);
-    width: px2rem(480px);
+    height: px2rem(322px);
+    width: px2rem(450px);
     position:absolute;
+    border:2px solid white;
+  }
+  @mixin pict{
+    z-index:2;
+    top:px2rem(60px);
+    height:px2rem(188px);
   }
   .img-0{
-    z-index:2
+    @include pict;
+    left:px2rem(70px);
+  }
+  .img-2{
+    @include pict;
+    right:px2rem(70px);
   }
  .img-1{
     z-index:4;
     left:50%;
-    transform: translateY(-50%);
+   transform: translateX(-50%);
   }
-  .img-2{}
  }
  .game-wo{
    margin:px2rem(202px) auto;
@@ -243,7 +254,7 @@ margin: 0 auto;
         color:rgb(132,201,39);
         border-radius: px2rem(22px);
     }
-    .first{
+    .first-0{
       margin-right: px2rem(50px);
     }
  }

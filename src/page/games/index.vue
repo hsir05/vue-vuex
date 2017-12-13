@@ -36,13 +36,7 @@
         </ul>
       </div>
       <div class="game-wo">
-        <span class="first">
-              one
-             <audio src=""></audio>
-          </span>
-         <span>
-             <audio src=""></audio>twe
-        </span>
+        <span class="first" :class="'first-' + i" v-for="(val, i) in showWord"> {{val}}</span>
       </div>
     </div>
     <!-- <games-footer></games-footer> -->
@@ -66,7 +60,8 @@ export default {
       score: '0',
       game: [],
       preUrl: process.env.API_PIC,
-      picts: []
+      picts: [],
+      showWord: ['one', 'total']
     }
   },
   created () {
