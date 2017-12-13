@@ -13,11 +13,16 @@ const state = {
 
 // getters
 const getters = {
-  // getPicContents (state, getters, rootState, rootGetters) { // 获取内容
-  //   return [...state.picBooks.content_list]
-  // }
+  getPicContents (state, getters, rootState, rootGetters) { // 获取内容
+    return [...state.picBooks.content_list]
+  }
 }
-
+// const getters = {
+//   getAllDate (state, getters, rootState, rootGetters) {
+//     // 获取所有单词
+//     return [...state.words]
+//   }
+// }
 // mutations
 const mutations = {
   [types.DATA_RESET] (state) { // 数据重置

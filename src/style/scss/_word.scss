@@ -1,0 +1,228 @@
+$font: rgb(106, 167, 24);
+$font-bg: rgb(192, 224, 142);
+.word {
+  text-align: center;
+  .wrop {
+    // height: px2rem(624px);
+    overflow: hidden;
+  }
+  ul {
+    width: 1600px;
+    height: px2rem(624px);
+  }
+  li {
+    float: left;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: px2rem(34px);
+    // width: 100%;
+    width: px2rem(750px);
+    transition: All .3s ease;
+    // transform: translateX(-100%);
+    img {
+      width: px2rem(182px);
+      height: px2rem(124px);
+      position: relative;
+      top: px2rem(15px);
+      z-index: 1;
+    }
+  }
+  @mixin word-s {
+    width: 90%;
+    height: px2rem(462px);
+    background: white;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 10px;
+    z-index: 100;
+    position: relative;
+  }
+  @mixin word-c($y) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, $y);
+  }
+  .show-word {
+    @include word-s;
+    .show-w {
+      @include word-c(-60%);
+      font-size: 117px;
+      color: $font;
+    }
+  }
+  .show-img {
+    @include word-s;
+    .show-i {
+      @include word-c(-48%);
+      width: 85%;
+      height: 90%;
+    }
+    .img-w {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translate(-50%, 80%);
+      color: $font;
+      font-size: 110px;
+    }
+    .answer {
+      display: inline-block;
+      margin-top: px2rem(88px);
+      .answer-sel {
+        display: inline-block;
+        width: px2rem(84px);
+        height: px2rem(84px);
+        background: $font;
+        border-radius: px2rem(10px);
+        position: relative;
+        margin-right: px2rem(50px);
+        &:after {
+          position: absolute;
+          left:50%;
+          top:50%;
+          transform:translate(-50%,-50%);
+          content: '';
+          display: inline-block;
+          width: px2rem(35px);
+          height:px2rem(35px);
+          border-radius:px2rem(50%);
+          background: white;
+
+        }
+      }
+      .answer-p{
+         height: px2rem(84px);
+         width:px2rem(286px);
+         vertical-align: super;
+      }
+    }
+  }
+  .step {
+    margin-top: px2rem(380px);
+    @mixin btn-img($width,$height) {
+      width: px2rem($width);
+      height: px2rem($height);
+      text-align: center;
+      // line-height: px2rem($height);
+      background: white;
+      display: inline-block;
+      border-radius: px2rem(15px);
+      img {
+        width: px2rem(60px);
+        height: px2rem(60px);
+      }
+    }
+    .next {
+      @include btn-img(372px,90px );
+      margin-right: px2rem(19px);
+      position: relative;
+      i{
+        font-size:17px;
+        color:$font;
+         position: absolute;
+         top:50%;
+         left: 50%;
+         transform: translate(-50%,-50%);
+      }
+    }
+    .sure{
+       width:px2rem(544px);
+    }
+    .sound {
+      @include btn-img(150px,90px );
+    }
+  }
+}
+
+.game-b{
+height:100%;
+padding: 0;
+margin: 0 auto;
+}
+ .games{
+   background: rgb(255,225,133);
+   height:100%;
+   width: 90%;
+   margin: 0 auto;
+ }
+.games-head{
+  width: 100%;
+  height:px2rem(130px);
+  position: relative;
+  // background: url('/static/img/pragress.png') no-repeat left center;
+  img{
+    width: 100%;
+    height: 100%;
+  }
+  .bg-head{
+    width:px2rem(103px);
+    height: px2rem(96px);
+    position: absolute;
+    top: px2rem(12px);
+    right:px2rem(8px);
+   }
+  .games-time-box{
+    color:rgb(255,255,255);
+    font-family:'PingPangSC-Regular';
+    font-size:19px;
+    position: absolute;
+    left:px2rem(130px);
+    top:px2rem(33px);
+  }
+  .progress-box-layer{
+    position: absolute;
+    left:px2rem(258px);
+    top: px2rem(34px);
+    width:px2rem(300px);
+    height: px2rem(40px);
+  }
+
+}
+.games-body-img{
+  text-align: center;
+  .game-word{
+     width:px2rem(624px);
+     height: px2rem(142px);
+     line-height: px2rem(142px);
+     font-family:'PingFangSC-Medium';
+     font-size:31px;
+    color:rgb(131,195,34);
+    background: white;
+    // border-radius: px2rem(15px);
+    margin:px2rem(40px) auto;
+    background:url('/static/img/bg_viewingarea.png') no-repeat;
+  }
+  .game-img{
+   width: px2rem(300px);
+   height: px2rem(210px);
+   background:white;
+   margin:px2rem(50px) auto;
+  }
+ }
+
+ .game-t-img{
+   height: px2rem(326px);
+   width: px2rem(480px);
+   margin: px2rem(160px) auto;
+   background: white;
+  border-radius: px2rem(10px);
+ }
+ .game-wo{
+   margin:px2rem(202px) auto;
+   text-align: center;
+    span{
+        display: inline-block;
+        width: px2rem(282px);
+        height: px2rem(90px);
+        line-height: px2rem(90px);
+        text-align: center;
+        font-size:24px;
+        background: white;
+        color:rgb(132,201,39);
+        border-radius: px2rem(22px);
+    }
+    .first{
+      margin-right: px2rem(50px);
+    }
+ }

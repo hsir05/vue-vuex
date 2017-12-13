@@ -13,7 +13,7 @@
           </div>
           <!-- 游戏 -->
             <div class="links-worp links-game">
-            <router-link to="/word" class="">
+            <router-link to="/games" class="">
                 <img src="/static/img/game.png" alt="" class="btn-img">
             </router-link>
           </div>
@@ -33,9 +33,22 @@
 </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   data () {
-    return {}
+    return {
+    }
+  },
+  created () {
+    this.$store.dispatch('common/wordsStore/getWords').then(() => {
+      // this.$store.commit('words/REQUEST_LOADING', { bool: false })
+    })
+  },
+  computed: {
+    ...mapGetters('common/wordsStore', ['getAllWords'])
+  },
+  methods: {
+    ...mapActions('getWords', ['words'])
   }
 }
 </script>

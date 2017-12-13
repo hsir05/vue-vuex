@@ -14,6 +14,7 @@ var gitCommitVersion = '"' + develop + ': ' + gitVersion + '"' // 例如dev环�
 module.exports = merge(prodEnv, {
   CURRENT_WORK_DIR: cwd, // 当前脚本的工作目录的路径
   GIT_COMMIT_VERSION: gitCommitVersion, // 获取git版本
-  API_ADDR: '"/api/capital"',
+  API_ADDR: '"/api/aiwei/stat/"',
+  API_PIC: '"/aiwei/"',
   NODE_ENV: '"development"'
 })

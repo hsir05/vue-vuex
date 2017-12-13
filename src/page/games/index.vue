@@ -1,71 +1,106 @@
 <template lang="html">
+    <div class="game-b">
   <div class="games" v-if="!requestLoading">
     <div class="games-head">
-      <div class="games-time-box">{{ gamesTime }}s</div>
-      <div class="progress-box-layer" style="height">
-        <progress-bar :value="progress" bg="rgb(230, 148, 64)"></progress-bar>
+      <img src="static/img/pragress.png">
+      <img src="static/img/bg_head_kid.png" class="bg-head">
+      <!--分值 -->
+      <div class="games-time-box">{{score}}</div>
+      <!-- <div class="games-time-box">{{ gamesTime }}</div> -->
+      <!-- 进度条 -->
+      <div class="progress-box-layer" >
+        <progress-bar :value="progress" bg="rgb(106, 167, 24)"></progress-bar>
       </div>
     </div>
-    <div class="games-body-img">
-      <img :src="getWordsIndexItem(currWordIndex).pic_right[0]" alt="">
+    <!-- 11111 -->
+    <div class="games-body-img" v-if="1">
+      <!-- <img :src="getWordsIndexItem(currWordIndex).pic_right[0]" alt=""> -->
+         <div class="game-word">apple</div>
+         <div class="game-img">
+           <img src=" ">
+         </div>
+          <div class="game-img">
+           <img src=" ">
+         </div>
+          <div class="game-img">
+           <img src=" ">
+         </div>
     </div>
-    <games-footer></games-footer>
+<!-- 22222 -->
+    <div class="game-img-wrop" v-if="0">
+      <div class="game-t-img">
+        <mt-swipe :auto="0" :show-indicators="false" :continuous="false">
+            <mt-swipe-item>
+              <img src="https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100"></mt-swipe-item>
+            <mt-swipe-item>
+              <img src="https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100">
+            </mt-swipe-item>
+            <mt-swipe-item>3</mt-swipe-item>
+      </mt-swipe>
+      </div>
+      <div class="game-wo">
+        <span class="first">one</span>  <span>twe</span>
+      </div>
+    </div>
+    <!-- <games-footer></games-footer> -->
   </div>
+    </div>
 </template>
 
 <script>
-import { Indicator } from 'mint-ui'
+import { Indicator, Swipe, SwipeItem } from 'mint-ui'
 import { mapMutations, mapActions, mapState, mapGetters } from 'vuex'
 
 import GamesFooter from './games-footer.vue'
 export default {
   components: {
-    GamesFooter
+    GamesFooter,
+    Swipe,
+    SwipeItem
+  },
+  data () {
+    return {
+      score: '0',
+      game: []
+    }
   },
   created () {
     Indicator.open('加载中...')
     this.$store.dispatch('common/wordsStore/getWords').then(() => {
+      // this.game = this.getAllWords
+      // console.log(this.game)
+      this.dealGame(this.getAllWords)
       this.$store.commit('games/REQUEST_LOADING', { bool: false })
       // this.$store.dispatch('games/openCompete')
       Indicator.close()
     })
   },
   computed: {
-    ...mapGetters('common/wordsStore', ['getWordsIndexItem', 'getRandomWordItem']),
+    ...mapGetters('common/wordsStore', ['getWordsIndexItem', 'getAllWords', 'getRandomWordItem']),
     ...mapState('games', ['requestLoading', 'gamesTime', 'progress', 'currWordIndex']),
     ...mapGetters('games', {})
   },
   methods: {
     ...mapMutations('games', []),
-    ...mapActions('games', [])
+    ...mapActions('games', []),
+    dealGame (par) {
+      par.forEach((item, index) => {
+        // this.game[index] = item.words_array
+        if (item.words_array && item.words_array.length !== 0) {
+          item.words_array.forEach((k, i) => {
+            this.game.push(k)
+            console.log(k)
+          })
+        }
+      })
+      console.log(this.game)
+    }
   }
 }
 </script>
 
 <style lang="scss">
 .games {
-  display: block; height: calc(100% - 0.2rem); width: calc(100% - 0.2rem); position: relative; margin: 0.1rem;
-  border-radius: 0.08rem; background: #fff;
-  .games-head {
-    width: 100%; height: 0.5rem; display: block; background: #ffc86f;
-    .games-time-box {
-      width: 0.5rem; height: 0.5rem; background: #67C23A; float: left; line-height: 0.5rem; text-align: center;
-      font-size: 0.18rem; color: #fff;
-    }
-    .progress-box-layer {
-      height: 0.15rem; margin: 0.14rem 0.1rem; background-color: #fffcf3; padding: 0.03rem;
-      border-radius: 0.05rem; overflow: hidden;
-      width: calc(100% - 0.76rem); float: left;
-    }
-  }
-  .games-body-img {
-    width: 100%; height: 42vh; position: relative;
-    img {
-      height: 25.5vh; width: 60vw; position: absolute; top: 50%; left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-    }
-  }
   .games-footer {
     width: 2.88rem; display: block; padding: 0.26rem;
     zoom: 1;
