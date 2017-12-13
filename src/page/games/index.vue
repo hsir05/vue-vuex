@@ -36,7 +36,7 @@
         </ul>
       </div>
       <div class="game-wo">
-        <span class="first" :class="'first-' + i" v-for="(val, i) in showWord"  @click="pictSel(val)"> {{val}}</span>
+        <span class="first" :class="'first-' + i" v-for="(val, i) in showWord"  @click="pictSel(i)"> {{val}}</span>
       </div>
     </div>
     <!-- <games-footer></games-footer> -->
@@ -71,13 +71,12 @@ export default {
     this.$store.dispatch('common/wordsStore/getWords').then(() => {
       this.dealGame(this.getAllWords)
       for (let i = 0; i < 3; i++) {
-        this.pictsShow()
+        this.random(this.game, this.picts)
       }
       this.$store.commit('games/REQUEST_LOADING', { bool: false })
       // this.$store.dispatch('games/openCompete')
       Indicator.close()
     })
-    // console.log(Math.floor(Math.random() * (10 + 1)))
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getWordsIndexItem', 'getAllWords', 'getRandomWordItem']),
@@ -97,19 +96,22 @@ export default {
       })
       console.log(this.game)
     },
-    pictsShow () {
-      this.random(this.game, this.picts)
-    },
     pictSel (par) {
-      console.log(this.game[parseInt(par.flag)])
-      this.picts.shift()
-      this.random(this.game, this.picts)
+      let selword = this.game[parseInt(this.picts[1].flag)].word
+      if (this.picts[par] === selword) {
+        this.picts.shift()
+        this.random(this.game, this.picts)
+      } else {
+
+      }
     },
     random (par, param) { // 随机函数,返回n
       let n = Math.floor(Math.random() * (par.length)) // 随机数
       let m = Math.floor(Math.random() * (par[n].pic_right.length))  // 随机图片
       param.push({url: par[n].pic_right[m], flag: n})
       this.num = n
+    },
+    addWord () {
     }
   }
 }
