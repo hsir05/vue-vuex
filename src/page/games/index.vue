@@ -13,9 +13,9 @@
       </div>
     </div>
     <!-- 11111 -->
-    <div class="games-body-img" v-if="1">
+    <div class="games-body-img" v-if="0">
       <!-- <img :src="getWordsIndexItem(currWordIndex).pic_right[0]" alt=""> -->
-         <div class="game-word">apple</div>
+         <div class="game-word">{{this.game[0].word}}</div>
          <div class="game-img">
            <img src=" ">
          </div>
@@ -27,19 +27,18 @@
          </div>
     </div>
 <!-- 22222 -->
-    <div class="game-img-wrop" v-if="0">
-      <div class="game-t-img">
-        <mt-swipe :auto="0" :show-indicators="false" :continuous="false">
-            <mt-swipe-item>
-              <img src="https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100"></mt-swipe-item>
-            <mt-swipe-item>
-              <img src="https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100">
-            </mt-swipe-item>
-            <mt-swipe-item>3</mt-swipe-item>
-      </mt-swipe>
+    <div class="game-img-wrop" v-if="1">
+      <div class="game-t-img" v-for="(pict, p) in picts" :class="'img-'+p">
+          <img :src="preUrl + pict">
       </div>
       <div class="game-wo">
-        <span class="first">one</span>  <span>twe</span>
+        <span class="first">
+              one
+             <audio src=""></audio>
+          </span>
+         <span>
+             <audio src=""></audio>twe
+        </span>
       </div>
     </div>
     <!-- <games-footer></games-footer> -->
@@ -61,19 +60,21 @@ export default {
   data () {
     return {
       score: '0',
-      game: []
+      game: [],
+      preUrl: process.env.API_PIC,
+      picts: []
     }
   },
   created () {
     Indicator.open('加载中...')
     this.$store.dispatch('common/wordsStore/getWords').then(() => {
-      // this.game = this.getAllWords
-      // console.log(this.game)
       this.dealGame(this.getAllWords)
+      this.pictsShow()
       this.$store.commit('games/REQUEST_LOADING', { bool: false })
       // this.$store.dispatch('games/openCompete')
       Indicator.close()
     })
+    console.log(Math.floor(Math.random() * (10 + 1)))
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getWordsIndexItem', 'getAllWords', 'getRandomWordItem']),
@@ -85,15 +86,21 @@ export default {
     ...mapActions('games', []),
     dealGame (par) {
       par.forEach((item, index) => {
-        // this.game[index] = item.words_array
         if (item.words_array && item.words_array.length !== 0) {
           item.words_array.forEach((k, i) => {
             this.game.push(k)
-            console.log(k)
           })
         }
       })
       console.log(this.game)
+    },
+    pictsShow () {
+      // 产生随机数
+      let num = Math.floor(Math.random() * (this.game.length))
+      // 随机数里的随机图片
+      let pictNum = Math.floor(Math.random() * (this.game[num].pic_right.length))
+      // 将随机产生的图片push到展示的数组里
+      this.picts.push(this.game[num].pic_right[pictNum])
     }
   }
 }
