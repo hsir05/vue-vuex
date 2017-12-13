@@ -167,14 +167,16 @@ margin: 0 auto;
     font-family:'PingPangSC-Regular';
     font-size:19px;
     position: absolute;
-    left:px2rem(130px);
-    top:px2rem(33px);
+    // left:px2rem(130px);
+    top:px2rem(35px);
+    left:20%;
+    // top:23%;
   }
   .progress-box-layer{
     position: absolute;
-    left:px2rem(258px);
+    left:38%;
     top: px2rem(34px);
-    width:px2rem(300px);
+    width:45%;
     height: px2rem(40px);
   }
 
