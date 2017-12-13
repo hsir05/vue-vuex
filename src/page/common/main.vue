@@ -1,6 +1,6 @@
 <template>
 <div class="main">
-      <h2>学前班 第一单元 <img src="/static/img/btn_Modify.png" alt=""></h2>
+      <h2>学前班 第一单元 <img src="static/img/btn_Modify.png" alt=""></h2>
       <div class="wechat">
         <img src="static/img/main_we.png" alt="" width="95%"height="100%">
       </div>
