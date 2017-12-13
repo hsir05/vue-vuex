@@ -28,8 +28,12 @@
     </div>
 <!-- 22222 -->
     <div class="game-img-wrop" v-if="1">
-      <div class="game-t-img" v-for="(pict, p) in picts" :class="'img-'+p">
-          <img :src="preUrl + pict" width="100%"height="100%">
+      <div class="game-t-img" >
+        <ul >
+          <li v-for="(pict, p) in picts" class="show-cal" :class="'img-'+p">
+              <img :src="preUrl + pict"   width="100%"height="100%">
+          </li>
+        </ul>
       </div>
       <div class="game-wo">
         <span class="first">
@@ -69,7 +73,9 @@ export default {
     Indicator.open('加载中...')
     this.$store.dispatch('common/wordsStore/getWords').then(() => {
       this.dealGame(this.getAllWords)
-      this.pictsShow()
+      for (let i = 0; i < 3; i++) {
+        this.pictsShow()
+      }
       this.$store.commit('games/REQUEST_LOADING', { bool: false })
       // this.$store.dispatch('games/openCompete')
       Indicator.close()

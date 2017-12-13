@@ -196,19 +196,38 @@ margin: 0 auto;
     background:url('/static/img/bg_viewingarea.png') no-repeat;
   }
   .game-img{
-   width: px2rem(300px);
-   height: px2rem(210px);
+  //  width: px2rem(300px);
+  //  height: px2rem(210px);
    background:white;
    margin:px2rem(50px) auto;
   }
  }
 
  .game-t-img{
-   height: px2rem(326px);
-   width: px2rem(480px);
+
    margin: px2rem(160px) auto;
    background: white;
   border-radius: px2rem(10px);
+  overflow: hidden;
+  ul{
+    width: 1000px;
+    height: px2rem(326px);
+    position: relative;
+  }
+  li{
+    height: px2rem(326px);
+    width: px2rem(480px);
+    position:absolute;
+  }
+  .img-0{
+    z-index:2
+  }
+ .img-1{
+    z-index:4;
+    left:50%;
+    transform: translateX(-5)
+  }
+  .img-2{}
  }
  .game-wo{
    margin:px2rem(202px) auto;
