@@ -8,25 +8,25 @@
           <!-- 记单词 -->
           <div class="links-worp links-word">
             <router-link to="/words" >
-                <img src="/static/img/word.png" alt=""class="btn-img">
+                <img src="static/img/word.png" alt=""class="btn-img">
             </router-link>
           </div>
           <!-- 游戏 -->
             <div class="links-worp links-game">
             <router-link to="/games" class="">
-                <img src="/static/img/game.png" alt="" class="btn-img">
+                <img src="static/img/game.png" alt="" class="btn-img">
             </router-link>
           </div>
         <!-- 儿歌 -->
         <div class="links-worp links-song">
             <router-link to="/word">
-                <img src="/static/img/song.png" alt="" class="btn-img">
+                <img src="static/img/song.png" alt="" class="btn-img">
             </router-link>
           </div>
         <!-- 绘本 -->
          <div class="links-worp links-book">
             <router-link to="/word">
-                <img src="/static/img/book.png" alt="" class="btn-img">
+                <img src="static/img/book.png" alt="" class="btn-img">
             </router-link>
           </div>
       </div>
