@@ -225,10 +225,16 @@ margin: 0 auto;
     z-index:2;
     top:px2rem(60px);
     height:px2rem(188px);
+    transition: All .3s ease;
+  }
+  .show-cal{
+    transition: All .9s ease;
+    // left:px2rem(70px);
   }
   .img-0{
     @include pict;
     left:px2rem(70px);
+
   }
   .img-2{
     @include pict;
@@ -238,6 +244,7 @@ margin: 0 auto;
     z-index:4;
     left:50%;
    transform: translateX(-50%);
+   transition: All .3s ease;
   }
  }
  .game-wo{

@@ -31,12 +31,12 @@
       <div class="game-t-img" >
         <ul >
           <li v-for="(pict, p) in picts" class="show-cal" :class="'img-'+p">
-              <img :src="preUrl + pict"   width="100%"height="100%">
+              <img :src="preUrl + pict.url"   width="100%"height="100%">
           </li>
         </ul>
       </div>
       <div class="game-wo">
-        <span class="first" :class="'first-' + i" v-for="(val, i) in showWord"> {{val}}</span>
+        <span class="first" :class="'first-' + i" v-for="(val, i) in showWord"  @click="pictSel(val)"> {{val}}</span>
       </div>
     </div>
     <!-- <games-footer></games-footer> -->
@@ -59,6 +59,8 @@ export default {
     return {
       score: '0',
       game: [],
+      num: '',
+      pictNum: '',
       preUrl: process.env.API_PIC,
       picts: [],
       showWord: ['one', 'total']
@@ -75,7 +77,7 @@ export default {
       // this.$store.dispatch('games/openCompete')
       Indicator.close()
     })
-    console.log(Math.floor(Math.random() * (10 + 1)))
+    // console.log(Math.floor(Math.random() * (10 + 1)))
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getWordsIndexItem', 'getAllWords', 'getRandomWordItem']),
@@ -96,29 +98,20 @@ export default {
       console.log(this.game)
     },
     pictsShow () {
-      // 产生随机数
-      let num = Math.floor(Math.random() * (this.game.length))
-      // 随机数里的随机图片
-      let pictNum = Math.floor(Math.random() * (this.game[num].pic_right.length))
-      // 将随机产生的图片push到展示的数组里
-      this.picts.push(this.game[num].pic_right[pictNum])
+      this.random(this.game, this.picts)
+    },
+    pictSel (par) {
+      console.log(this.game[parseInt(par.flag)])
+      this.picts.shift()
+      this.random(this.game, this.picts)
+    },
+    random (par, param) { // 随机函数,返回n
+      let n = Math.floor(Math.random() * (par.length)) // 随机数
+      let m = Math.floor(Math.random() * (par[n].pic_right.length))  // 随机图片
+      param.push({url: par[n].pic_right[m], flag: n})
+      this.num = n
     }
   }
 }
 </script>
 
-<style lang="scss">
-.games {
-  .games-footer {
-    width: 2.88rem; display: block; padding: 0.26rem;
-    zoom: 1;
-  	&:before, &:after {content: ""; display: table;}
-  	&:after {clear: both;}
-    .games-footer-btn {
-      margin: 0.055rem 0.12rem; width: 1.18rem; height: 10vh; border-radius: 0.05rem;
-      border: 0.01rem solid #f2a813; float: left;
-      background: #ffeac8; float: left; line-height: 10vh; text-align: center; font-size: 22px;
-    }
-  }
-}
-</style>
