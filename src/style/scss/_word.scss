@@ -17,7 +17,7 @@ $font-bg: rgb(192, 224, 142);
     margin-top: px2rem(34px);
     // width: 100%;
     width: px2rem(750px);
-    transition: All .3s ease;
+    transition: All 0.3s ease;
     // transform: translateX(-100%);
     img {
       width: px2rem(182px);
@@ -79,22 +79,21 @@ $font-bg: rgb(192, 224, 142);
         margin-right: px2rem(50px);
         &:after {
           position: absolute;
-          left:50%;
-          top:50%;
-          transform:translate(-50%,-50%);
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
           content: '';
           display: inline-block;
           width: px2rem(35px);
-          height:px2rem(35px);
-          border-radius:px2rem(50%);
+          height: px2rem(35px);
+          border-radius: px2rem(50%);
           background: white;
-
         }
       }
-      .answer-p{
-         height: px2rem(84px);
-         width:px2rem(286px);
-         vertical-align: super;
+      .answer-p {
+        height: px2rem(84px);
+        width: px2rem(286px);
+        vertical-align: super;
       }
     }
   }
@@ -117,17 +116,17 @@ $font-bg: rgb(192, 224, 142);
       @include btn-img(372px,90px );
       margin-right: px2rem(19px);
       position: relative;
-      i{
-        font-size:17px;
-        color:$font;
-         position: absolute;
-         top:50%;
-         left: 50%;
-         transform: translate(-50%,-50%);
+      i {
+        font-size: 17px;
+        color: $font;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     }
-    .sure{
-       width:px2rem(544px);
+    .sure {
+      width: px2rem(544px);
     }
     .sound {
       @include btn-img(150px,90px );
@@ -135,135 +134,204 @@ $font-bg: rgb(192, 224, 142);
   }
 }
 
-.game-b{
-height:100%;
-padding: 0;
-margin: 0 auto;
+.game-b {
+  height: 100%;
+  padding: 0;
+  margin: 0 auto;
+  position: relative;
 }
- .games{
-   background: rgb(255,225,133);
-   height:100%;
-   width: 90%;
-   margin: 0 auto;
- }
-.games-head{
+.games {
+  background: rgb(255, 225, 133);
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
+}
+.games-head {
   width: 100%;
-  height:px2rem(130px);
+  height: px2rem(130px);
   position: relative;
   // background: url('/static/img/pragress.png') no-repeat left center;
-  img{
+  img {
     width: 100%;
     height: 100%;
   }
-  .bg-head{
-    width:px2rem(103px);
+  .bg-head {
+    width: px2rem(103px);
     height: px2rem(96px);
     position: absolute;
     top: px2rem(12px);
-    right:px2rem(8px);
-   }
-  .games-time-box{
-    color:rgb(255,255,255);
-    font-family:'PingPangSC-Regular';
-    font-size:19px;
+    right: px2rem(8px);
+  }
+  .games-time-box {
+    color: rgb(255, 255, 255);
+    font-family: 'PingPangSC-Regular';
+    font-size: 19px;
     position: absolute;
     // left:px2rem(130px);
-    top:px2rem(35px);
-    left:20%;
+    top: px2rem(35px);
+    left: 20%;
     // top:23%;
   }
-  .progress-box-layer{
+  .progress-box-layer {
     position: absolute;
-    left:38%;
+    left: 38%;
     top: px2rem(34px);
-    width:45%;
+    width: 45%;
     height: px2rem(40px);
   }
-
 }
-.games-body-img{
+.games-body-img {
   text-align: center;
-  .game-word{
-     width:px2rem(624px);
-     height: px2rem(142px);
-     line-height: px2rem(142px);
-     font-family:'PingFangSC-Medium';
-     font-size:31px;
-    color:rgb(131,195,34);
+  .game-word {
+    width: px2rem(624px);
+    height: px2rem(142px);
+    line-height: px2rem(142px);
+    font-family: 'PingFangSC-Medium';
+    font-size: 31px;
+    color: rgb(131, 195, 34);
     background: white;
     // border-radius: px2rem(15px);
-    margin:px2rem(40px) auto;
-    background:url('/static/img/bg_viewingarea.png') no-repeat;
+    margin: px2rem(40px) auto;
+    background: url('/static/img/bg_viewingarea.png') no-repeat;
   }
-  .game-img{
-  //  width: px2rem(300px);
-  //  height: px2rem(210px);
-   background:white;
-   margin:px2rem(50px) auto;
+  .game-img {
+    //  width: px2rem(300px);
+    //  height: px2rem(210px);
+    background: white;
+    margin: px2rem(50px) auto;
   }
- }
+}
 
- .game-t-img{
-
-   margin: px2rem(160px) auto;
+.game-t-img {
+  margin: px2rem(160px) auto;
   //  background: white;
   border-radius: px2rem(10px);
   overflow: hidden;
   position: relative;
-  ul{
+  ul {
     width: 1000px;
     height: px2rem(330px);
-
   }
-  li{
+  li {
     height: px2rem(322px);
     width: px2rem(450px);
-    position:absolute;
-    border:2px solid white;
+    position: absolute;
+    border: 2px solid white;
   }
-  @mixin pict{
-    z-index:2;
-    top:px2rem(60px);
-    height:px2rem(188px);
-    transition: All .3s ease;
+  @mixin pict {
+    z-index: 2;
+    top: px2rem(60px);
+    height: px2rem(188px);
+    transition: All 0.3s ease;
   }
-  .show-cal{
-    transition: All .9s ease;
+  .show-cal {
+    transition: All 0.9s ease;
     // left:px2rem(70px);
   }
-  .img-0{
+  .img-0 {
     @include pict;
-    left:px2rem(70px);
+    left: px2rem(70px);
+  }
+  .img-2 {
+    @include pict;
+    right: px2rem(70px);
+  }
+  .img-1 {
+    z-index: 4;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: All 0.3s ease;
+  }
+}
+.game-wo {
+  margin: px2rem(202px) auto;
+  text-align: center;
+  span {
+    display: inline-block;
+    width: px2rem(282px);
+    height: px2rem(90px);
+    line-height: px2rem(90px);
+    text-align: center;
+    font-size: 24px;
+    background: white;
+    color: rgb(132, 201, 39);
+    border-radius: px2rem(22px);
+  }
+  .first-0 {
+    margin-right: px2rem(50px);
+  }
+}
+
+.show-score {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #000;
+  z-index: 6;
+  opacity: 0.9;
+  text-align: center;
+  .score_bg {
+    width: px2rem(560px);
+    height: px2rem(700px);
+    z-index: 7;
+    margin-top: 32%;
+    opacity: 1;
+  }
+  .get-score{
+    height: px2rem(744px);
+    width: px2rem(560px);
+    margin: 0 auto;
+ }
+  .wrop-score {
+    font-family: 'STYuanti-SC-Regular';
+    font-size: 56px;
+    color: $font;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, 0);
+  }
+  .btn-score-w{
+  position: relative;
+  top:-20%;
+  }
+  @mixin btn-score(){
+    display: inline-block;
+    width:px2rem(217px);
+    height: px2rem(88px);
+    line-height:px2rem(88px);
+    z-index:8;
+    font-size:14px;
+    color: rgb(59,148,0);
+    font-family: 'Ping-Fang-Semibold';
+    position: relative;
+    cursor: pointer;
+    a{
+      position: absolute;
+      left:50%;
+      top:50%;
+      width: 100%;
+      transform: translate(-50%,-50%);
+      color: rgb(59,148,0);
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .btn-score{
+    @include btn-score();
+    margin-right: px2rem(10px);
 
   }
-  .img-2{
-    @include pict;
-    right:px2rem(70px);
+  .btn-score2{
+    @include btn-score();
   }
- .img-1{
-    z-index:4;
-    left:50%;
-   transform: translateX(-50%);
-   transition: All .3s ease;
+  .star-wrop{
+      position: absolute;
+      left:50%;
+     transform: translate(-50%,0);
+     top:13%;
   }
- }
- .game-wo{
-   margin:px2rem(202px) auto;
-   text-align: center;
-    span{
-        display: inline-block;
-        width: px2rem(282px);
-        height: px2rem(90px);
-        line-height: px2rem(90px);
-        text-align: center;
-        font-size:24px;
-        background: white;
-        color:rgb(132,201,39);
-        border-radius: px2rem(22px);
-    }
-    .first-0{
-      margin-right: px2rem(50px);
-    }
- }
- //随机图片
-
+}
