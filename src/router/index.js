@@ -1,11 +1,12 @@
-// import Frame from '@/frame/frame.vue'
+import Frame from '@/frame/frame.vue'
 
 // 首页
 import Main from '@/page/common/main.vue'
 // 单词
 import Words from '@/page/word/index.vue'
 // 绘本
-import PictureBooks from '@/page/picture_books/index.vue'
+import PictureBooksList from '@/page/picture_books/list.vue'
+import PictureBooksDetails from '@/page/picture_books/details.vue'
 // 游戏
 import Games from '@/page/games/index.vue'
 // 404
@@ -33,7 +34,11 @@ export default [
   },
   {
     path: '/picture_books',
-    component: PictureBooks
+    component: Frame,
+    children: [
+      {path: 'list', component: PictureBooksList},
+      {path: 'details/:id', component: PictureBooksDetails}
+    ]
   },
   {
     path: '/games',

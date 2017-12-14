@@ -1,5 +1,5 @@
-import REQUEST from '@/store/api/index.js'
-import * as types from './mutation-types'
+import REQUEST from '@/api/index.js'
+import * as types from './mutation-types.js'
 
 const state = {
   viewWordDic: null, // 看单词词典释义
@@ -8,7 +8,7 @@ const state = {
   isFinishPic: false, // 判断是否完成绘本
   currPicPage: 0, // 当前绘画页数：0首页-0以后是内容
   // isCoverPic: true, // 是否封面-IS_COVER_PIC
-  picBooks: null // 绘本信息
+  picBooksContent: null // 绘本列表子项的内容
 }
 
 // getters
@@ -43,8 +43,8 @@ const mutations = {
     state.currPicPage = 0
     // state.isCoverPic = true
   },
-  [types.PIC_BOOKS] (state, { picBooks }) { // PicBooks
-    state.picBooks = picBooks
+  [types.PIC_BOOKS_CONTENT] (state, { content }) { // PicBooks
+    state.picBooksContent = content
   },
   [types.PROGRESS] (state, { progress }) { // 进度
     state.progress = progress
@@ -69,11 +69,12 @@ const mutations = {
 // actions
 /* eslint-disable prefer-promise-reject-errors */
 const actions = {
-  getPicBooks (context) { // 请求PicBooks
+  getPicBooksDetails (context, { id }) { // 请求PicBooks
     context.commit(types.DATA_RESET) // 数据重置
     return new Promise((resolve, reject) => {
-      REQUEST.get('huiben', null, r => {
-        context.commit(types.PIC_BOOKS, { picBooks: r.data })
+      REQUEST.get('course/' + id, null, r => {
+        console.log(r)
+        // context.commit(types.PIC_BOOKS_CONTENT, { picBooks: r.data })
         resolve()
       })
     })
