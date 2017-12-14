@@ -39,10 +39,9 @@
               <span class="first" :class="'first-' + i" v-for="(val, i) in showWord"  @click="pictSel(i)"> {{val}}</span>
             </div>
           </div>
-          <!-- <games-footer></games-footer> -->
         </div>
         <!-- 得分展示 -->
-        <div class="show-score">
+        <div class="show-score" v-if="showScore">
          <div class="get-score">
               <div class="star-wrop">
                    <img :src ="star" v-for="star in stars" class="star"  width="60px"height="60px">
@@ -82,6 +81,7 @@ export default {
       score: 0,
       game: [],
       num: [],
+      showScore: false,
       stars: ['static/img/bg_star_right.png', 'static/img/bg_star_right.png', 'static/img/bg_star_right.png'],
       k: '',
       pictNum: '',
@@ -140,6 +140,7 @@ export default {
         }
       } else {
        // 分值达到100
+        this.showScore = true
       }
     },
     random (par, param) {
