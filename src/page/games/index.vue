@@ -44,7 +44,7 @@
         <div class="show-score" v-if="showScore">
          <div class="get-score">
               <div class="star-wrop">
-                   <img :src ="star" v-for="star in stars" class="star"  width="60px"height="60px">
+                   <img :src ="star" v-for="star in stars" class="star"  >
               </div>
              <img src="static/img/show_score.png" class="score_bg">
              <span class="wrop-score">{{this.score}}</span>
