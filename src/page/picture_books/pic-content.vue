@@ -1,32 +1,32 @@
 <template lang="html">
-  <div class="huiben-content huiben-body">
-    <div class="huiben-body-img">
+  <div class="picbook-content picbook-body">
+    <div class="picbook-body-img">
       <img :src="getPicContentCurrItem.pic_photo" alt="">
     </div>
     <!-- 单独单词 -->
-    <div class="huiben-body-word">
+    <div class="picbook-body-word">
       <!-- <template v-if="viewWordDic && getWordItem(viewWordDic)">
         <word-paraphrase :value="viewWordDic" :word-infor="getWordItem(viewWordDic)"></word-paraphrase>
       </template> -->
     </div>
     <!-- 句子 -->
-    <div class="huiben-body-sentence">
+    <div class="picbook-body-sentence">
       <!-- 句子内容 -->
-      <div class="huiben-sentence-content">
+      <div class="picbook-sentence-content">
         <!-- 句子词组 -->
         <sentence-words :sentence="getPicContentCurrItem.sentence" @wordsEvent="wordsEvent"
           :audio="getPicContentCurrItem.sentence_audio" :play-time-chunk="getPicContentCurrItem.play_time_chunk"
           ref="sentenceWords"
         ></sentence-words>
         <!-- 翻译 -->
-        <div v-show="isShowSentenceCn" class="huiben-sentence-cn">{{getPicContentCurrItem.ch}}</div>
+        <div v-show="isShowSentenceCn" class="picbook-sentence-cn">{{getPicContentCurrItem.ch}}</div>
       </div>
       <!-- 句子控制面板 -->
-      <div class="huiben-sentence-control-panel">
-        <div class="huiben-sentence-btn" @click="panelAudio">
+      <div class="picbook-sentence-control-panel">
+        <div class="picbook-sentence-btn" @click="panelAudio">
           <i class="btn-icon base-icon-color fa fa-volume-up"></i>
         </div>
-        <div class="huiben-sentence-btn" @click="changeSentenceCnVisual">
+        <div class="picbook-sentence-btn" @click="changeSentenceCnVisual">
           <i class="btn-icon base-icon-color fa fa-refresh"></i>
         </div>
       </div>

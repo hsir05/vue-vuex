@@ -1,0 +1,9 @@
+export const DATA_RESET = 'DATA_RESET' // 数据重置
+export const STATE_TRANSITION = 'STATE_TRANSITION' // 状态流转变迁
+export const PIC_BOOKS_LIST = 'PIC_BOOKS_LIST' // 绘本信息
+export const PIC_BOOKS_LIST_PUSH = 'PIC_BOOKS_LIST_PUSH' // 绘本信息
+export const PAGE = 'PAGE' // 页数
+export const TOTAL = 'TOTAL' // 总数
+// export const WRAPPER_HEIGHT = 'WRAPPER_HEIGHT' // 整体的高
+export const PULLUP_STATUS = 'PULLUP_STATUS' // 上拉加载状态变化
+export const IS_ALL_LOADED = 'IS_ALL_LOADED' // 是否全部加载

@@ -1,18 +1,21 @@
 <template lang="html">
-  <div class="huiben-cover huiben-body">
-    <div class="huiben-body-img">
-      <img :src="getPicCover.cover_img_url" alt="">
+  <div class="picbook-cover picbook-body">
+    <div class="picbook-body-img">
+      <template v-if="getPicCover.cover_img_url">
+        <img :src="$Constant.GET_FILE_URL + getPicCover.cover_img_url[0]" alt="">
+      </template>
     </div>
-    <h6 class="huiben-body-title">{{ getPicCover.title }}</h6>
+    <h6 class="picbook-body-title">{{ getPicCover.title }}</h6>
   </div>
 </template>
 
 <script>
 import { mapMutations, mapActions, mapState, mapGetters } from 'vuex'
+
 export default {
   computed: {
     ...mapState('pictureBooks', []),
-    ...mapGetters('pictureBooks', ['getPicCover'])
+    ...mapGetters('pictureBooks/details', ['getPicCover'])
   },
   methods: {
     ...mapMutations('pictureBooks', {}),

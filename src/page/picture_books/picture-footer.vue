@@ -1,9 +1,9 @@
 <template lang="html">
-  <footer class="huiben-footer">
-    <div class="huiben-footer-btn" @click="lastPicBooks">
+  <footer class="picbook-footer">
+    <div class="picbook-footer-btn" @click="lastPicBooks">
       <i class="btn-icon base-icon-color fa fa-arrow-left"></i>
     </div>
-    <div class="huiben-footer-btn" @click="nextPicBooks">
+    <div class="picbook-footer-btn" @click="nextPicBooks">
       <i class="btn-icon base-icon-color fa fa-arrow-right"></i>
     </div>
   </footer>
@@ -19,10 +19,7 @@ export default {
   },
   methods: {
     ...mapMutations('pictureBooks', {}),
-    ...mapActions('pictureBooks', [
-      'lastPicBooks',
-      'nextPicBooks'
-    ])
+    ...mapActions('pictureBooks/details', ['lastPicBooks', 'nextPicBooks'])
   }
 }
 </script>
