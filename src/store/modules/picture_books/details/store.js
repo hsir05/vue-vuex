@@ -1,5 +1,6 @@
 import REQUEST from '@/api/index.js'
 import * as types from './mutation-types.js'
+import huiben from '@/datajson/huiben.json'
 
 const state = {
   viewWordDic: null, // 看单词词典释义
@@ -7,13 +8,17 @@ const state = {
   progress: 0, // 进度
   isFinishPic: false, // 判断是否完成绘本
   currPicPage: 0, // 当前绘画页数：0首页-0以后是内容
-  picbook: null // 绘本列表子项的内容
+  picbook: null, // 绘本列表子项的内容
+  playState: 'init' // 是否播放音频
 }
 
 // getters
 const getters = {
   getPicContents (state, getters, rootState, rootGetters) { // 获取内容
     return [...state.picbook.course_content]
+  },
+  getPageTotal (state, getters, rootState, rootGetters) { // 获取内容总页数
+    return state.picbook.course_content.length
   },
   getPicCover (state, getters, rootState, rootGetters) { // 获取绘画封面信息
     return state.picbook ? {title: state.picbook.title, cover_img_url: state.picbook.cover_img_url} : {}
@@ -37,10 +42,12 @@ const getters = {
 // mutations
 const mutations = {
   [types.DATA_RESET] (state) { // 数据重置
+    state.viewWordDic = null
     state.isShowSentenceCn = false
     state.progress = 0
     state.isFinishPic = false
     state.currPicPage = 0
+    state.playState = 'init'
   },
   [types.VIEW_WORD_DIC] (state, { word }) { // 看单词词典释义
     state.viewWordDic = word
@@ -59,6 +66,9 @@ const mutations = {
   },
   [types.PICBOOK] (state, { picbook }) { // picbook
     state.picbook = picbook
+  },
+  [types.PLAY_STATE] (state, { status }) { // 是否播放音频
+    state.playState = status
   }
 }
 
@@ -69,6 +79,7 @@ const actions = {
     context.commit(types.DATA_RESET) // 数据重置
     return new Promise((resolve, reject) => {
       REQUEST.get('course/' + id, null, r => {
+        r.data.course_content = huiben.data.content_list
         context.commit(types.PICBOOK, { picbook: r.data })
         resolve()
       })
@@ -76,6 +87,7 @@ const actions = {
   },
   nextPicBooks (context) { // 下一个绘画
     context.commit(types.VIEW_WORD_DIC, { word: null })
+    context.commit(types.PLAY_STATE, { status: 'init' })
     let currPicPage = context.state.currPicPage + 1
     if (currPicPage <= context.getters.getPicContents.length) {
       context.dispatch('setCurrPicPage', { index: currPicPage }) // 设置当前pic索引
@@ -86,6 +98,7 @@ const actions = {
   },
   lastPicBooks (context) { // 上一个绘画
     context.commit(types.VIEW_WORD_DIC, { word: null })
+    context.commit(types.PLAY_STATE, { status: 'init' })
     let currPicPage = context.state.currPicPage - 1
     if (currPicPage > 0) {
       context.dispatch('setCurrPicPage', { index: currPicPage }) // 设置当前pic索引

@@ -101,6 +101,7 @@ const actions = {
         // })
         // console.log(list)
         context.commit(types.WORDS, { words: r.data.list })
+        // context.commit(types.WORDS, { words: [{word: 'Oh', cn: '噢'}] })
         resolve()
         // setTimeout(() => {
         //   resolve()

@@ -4,7 +4,19 @@
     "cover_img_url": "http://ali.bczcdn.com/pap/8__164_20161020180336_12803_c.jpg",
     "content_list": [
       {
-        "sentence": "Oh, my soap boat. ten",
+        "sentence": "TO Leon Werth I ask the indulgence of the children.",
+        "ch": "噢，我的肥皂船！",
+        "pic_photo": "http://ali.bczcdn.com/pap/8_65_164_20161020174941_30293_c.jpg",
+        "sentence_audio": "http://ali.bczcdn.com/pap/8_65_164_20161020174941_9819_c.mp3",
+        "play_time_chunk": [
+          { "idx": 0, "start": "0.302", "end": "0.990" },
+          { "idx": 1, "start": "1.323", "end": "1.594" },
+          { "idx": 2, "start": "1.635", "end": "2.010" },
+          { "idx": 3, "start": "2.094", "end": "2.698" }
+        ]
+      },
+      {
+        "sentence": "Oh, my soap boat.",
         "ch": "噢，我的肥皂船！",
         "pic_photo": "http://ali.bczcdn.com/pap/8_65_164_20161020174941_30293_c.jpg",
         "sentence_audio": "http://ali.bczcdn.com/pap/8_65_164_20161020174941_9819_c.mp3",

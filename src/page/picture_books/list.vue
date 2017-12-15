@@ -16,7 +16,7 @@
         >
           <!-- 列表子项 -->
           <template v-for="(item, index) in getPicBooksList">
-            <div class="picture-books-item">
+            <div class="picture-books-item white-bg">
               <div class="item-img">
                 <img :src="$Constant.GET_FILE_URL + item.cover_img_url[0]" alt="">
               </div>

@@ -62,7 +62,7 @@ export default {
         this.$emit('wordsEvent', w)
       }
     },
-    panelAudio () {
+    panelAudio () { // init-play-pause-ended
       // console.log(this.play_state)
       switch (this.play_state) {
         case 'init':
@@ -134,10 +134,10 @@ export default {
 
 <style lang="scss">
 .sentence-words { // 句子词组
-  display: block; line-height: 0.24rem;
+  display: block; line-height: 1;
   .sentence-word-group {
-    display: inline-block; margin: 0 0.03rem; font-size: 0.24rem; line-height: 0.24rem; padding: 0.03rem;
-    background: #fff;
+    display: inline-block; margin: 0 0.03rem; line-height: 1; padding: 0.03rem;
+    // background: #fff;
   }
   .sentence-word-light {
     color: red;

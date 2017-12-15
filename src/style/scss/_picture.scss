@@ -19,7 +19,7 @@
       width: px2rem(626px); margin: 0 auto;
       .picture-books-item { // 列表子项
         width: 100%; height: px2rem(236px); padding: 0 px2rem(46px); box-sizing: border-box;
-        margin-bottom: px2rem(24px); background: #fff;
+        margin-bottom: px2rem(24px);
         .item-img {
           display: block; float: left; height: 100%; width: px2rem(172px);
           img {width: px2rem(172px); height: px2rem(172px); margin: px2rem(32px) 0;}
@@ -27,8 +27,9 @@
         .item-infor {
           display: block; float: right; width: px2rem(314px); height: 100%; padding: px2rem(32px) 0; box-sizing: border-box;
           h3 {
-            font-size: px2rem(30px); color: rgb(102, 38, 0); margin: 0; padding: 0; height: px2rem(108px);
-            line-height: px2rem(54px); overflow: hidden;
+            font-size: px2rem(30px); margin: 0; padding: 0; height: px2rem(108px);
+            line-height: px2rem(54px); overflow: hidden; color: $brown;
+            // color: rgb(102, 38, 0);
           }
           button {
             border-radius: px2rem(26px); height: px2rem(52px); width: px2rem(148px); line-height: px2rem(52px); text-align: center;
@@ -44,6 +45,95 @@
 }
 // 绘本详情
 .picbook-details {
-  position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+  position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%;
+  // padding: px2rem(60px) 0; box-sizing: border-box;
+  .picture-head {
+    height: px2rem(110px); width: 100%;
+    .home-btn {
+      position: fixed; top: px2rem(20px); left: px2rem(20px); z-index: 100;
+      width: px2rem(72px); height: px2rem(72px);
+      font-size: px2rem(34px); color: rgb(132, 201, 39); border-radius: 50%; text-align: center;
+      // line-height: px2rem(72px);
+      img { width: 100%; height: 100%; }
+    }
+    .picture-infor-sign {
+      font-size: px2rem(40px); height: px2rem(110px); margin: 0 auto; width: px2rem(200px);
+      line-height: px2rem(110px); text-align: center; color: rgb(132, 201, 39);
+    }
+  }
+  // 封面
+  .picbook-cover {
+    .picbook-body-img {
+      height: px2rem(568px); margin-bottom: px2rem(48px);
+      // margin-top: px2rem(20px);
+      .picbook-body-img-bg {
+        width: px2rem(556px); height: px2rem(556px);
+      }
+    }
+    .picbook-body-title {
+      padding: 0 px2rem(60px); line-height: px2rem(50px); font-size: px2rem(32px); text-align: center;
+    }
+  }
+  // 主体
+  .picbook-body {
+    position: absolute; top: 0; left: 0; z-index: 2; width: 100%; height: 100%; overflow: hidden;
+    padding: px2rem(110px) 0 px2rem(132px) 0; box-sizing: border-box; display: block;
+    .picbook-body-img {
+      width: 100%;
+      // height: px2rem(412px);
+      .picbook-body-img-bg {
+        // width: px2rem(400px); height: px2rem(400px);
+        padding: px2rem(6px); display: block; margin: 0 auto;
+        img { width: 100%; height: 100%; }
+      }
+    }
+  }
+  .picbook-content {
+    .picbook-body-img {
+      height: px2rem(512px);
+      .picbook-body-img-bg {
+        width: px2rem(500px); height: px2rem(500px);
+      }
+    }
+    .picbook-body-word {
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      height: px2rem(48px); line-height: px2rem(48px);  display: block; padding: 0 px2rem(60px);
+    }
+    .picbook-sentence-wrapper { // 句子
+      padding: 0 px2rem(60px);
+      // 句子词组
+      .picbook-sentence {
+        line-height: px2rem(50px); font-size: px2rem(30px);
+      }
+      // 句子控制面板
+      .picbook-sentence-control-panel {
+        margin: px2rem(30px) 0;
+        .picbook-sentence-btn {
+          height: px2rem(66px); width: px2rem(198px); border-radius: px2rem(33px); display: inline-block;
+          img { width: 100%; height: 100%; }
+        }
+      }
+      .picbook-sentence-cn {
+        line-height: px2rem(50px); font-size: px2rem(30px);
+      }
+    }
+  }
 
+  // 底部按钮
+  .picbook-footer {
+    padding: 0 px2rem(60px); display: block; height: px2rem(90px); width: 100%; margin-bottom: px2rem(42px);
+    position: absolute; bottom: 0; left: 0; z-index: 3; box-sizing: border-box;
+    .btn-cont-img {
+      height: px2rem(90px);  float: left; border-radius: px2rem(20px);
+      &:not(:last-child) {margin-right: px2rem(38px);}
+      img {
+        height: px2rem(74px); width: px2rem(74px); display: block; margin: px2rem(8px) auto;;
+      }
+    }
+    .last { width: px2rem(202px); }
+    .next { width: px2rem(202px); }
+    .audio {
+      width: px2rem(150px);
+    }
+  }
 }
