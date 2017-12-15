@@ -334,11 +334,11 @@ $font-bg: rgb(192, 224, 142);
       left:50%;
       top:4%;
      transform: translateX(-50%);
-    //  top:4%;
      width: px2rem(560px);
      img{
-      width:px2rem(84px);
-      height: px2rem(84px);
+       $wh:160px;
+      width:px2rem($wh);
+      height: px2rem($wh);
      }
   }
 }
