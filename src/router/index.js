@@ -3,7 +3,7 @@ import Frame from '@/frame/frame.vue'
 // 首页
 import Main from '@/page/common/main.vue'
 // 单词
-import Words from '@/page/word/index.vue'
+import LearnWords from '@/page/learn_word/index.vue'
 // 绘本
 import PictureBooksList from '@/page/picture_books/list.vue'
 import PictureBooksDetails from '@/page/picture_books/details.vue'
@@ -28,8 +28,8 @@ export default [
     hidden: true
   },
   {
-    path: '/words',
-    component: Words,
+    path: '/learn_word',
+    component: LearnWords,
     name: '记单词'
   },
   {

@@ -4,6 +4,9 @@ import wordsStore from './modules/common/words/store.js'
 // 绘本模块
 import PictureBooksList from './modules/picture_books/list/store.js'
 import PictureBooksDetails from './modules/picture_books/details/store.js'
+// 学单词
+import LearnWords from './modules/learn_words/store.js'
+
 //
 import games from './modules/games/games-store.js'
 import * as actions from './actions'
@@ -31,6 +34,7 @@ export default new Vuex.Store({
         details: PictureBooksDetails
       }
     },
+    learnWords: LearnWords,
     games
   },
   strict: debug

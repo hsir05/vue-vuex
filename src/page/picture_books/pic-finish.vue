@@ -1,14 +1,13 @@
 <template lang="html">
   <div class="picbook-finish">
-    <div class="picbook-finish-img">
-      <img src="http://ali.bczcdn.com/pap/build/static/media/goodjob.98301119.png" alt="">
-    </div>
-    <!-- 绘本结束面板 -->
-    <div class="picbook-finish-panel">
-      <div class="picbook-finish-btn" @click="DATA_RESET">
-        <i class="btn-icon base-icon-color fa fa-refresh"></i>
+    <div class="picbook-finish-layer">
+      <div class="picbook-finish-img">
+        <img src="/static/img/goodjob.png" alt="">
       </div>
-      <div class="picbook-finish-btn" @click="$router.push('')">
+      <!-- 绘本结束面板 -->
+      <div class="picbook-finish-panel">
+        <div class="btn-cont-img fl" @click="DATA_RESET">重新开始</div>
+        <div class="btn-cont-img fr" @click="$router.push('/picture_books/list')">完成学习</div>
       </div>
     </div>
   </div>
@@ -18,12 +17,12 @@
 import { mapMutations, mapActions, mapState, mapGetters } from 'vuex'
 export default {
   computed: {
-    ...mapState('pictureBooks', []),
-    ...mapGetters('pictureBooks', {})
+    ...mapState('pictureBooks/details', []),
+    ...mapGetters('pictureBooks/details', {})
   },
   methods: {
-    ...mapMutations('pictureBooks', ['DATA_RESET']),
-    ...mapActions('pictureBooks', [])
+    ...mapMutations('pictureBooks/details', ['DATA_RESET']),
+    ...mapActions('pictureBooks/details', [])
   }
 }
 </script>
