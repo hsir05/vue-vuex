@@ -1,9 +1,13 @@
 <template lang="html">
   <div class="picbook-details">
-    <picture-head :value="progress"></picture-head>
+    <picture-head></picture-head>
+    <!-- 封面 -->
     <pic-cover v-if="isCoverPic"></pic-cover>
-    <!-- <pic-content v-else></pic-content> -->
+    <!-- 内容 -->
+    <pic-content v-else></pic-content>
+    <!-- 底部按钮 -->
     <picture-footer></picture-footer>
+    <!-- 完成弹框 -->
     <pic-finish v-if="isFinishPic"></pic-finish>
   </div>
 </template>
@@ -11,7 +15,8 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 
-import PictureHead from '@/page/common/headhome-progress.vue'
+// import PictureHead from '@/page/common/headhome-progress.vue'
+import PictureHead from './picture-head.vue'
 import PicCover from './pic-cover'
 import PicContent from './pic-content'
 import PicFinish from './pic-finish'
@@ -27,6 +32,7 @@ export default {
   },
   created () {
     this.$store.dispatch('pictureBooks/details/getPicBook', { id: this.$route.params.id })
+    this.$store.dispatch('common/wordsStore/getWords')
   },
   computed: {
     ...mapState('pictureBooks/details', ['progress', 'isFinishPic']),

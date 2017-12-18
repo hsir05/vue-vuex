@@ -1,9 +1,12 @@
-$BaseBg: #FFF2DD; // 基础背景颜色
-$BaseText: #8b572a; // 基础文字颜色
-$BasePrompt: #ccad8f; // 基础提示文字颜色
-$BaseIcon: #ffdb9d; // 基础图标颜色
-$BtnYellow: #FFEEA1; // 黄色按钮
-$BtnOrange: #FFDAA0; // 橘色按钮
+$BaseBg: rgb(255, 239, 190);
+$BaseText: #47453b;
+// 彩色
+$brown: rgb(102, 38, 0); // 褐色
+$blackgrey: #47453b; // 黑灰
+$red: rgb(250, 93, 78);
+$green: rgb(132, 201, 39);
+$yellow: rgb(255, 239, 190);
+
 // 黑白灰
 $c55:#555;
 $c22:#222;
@@ -23,16 +26,3 @@ $cf9:#f9f9f9;
 $cf7:#F7F7F7;
 $cfa:#fafafa;
 $cf60:#f60;
-// 彩色
-$red:#ed3f14;
-$qblue:#5cadff;
-$blue:#2d8cf0;
-$sblue:#2b85e4;
-$green:#19be6b;
-$cyan:#36bc99;
-$gold:#A49D86;
-$pink:#EF3030;
-$pink2:#F13E7A;
-$yellow:#f69800;
-$orange:#f60;
-$qblue:#81dae8;

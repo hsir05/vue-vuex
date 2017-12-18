@@ -8,3 +8,4 @@ export const IS_FINISH_PIC = 'IS_FINISH_PIC' // 当前pic是否完成
 export const IS_COVER_PIC = 'IS_COVER_PIC' // 是否封面
 export const VIEW_WORD_DIC = 'VIEW_WORD_DIC' // 看单词词典释义
 export const IS_SHOW_SENTENCE_CN = 'IS_SHOW_SENTENCE_CN' // 是否显示句子的汉译
+export const PLAY_STATE = 'PLAY_STATE' // 是否播放音频
