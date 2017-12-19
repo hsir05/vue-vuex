@@ -2,48 +2,16 @@
   <div class="learn-word">
     <div class="wrop">
       <ul>
-        <li class="word-img" v-for="(item, index) in data"  :style="'transform:'+ 'translateX'+ '(' + num + ');'">
+        <li class="word-img" v-for="(item, index) in dat"  :style="'transform:'+ 'translateX'+ '(' + num + ');'">
           <img src="static/img/bg_normal.png" alt="">
-          <!-- 1 单词显示 -->
-          <div class="show-word"  v-for="(k,i) in item.syllable" v-show="flag === 1">
-            <span class="show-w"  >{{k}}</span>
-            <!-- 音频 -->
-            <audio :src=" preUrl + item.audio_right[0]" ref="syll" ></audio>
-          </div>
-
-          <!-- 2.图片 -->
-          <div class="show-img" v-for="(k, i) in item.pic_right" v-if="i === 0 ">
-            <img :src="preUrl + k" alt="" class="show-i">
-            <span class="img-w">{{item.word}}</span>
-            <!-- 音频 -->
-            <audio :src=" preUrl + item.audio_right[0]" ref="syll" ></audio>
-          </div>
-
-          <!-- 3 .选择 -->
-          <div class="show-img" v-show="flag === 3">
-            <span class="answer">
-              <i class="answer-sel" ></i>
-              <img src="static/img/bg_voice.png" alt="" class="answer-p" >
-              <audio :src="preUrl + v" v-for="(v, l) in item.audio_right" v-if="l ===0" ></audio>
-            </span>
-            <span class="answer">
-              <i class="answer-sel"></i>
-              <img src="static/img/bg_voice.png" alt="" class="answer-p">
-              <audio :src="preUrl + j" v-for="(j, c) in item.audio_error" v-if="c ===0" ></audio>
-            </span>
-            <span class="img-w">{{item.syllable}}</span>
-          </div>
-
-          <!-- 下一步按钮 -->
-          <div class="step">
-            <span class="next" :class="index === 2?'sure':''" @click="next(index)">
-              <img src="static/img/btn_next.png" v-if="index !== 2">
-              <i v-text="index === 2 ? '确定' : ''" ></i>
-            </span>
-            <span class="sound" v-if="index !== 2" @click="soundOpen(index)">
-              <img src="static/img/btn_sound.png" alt="" >
-            </span>
-          </div>
+            <!-- 1 单词显示 -->
+             <words-show item="item"></words-show>
+            <!-- 2.图片 -->
+            <!-- <picture-show :item="item"></picture-show> -->
+            <!-- 3 .选择 -->
+            <!-- <select-show :item="item"></select-show> -->
+           <!-- 下一步按钮 -->
+           <!-- <next-btn :index="index"></next-btn> -->
         </li>
       </ul>
     </div>
@@ -51,12 +19,17 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-// import { Indicator, Toast } from 'mint-ui'
+import WordsShow from './words-show.vue'
+import PictureShow from './picture-show.vue'
+import SelectShow from './select-show.vue'
+import NextBtn from './next-btn.vue'
+import { Indicator } from 'mint-ui'
 export default {
+  components: {WordsShow, PictureShow, SelectShow, NextBtn},
   name: 'words',
   data () {
     return {
-      data: [],
+      dat: [],
       list: [],
       flag: 1,
       num: 0,
@@ -64,19 +37,20 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('common/wordsStore/getWords')
-    // this.data[0] = this.getAllWords[0].syllable_array[0]
-    // this.data[1] = this.getAllWords[0].words_array[0]
-    // this.data[2] = this.getAllWords[0].syllable_array[0]
-    this.getAllWords.forEach((item, index) => {
-      if (this.getAllWords[index].syllable_array && this.getAllWords[index].syllable_array.length !== 0) {
-        let i = index + 1
-        let k = index + 2
-        this.data[index] = this.getAllWords[index].syllable_array[0]
-        this.data[i] = this.getAllWords[index].words_array[0]
-        this.data[k] = this.getAllWords[index].syllable_array[0]
-        console.log(this.data.length)
-      }
+    Indicator.open('加载中...')
+    this.$store.dispatch('common/wordsStore/getWords', {kinds: '单词'}).then(() => {
+      Indicator.close()
+      this.getAllWords.forEach((item, index) => {
+        if (this.getAllWords[index].syllable_array && this.getAllWords[index].syllable_array.length !== 0) {
+          let i = index + 1
+          let k = index + 2
+          this.dat[index] = this.getAllWords[index].syllable_array[0]
+          this.dat[i] = this.getAllWords[index].words_array[0]
+          this.dat[k] = this.getAllWords[index].syllable_array[0]
+        }
+      })
+      console.log(this.dat)
+      this.flag = 1
     })
   },
   computed: {
@@ -87,7 +61,7 @@ export default {
       this.$refs.syll[index].play()
     },
     next (index) {
-      if (this.data.length - 1 !== index) {
+      if (this.dat.length - 1 !== index) {
         this.num = parseInt((index + 1) * (-100)) + '%'
         if (this.flag !== 3) {
           this.flag = this.flag + 1

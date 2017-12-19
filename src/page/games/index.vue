@@ -11,20 +11,6 @@
               <progress-bar :value="progress" bg="rgb(106, 167, 24)"></progress-bar>
             </div>
           </div>
-          <!-- 11111 -->
-          <div class="games-body-img" v-if="0">
-            <!-- <img :src="getWordsIndexItem(currWordIndex).pic_right[0]" alt=""> -->
-              <div class="game-word">{{this.game[0].word}}</div>
-              <div class="game-img">
-                <img src=" ">
-              </div>
-                <div class="game-img">
-                <img src=" ">
-              </div>
-                <div class="game-img">
-                <img src=" ">
-              </div>
-          </div>
 
            <!-- 图片循环展示 -->
           <picture-show ></picture-show>
@@ -46,11 +32,7 @@ export default {
   components: { GamesFooter, Swipe, SwipeItem, GetScore, PictureShow },
   data () {
     return {
-      game: [],
-      preUrl: process.env.API_PIC
     }
-  },
-  mounted () {
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getWordsIndexItem', 'getAllWords', 'getRandomWordItem']),
