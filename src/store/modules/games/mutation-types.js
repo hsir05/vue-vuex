@@ -4,3 +4,4 @@ export const REQUEST_LOADING = 'REQUEST_LOADING' // 请求加载
 export const PROGRESS = 'PROGRESS' // 进度
 export const GAMES_TIME = 'GAMES_TIME' // 游戏时间
 export const GAMES_FRACTION = 'GAMES_FRACTION' // 游戏分数
+export const GAMES_SCORE = 'GAMES_SCORE' // 游戏得分展示

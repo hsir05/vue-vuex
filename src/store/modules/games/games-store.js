@@ -8,7 +8,8 @@ const state = {
   progress: 100, // 进度
   currWordIndex: 0, // 当前单词的索引
   selectFrequency: 0, // 选择次数：1次则为10分，多次则为5分
-  gamesData: []
+  gamesData: [],
+  gameScore: false  // 游戏得分展示
 }
 
 // getters
@@ -42,6 +43,9 @@ const mutations = {
   },
   [types.REQUEST_LOADING] (state, { bool }) { // 游戏分数
     state.requestLoading = bool
+  },
+  [types.GAMES_SCORE] (state, { bool }) { // 游戏结束得分展示
+    state.gameScore = bool
   }
 }
 

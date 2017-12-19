@@ -80,11 +80,11 @@ const mutations = {
 // actions
 /* eslint-disable prefer-promise-reject-errors */
 const actions = {
-  getWords (context) {
+  getWords (context, kinds) {
     // 请求works
     context.commit(types.DATA_RESET) // 数据重置
     return new Promise((resolve, reject) => {
-      REQUEST.get('weixin_words_view', null, r => {
+      REQUEST.get('weixin_words_view?kinds=' + kinds.kinds, null, r => {
         // let list = r.data.list.map(l => {
         //   let item = { ...l }
         //   item['word_photo'] = [...item.pic_right]
