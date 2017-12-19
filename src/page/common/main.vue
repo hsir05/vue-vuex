@@ -39,11 +39,6 @@ export default {
     return {
     }
   },
-  created () {
-    this.$store.dispatch('common/wordsStore/getWords').then(() => {
-      // this.$store.commit('words/REQUEST_LOADING', { bool: false })
-    })
-  },
   computed: {
     ...mapGetters('common/wordsStore', ['getAllWords'])
   },
