@@ -3,9 +3,9 @@
     <div class="wrop">
       <ul>
         <li class="word-img" v-for="(item, index) in dat"  :style="'transform:'+ 'translateX'+ '(' + num + ');'">
-          <img src="static/img/bg_normal.png" alt="">
+
             <!-- 1 单词显示 -->
-             <words-show item="item"></words-show>
+             <words-show :item="item" v-if="flag === 1"></words-show>
             <!-- 2.图片 -->
             <!-- <picture-show :item="item"></picture-show> -->
             <!-- 3 .选择 -->
@@ -49,9 +49,9 @@ export default {
           this.dat[k] = this.getAllWords[index].syllable_array[0]
         }
       })
-      console.log(this.dat)
       this.flag = 1
     })
+    this.getShowContent()
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getAllWords', 'getDealWords'])

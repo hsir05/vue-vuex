@@ -8,7 +8,7 @@
       <!-- 记单词 -->
       <div class="links-worp links-word">
         <router-link to="/learn_word" >
-          <img src="/static/img/word.png" alt=""class="btn-img">
+          <img src="static/img/word.png" alt=""class="btn-img">
         </router-link>
       </div>
       <!-- 游戏 -->

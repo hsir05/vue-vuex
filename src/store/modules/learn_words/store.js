@@ -27,6 +27,9 @@ const actions = {
         resolve()
       })
     })
+  },
+  getShowContent (context, flag) {
+    console.log(flag)
   }
 }
 
