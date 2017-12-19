@@ -6,7 +6,8 @@ import PictureBooksList from './modules/picture_books/list/store.js'
 import PictureBooksDetails from './modules/picture_books/details/store.js'
 // 学单词
 import LearnWords from './modules/learn_words/store.js'
-
+// 儿歌
+import NurseryRhyme from './modules/nursery_rhyme/store.js'
 //
 import games from './modules/games/games-store.js'
 import * as actions from './actions'
@@ -35,6 +36,7 @@ export default new Vuex.Store({
       }
     },
     learnWords: LearnWords,
+    nurseryRhyme: NurseryRhyme,
     games
   },
   strict: debug

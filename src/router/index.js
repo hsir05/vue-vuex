@@ -9,6 +9,8 @@ import PictureBooksList from '@/page/picture_books/list.vue'
 import PictureBooksDetails from '@/page/picture_books/details.vue'
 // 游戏
 import Games from '@/page/games/index.vue'
+// 儿歌
+import NurseryRhyme from '@/page/nursery_rhyme/index.vue'
 // 404
 import NotFound from '@/page/common/404.vue'
 
@@ -31,6 +33,11 @@ export default [
     path: '/learn_word',
     component: LearnWords,
     name: '记单词'
+  },
+  {
+    path: '/nursery_rhyme',
+    component: NurseryRhyme,
+    name: '儿歌'
   },
   {
     path: '/picture_books',

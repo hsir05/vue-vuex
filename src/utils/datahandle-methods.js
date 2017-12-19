@@ -190,5 +190,21 @@ export default {
       init: str, // 初始字符串
       is_url: isUrl // 是否存在url
     }
+  },
+  getRandomIntIndefiniteArray (min, max, length) {
+    function getRandomInt (last, min, max) {
+      let randomNum = Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) + 1)) + Math.ceil(min)
+      if (randomNum !== last) {
+        return randomNum
+      } else {
+        return getRandomInt(last, min, max)
+      }
+    }
+    var a = []
+    for (var i = 0; i < length; i++) {
+      let rannum = getRandomInt(a[a.length - 1] ? a[a.length - 1] : max, min, max)
+      a.push(rannum)
+    }
+    return a
   }
 }

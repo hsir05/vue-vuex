@@ -1,0 +1,10 @@
+export const DATA_RESET = 'DATA_RESET' // 数据重置
+export const STATE_TRANSITION = 'STATE_TRANSITION' // 状态流转变迁
+export const REQ_LOADING = 'REQ_LOADING' // 请求加载
+export const BEIN_STATER = 'BEIN_STATER' // 进行的状态
+export const WAIT_TIME = 'WAIT_TIME' // 等待时间
+export const CURR_WORDS_INDEX = 'CURR_WORDS_INDEX' // 当前高亮单词索引
+export const IS_START_SONGS = 'IS_START_SONGS' // 是否开启儿歌
+export const PROGRESS = 'PROGRESS' // 设置进度
+export const CURR_AUDIO_SRC = 'CURR_AUDIO_SRC' // 当前音频地址
+export const NURSERY_RHYME = 'NURSERY_RHYME' // 儿歌信息
