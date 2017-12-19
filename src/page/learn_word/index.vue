@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import WordsShow from './words-show.vue'
 import PictureShow from './picture-show.vue'
 import SelectShow from './select-show.vue'
