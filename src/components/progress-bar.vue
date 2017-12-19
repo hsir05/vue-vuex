@@ -29,7 +29,7 @@ export default {
 
 <style lang="scss">
 .progress-bar {
-  transition: width .2s; height: 100%; border-radius: 3px;
+  transition: width .2s; height: 100%; border-radius: 0.16rem;
   background-image: linear-gradient(to left top,
                                       hsla(0,0%,100%,.15) 25%,transparent 0,transparent 50%,
                                       hsla(0,0%,100%,.15) ,

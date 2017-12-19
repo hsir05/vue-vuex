@@ -5,8 +5,7 @@
       :class="{'sentence-word-light': wordLightAble(index)}"
     ></div>
     <!-- @timeupdate="timeupdateEvent" @loadeddata="loadeddataEvent" @progress="progressEvent" -->
-    <audio :id="audio_id" @ended="endedEvent" @play="playEvent" @pause="pauseEvent">
-      <source :src="audio" type="audio/mpeg">
+    <audio :id="audio_id" :src="audio" @ended="endedEvent" @play="playEvent" @pause="pauseEvent">
       不支持播放音频
     </audio>
   </div>

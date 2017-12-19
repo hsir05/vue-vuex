@@ -19,7 +19,7 @@
       </div>
       <!-- 儿歌 -->
       <div class="links-worp links-song">
-        <router-link to="/word">
+        <router-link to="/nursery_rhyme">
           <img src="static/img/song.png" alt="" class="btn-img">
         </router-link>
       </div>
