@@ -1,12 +1,11 @@
 <template>
-    <!-- <div class="show-word"  v-for="(k,i) in item.syllable" > -->
+      <div class="word-img">
+      <img src="static/img/bg_normal.png" alt="">
         <div class="show-word"   >
-          asdfasdfsadf
-        <!-- <span class="show-w"  >{{k}}</span> -->
-        <!-- 音频 -->
-        <!-- <audio :src=" preUrl + '/'+ item.audio_right[0]" ref="syll" ></audio> -->
-        </div>
-    <!-- </div> -->
+            <!-- <span class="show-w"  >{{k}}</span> -->
+            <audio :src=" preUrl + '/'+ item.audio_right[0]" ref="syll" ></audio>
+       </div>
+      </div>
 </template>
 <script>
 export default {
