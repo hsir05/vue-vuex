@@ -28,11 +28,11 @@ const getters = {
     return state.currWordsIndex < 0 ? {} : getters.getWordItem(state.currWordsIndex)
   },
   isTimeWaitFinish (state, getters, rootState, rootGetters) {
-    return true
-    // if (state.waitTime < 0) {
-    //   return true
-    // }
-    // return false
+    // return true
+    if (state.waitTime < 0) {
+      return true
+    }
+    return false
   }
 }
 
@@ -40,9 +40,11 @@ const getters = {
 const mutations = {
   [types.DATA_RESET] (state) { // 数据重置
     state.reqLoading = false
+    state.beinState = 'init'
     state.waitTime = 3
     state.currWordsIndex = 0
     state.isStartSongs = false
+    state.progress = 0
     state.currAudioSrc = null
     state.nurseryRhyme = null
   },
@@ -130,8 +132,8 @@ const actions = {
   },
   setSongsProgress (context, { prec, length }) { // 设置进度
     let progress = Math.ceil((prec / length) * 100)
-    console.log(prec, length)
-    console.log(progress)
+    // console.log(prec, length)
+    // console.log(progress)
     context.commit(types.PROGRESS, { progress: progress })
   },
   setSongsActionRule (context) { // 设置歌曲播放行为规则

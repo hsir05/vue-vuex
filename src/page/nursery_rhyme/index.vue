@@ -30,11 +30,18 @@ export default {
     })
     this.$store.dispatch('nurseryRhyme/getNurseryRhyme').then(() => {
       Indicator.close()
-      this.$store.dispatch('nurseryRhyme/delayChildSongs')
-      // this.$store.dispatch('nurseryRhyme/timeWait').then(() => {
-      //   this.$store.dispatch('nurseryRhyme/delayChildSongs')
-      // })
+      // this.$store.dispatch('nurseryRhyme/delayChildSongs')
+      this.$store.dispatch('nurseryRhyme/timeWait').then(() => {
+        this.$store.dispatch('nurseryRhyme/delayChildSongs')
+      })
     })
+    window.onpopstate = function () { // 当url发生变化时，清除页面所有的定时器
+      var end = setTimeout(function () {}, 1)
+      var start = (end - 100) > 0 ? end - 100 : 0
+      for (var i = start; i <= end; i++) {
+        clearTimeout(i)
+      }
+    }
   },
   computed: {
     ...mapState('nurseryRhyme', ['reqLoading', 'beinState', 'currAudioSrc']),
