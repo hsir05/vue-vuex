@@ -34,7 +34,7 @@ $font-bg: rgb(192, 224, 142);
     text-align: center;
     margin: 0 auto;
     border-radius: 10px;
-    z-index: 100;
+    // z-index: 100;
     position: relative;
   }
   @mixin word-c($y) {
@@ -45,12 +45,37 @@ $font-bg: rgb(192, 224, 142);
   }
   .show-word {
     @include word-s;
+    position: relative;
     .show-w {
       @include word-c(-60%);
       font-size: 117px;
       color: $font;
     }
+    .img-w {
+      position: relative;
+      bottom: -300px;
+      color: $font;
+      font-size: 60px;
+      margin: 0 3px;
+    }
+    .img-step3{
+      position: absolute;
+      left: 50%;
+      top:130%;
+      // bottom: -100px;
+      color: $font;
+      font-size: 60px;
+      // margin: 0 3px;
+    }
+    .show-i {
+      @include word-c(-48%);
+      width: 90%;
+      height: 90%;
+    }
   }
+.addColor {
+    opacity:.4;
+}
   .show-img {
     @include word-s;
     .show-i {
@@ -58,44 +83,8 @@ $font-bg: rgb(192, 224, 142);
       width: 85%;
       height: 90%;
     }
-    .img-w {
-      position: absolute;
-      bottom: -40px;
-      left: 50%;
-      transform: translate(-50%, 80%);
-      color: $font;
-      font-size: 110px;
-    }
-    .answer {
-      display: inline-block;
-      margin-top: px2rem(88px);
-      .answer-sel {
-        display: inline-block;
-        width: px2rem(84px);
-        height: px2rem(84px);
-        background: $font;
-        border-radius: px2rem(10px);
-        position: relative;
-        margin-right: px2rem(50px);
-        &:after {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          content: '';
-          display: inline-block;
-          width: px2rem(35px);
-          height: px2rem(35px);
-          border-radius: px2rem(50%);
-          background: white;
-        }
-      }
-      .answer-p {
-        height: px2rem(84px);
-        width: px2rem(286px);
-        vertical-align: super;
-      }
-    }
+
+
   }
   .step {
     margin-top: px2rem(380px);
@@ -103,7 +92,7 @@ $font-bg: rgb(192, 224, 142);
       width: px2rem($width);
       height: px2rem($height);
       text-align: center;
-      // line-height: px2rem($height);
+      line-height: px2rem($height);
       background: white;
       display: inline-block;
       border-radius: px2rem(15px);
@@ -123,6 +112,9 @@ $font-bg: rgb(192, 224, 142);
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+      }
+      .chanColor{
+        color:silver;
       }
     }
     .sure {
@@ -243,6 +235,60 @@ $font-bg: rgb(192, 224, 142);
     transition: All 0.3s ease;
   }
 }
+.word-img{
+  margin-top:px2rem(34px);
+  .people{
+    width: px2rem(182px);
+    height:px2rem(124px);
+  }
+  .answer {
+    display: inline-block;
+    margin-top: px2rem(88px);
+    .answer-sel {
+      display: inline-block;
+      width: px2rem(84px);
+      height: px2rem(84px);
+      background: $font;
+      border-radius: px2rem(10px);
+      position: relative;
+      margin-right: px2rem(50px);
+      &:after {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        content: '';
+        display: inline-block;
+        width: px2rem(35px);
+        height: px2rem(35px);
+        border-radius: px2rem(50%);
+        background: white;
+      }
+    }
+    .answer-init{
+      background: silver;
+    }
+    .answer-p {
+      height: px2rem(84px);
+      width: px2rem(286px);
+      vertical-align: bottom;
+      transition: All .5s;
+    }
+    @keyframes aniswer
+    {
+        0% {transform: scale(1);}
+        50% {transform: scale(1.2);}
+        100% {transform: scale(1);}
+    }
+    .sel-answer{
+      animation-delay:10s;
+      animation: aniswer .3s;
+      transition:All .5s ease-in;
+      position: relative;
+    }
+  }
+}
+
 .game-wo {
   margin: px2rem(202px) auto;
   text-align: center;
@@ -362,8 +408,6 @@ $font-bg: rgb(192, 224, 142);
     0% {transform: scale(1);
       background: #ffe185;
       color: white;}
-    // 15% {left: -10px;}
-    // 25% {left: 10px;}
     50% {
       transform: scale(1.2);
       background: #ffe185;

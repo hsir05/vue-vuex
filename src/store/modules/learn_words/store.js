@@ -2,6 +2,11 @@ import REQUEST from '@/api/index.js'
 import * as types from './mutation-types'
 
 const state = {
+  autoPlay: false,
+  flag: 1,
+  seIndex: null,
+  rightIndex: null,
+  rightShow: false
 }
 
 // getters
@@ -12,6 +17,21 @@ const getters = {
 const mutations = {
   [types.DATA_RESET] (state) {
     // 数据重置
+  },
+  [types.AUTO_PLAY] (state, {bool}) {
+    state.autoPlay = bool
+  },
+  [types.FLAG] (state, {flag}) {
+    state.flag = flag
+  },
+  [types.SEINDEX] (state, {seIndex}) {
+    state.seIndex = seIndex
+  },
+  [types.RIGHTINDEX] (state, {rightIndex}) {
+    state.rightIndex = rightIndex
+  },
+  [types.RIGHTSHOW] (state, {bool}) {
+    state.rightShow = bool
   }
 }
 

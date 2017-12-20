@@ -1,27 +1,71 @@
 <template>
-      <div class="show-img" >
-        <!-- <span class="answer">
-          <i class="answer-sel" ></i>
-          <img src="static/img/bg_voice.png" alt="" class="answer-p" >
-          <audio :src="preUrl + '/'+ v" v-for="(v, l) in item.audio_right" v-if="l ===0" ></audio>
-        </span>
-        <span class="answer">
-          <i class="answer-sel"></i>
-          <img src="static/img/bg_voice.png" alt="" class="answer-p">
-          <audio :src="preUrl + '/'+ j" v-for="(j, c) in item.audio_error" v-if="c ===0" ></audio>
-        </span>
-        <span class="img-w">{{item.syllable}}</span> -->
-      </div>
+        <div class="word-img" >
+            <img src="static/img/bg_normal.png" alt="" class="people" v-if="!rightShow">
+             <img src="static/img/bg_good.png" alt="" class="people" v-else>
+            <div class="show-word" >
+
+                  <span class="answer " v-for="(item, index) in answerShow">
+                        <i class="answer-sel answer-init" ref="checkSel"  @click="selAnswer(index)"></i>
+                       <img src="static/img/bg_voice.png" alt="" class="answer-p" ref="animat" @click="showAudio(index)">
+                        <audio :src="preUrl + '/'+ item.url" ref="selRight"></audio>
+                </span>
+
+                  <span class="img-step3"  v-for="val in getFirstDealWords">{{val.syllable}}</span>
+          </div>
+        </div>
 </template>
 <script>
+import { mapGetters, mapState } from 'vuex'
 export default {
-  props: ['item'],
   data () {
     return {
-      preUrl: process.env.API_PIC
+      answerShow: [{url: ''}, {url: ''}],
+      preUrl: process.env.API_PIC,
+      m: ''
     }
   },
-  created () {}
+  computed: {
+    ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
+    ...mapState('learnWords', ['flag', 'seIndex', 'rightIndex', 'rightShow'])
+  },
+  created () {
+    // console.log(this.getFirstDealWords)
+    this.answer()
+  },
+  methods: {
+    selAnswer (index) {
+      this.$refs.checkSel[index].classList.forEach((item, k) => {
+        if (item === 'answer-init') {
+          this.$refs.checkSel[index].classList.remove('answer-init')
+        }
+      })
+      if (index === 0) {
+        this.$refs.checkSel[1].classList.add('answer-init')
+      } else {
+        this.$refs.checkSel[0].classList.add('answer-init')
+      }
+      this.$store.commit('learnWords/SEINDEX', {seIndex: index})
+      this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: this.m })
+    },
+    showAudio (index) {
+      this.$refs.selRight[index].play()
+      this.$refs.animat[index].classList.add('sel-answer')
+      setTimeout(() => {
+        this.$refs.animat[index].classList.remove('sel-answer')
+      }, 200)
+      this.selAnswer(index)
+    },
+    answer () {
+      this.m = Math.floor(Math.random() * 2)
+      if (this.m === 0) {
+        this.answerShow[this.m].url = this.getFirstDealWords[0].audio_right[0]
+        this.answerShow[1].url = this.getFirstDealWords[0].audio_error[0]
+      } else {
+        this.answerShow[this.m].url = this.getFirstDealWords[0].audio_right[0]
+        this.answerShow[0].url = this.getFirstDealWords[0].audio_error[0]
+      }
+    }
+  }
 }
 </script>
 

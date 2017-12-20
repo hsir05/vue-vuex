@@ -1,22 +1,32 @@
 <template>
-   <!-- <div class="show-img" v-for="(k, i) in item.pic_right" v-if="i !== 0 "> -->
-   <div class="show-img" >
-     asdfasf
-          <!-- <img :src="preUrl + '/'+ k" alt="" class="show-i">
-          <span class="img-w">{{item.word}}</span> -->
-          <!-- 音频 -->
-          <!-- <audio :src=" preUrl +'/'+ item.audio_right[0]" ref="syll" ></audio> -->
+   <div class="word-img" >
+       <img src="static/img/bg_normal.png" alt="" class="people">
+        <div class="show-word" v-for="val in getSecondDealWords">
+            <img :src="preUrl + '/'+ val.pic_right" alt="" class="show-i">
+            <span class="img-w" :class=" judg === k?'addColor': ''" v-for="(k, i) in val.word">{{k}}</span>
+       </div>{{this.wordDeal()}}
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  props: ['item'],
   data () {
     return {
+      judg: '',
       preUrl: process.env.API_PIC
     }
   },
-  created () {}
+  computed: {
+    ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords'])
+  },
+  created () {
+    console.log(this.getFirstDealWords)
+  },
+  methods: {
+    wordDeal () {
+      this.judg = this.getFirstDealWords[0].syllable
+    }
+  }
 }
 </script>
 

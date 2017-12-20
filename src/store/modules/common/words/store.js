@@ -17,20 +17,24 @@ const getters = {
       return [...state.words][index]
     }
   }, // 获取处理后的数据
-  getDealWords (state, getters, rootState, rootGetters) {
-    // console.log(state)
-    // let data = [
-    //   [{syllable: 'e', pic_photo: 'upload/753.png', audio_right: '234234.mp3'},
-    //   {syllable: 'one', pic_photo: 'upload/753.png', relation: 'one', audio_right: '234.mp3'},
-    //   {syllable: 'e', pic_photo: 'upload/753.png', audio_error: '234.mp3'}],
-
-    //   [{syllable: 'e', pic_photo: 'upload/753.png', audio_right: '234234.mp3'},
-    //   {syllable: 'vet', pic_photo: 'upload/753.png', relation: 'one', audio_right: '234.mp3'},
-    //   {syllable: 'e', pic_photo: 'upload/753.png', audio_error: '234.mp3'}]
-    // ]
-    // console.log(data)
-
-    return [...state.words]
+  getFirstDealWords (state, getters, rootState, rootGetters) {
+    let dat = {}
+    state.words.forEach((item, index) => {
+      if (item.syllable_array && item.words_array && index === 0) {
+        dat = item.syllable_array
+      }
+    })
+    return dat
+  },
+  getSecondDealWords (state, getters, rootState, rootGetters) {
+    let dat = {}
+    state.words.forEach((item, index) => {
+      if (item.words_array && index === 0) {
+        // dat.push(item.syllable_array)
+        dat = item.words_array
+      }
+    })
+    return dat
   },
   getWordsIdItem (state, getters, rootState, rootGetters) {
     // 通过id获取某一项单词信息
@@ -80,11 +84,11 @@ const mutations = {
 // actions
 /* eslint-disable prefer-promise-reject-errors */
 const actions = {
-  getWords (context, kinds) {
+  getWords (context) {
     // 请求works
     context.commit(types.DATA_RESET) // 数据重置
     return new Promise((resolve, reject) => {
-      REQUEST.get('weixin_words_view?kinds=' + kinds.kinds, null, r => {
+      REQUEST.get('weixin_words_view', {kinds: '单词'}, r => {
         // let list = r.data.list.map(l => {
         //   let item = { ...l }
         //   item['word_photo'] = [...item.pic_right]
@@ -92,7 +96,7 @@ const actions = {
         //   item['main_photo'] = [item.pic_right[0]]
         //   item['contrast_photo'] = [...item.pic_error]
         //   item['word_audio'] = [...item.audio_right]
-        //   item['contrast_audio'] = [...item.audio_error]
+        //   item['contrast_audio'] = [...item.audio_err or]
         //   delete item.pic_error
         //   delete item.pic_right
         //   delete item.audio_error

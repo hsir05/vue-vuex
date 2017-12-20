@@ -1,23 +1,25 @@
 <template>
       <div class="word-img">
-      <img src="static/img/bg_normal.png" alt="">
-        <div class="show-word"   >
-            <!-- <span class="show-w"  >{{k}}</span> -->
-            <audio :src=" preUrl + '/'+ item.audio_right[0]" ref="syll" ></audio>
+         <img src="static/img/bg_normal.png" alt="" class="people">
+        <div class="show-word" v-for="item in getFirstDealWords">
+            <span class="show-w"  >{{item.syllable}}</span>
        </div>
       </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  props: ['item'],
   data () {
     return {
       preUrl: process.env.API_PIC
     }
   },
+  computed: {
+    ...mapGetters('common/wordsStore', ['getAllWords', 'getFirstDealWords'])
+  },
   created () {
-    console.log(234242)
-    console.log(this.item)
+    this.$store.dispatch('common/wordsStore/getWords', {kinds: '单词'}).then(() => {
+    })
   }
 }
 </script>
