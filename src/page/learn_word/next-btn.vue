@@ -3,16 +3,19 @@
         <span class="next" :class="flag === 3?'sure':''" @click="next(flag)" >
           <img src="static/img/btn_next.png" v-if="flag !== 3">
           <i v-if="flag === 3" :class="seIndex===null?'chanColor':''">确定</i>
+          <!-- 正确音效 -->
+          <audio src="/static/audio/right.wav" ref="right" > </audio>
+           <!-- 错误音效 -->
+          <audio src="/static/audio/error.wav" ref="error" > </audio>
         </span>
         <span class="sound" v-if="flag !== 3" @click="soundOpen(flag)">
           <img src="static/img/btn_sound.png" alt="" >
         </span>
-        <div v-for="item in getFirstDealWords"  v-if="flag === 1">
-            <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right" v-if="flag"></audio>
+        <div v-for="(item, index) in getFirstDealWords"  v-if="flag === 1 && index === 0">
+            <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right" autoplay="autoplay" v-if="flag && k === 0"></audio>
         </div>
-        <div v-for="item in getSecondDealWords" v-if="flag ===2">
-            <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right" v-if="flag"></audio>
-            audio
+        <div v-for="(item, i) in getSecondDealWords" v-if="flag ===2 && i === 0">
+            <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right"  autoplay="autoplay" v-if="flag && k === 0"></audio>
         </div>
 
   </div>
@@ -42,19 +45,18 @@ export default {
         flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
         this.$store.commit('learnWords/FLAG', { flag: flags })
       } else {
-        console.log(888888888888)
-        console.log(this.step)
-        console.log(this.flag)
-
         if (this.seIndex !== null && this.seIndex === this.rightIndex) {
           this.$store.commit('learnWords/RIGHTSHOW', { rightShow: {bool: true} })
+          this.$refs.right.play()
           setTimeout(() => {
             let flags = null
             flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
             this.$store.commit('learnWords/FLAG', { flag: flags })
             this.$store.commit('learnWords/SEINDEX', {seIndex: null})
             this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
-          }, 2000)
+          }, 1000)
+        } else {
+          this.$refs.error.play()
         }
       }
     },
