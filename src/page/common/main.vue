@@ -63,7 +63,7 @@ export default {
   methods: {
     ...mapActions('getWords', ['words']),
     showSelGrade () {
-     this.showSel = !this.showSel
+      this.showSel = !this.showSel
     }
   }
 }
