@@ -2,50 +2,31 @@
   "data": {
     "list": [
       {
+        "id": 0,
+        "grade": "学前班",
+        "unit": "一单元",
+        "create_man": 1,
+        "create_name": "管理员",
+        "create_time": "2017-12-19 10:45:39",
         "title": "Soap Boat",
-        "cover_img_url": "http://ali.bczcdn.com/pap/8__164_20161020180336_12803_c.jpg",
-        "content_list": [
-          {
-            "sentence": "The soap boat floats on the sea.",
-            "ch": "肥皂船漂浮在了海上。",
-            "pic_photo": "http://ali.bczcdn.com/pap/8_65_164_20161020175137_7867_c.jpg",
-            "sentence_audio": "http://ali.bczcdn.com/pap/8_65_164_20161020175137_13270_c.mp3",
-            "play_time_chunk": [
-              { "idx": 0, "start": "0.427", "end": "0.615" },
-              { "idx": 1, "start": "0.677", "end": "1.010" },
-              { "idx": 2, "start": "1.177", "end": "1.656" },
-              { "idx": 3, "start": "2.198", "end": "3.031" },
-              { "idx": 4, "start": "3.135", "end": "3.490" },
-              { "idx": 5, "start": "3.594", "end": "3.698" },
-              { "idx": 6, "start": "3.740", "end": "4.594" }
-            ]
-          }
-        ]
+        "describe": "描述",
+        "cover_img_url": ["upload/22131f7ff83641f2942986ab38274b45.jpg"],
+        "course_content": []
       },
-
       {
+        "id": 1,
+        "grade": "学前班",
+        "unit": "一单元",
+        "create_man": 1,
+        "create_name": "管理员",
+        "create_time": "2017-12-19 10:45:39",
         "title": "THE ONE EVERYDAY IS THE ONE EVERYDAY",
-        "cover_img_url": "http://ali.bczcdn.com/pap/8__164_20161020180336_12803_c.jpg",
-        "content_list": [
-          {
-            "sentence": "The soap boat floats on the sea.",
-            "ch": "肥皂船漂浮在了海上。",
-            "pic_photo": "http://ali.bczcdn.com/pap/8_65_164_20161020175137_7867_c.jpg",
-            "sentence_audio": "http://ali.bczcdn.com/pap/8_65_164_20161020175137_13270_c.mp3",
-            "play_time_chunk": [
-              { "idx": 0, "start": "0.427", "end": "0.615" },
-              { "idx": 1, "start": "0.677", "end": "1.010" },
-              { "idx": 2, "start": "1.177", "end": "1.656" },
-              { "idx": 3, "start": "2.198", "end": "3.031" },
-              { "idx": 4, "start": "3.135", "end": "3.490" },
-              { "idx": 5, "start": "3.594", "end": "3.698" },
-              { "idx": 6, "start": "3.740", "end": "4.594" }
-            ]
-          }
-        ]
+        "describe": "描述",
+        "cover_img_url": ["upload/4fbc6c8bd0d74161aadfe41537e5c7fe.jpg"],
+        "course_content": []
       }
     ],
-    "total": 23
+    "total": 2
   },
   "status": 0
 }

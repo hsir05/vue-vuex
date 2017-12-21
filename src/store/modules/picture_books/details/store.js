@@ -3,6 +3,7 @@ import * as types from './mutation-types.js'
 import huiben from '@/datajson/huiben.json'
 
 const state = {
+  reqLoading: false, // 请求加载，true-开始加载
   viewWordDic: null, // 看单词词典释义
   isShowSentenceCn: false, // 是否显示句子的汉译
   progress: 0, // 进度
@@ -42,12 +43,16 @@ const getters = {
 // mutations
 const mutations = {
   [types.DATA_RESET] (state) { // 数据重置
+    state.reqLoading = false
     state.viewWordDic = null
     state.isShowSentenceCn = false
     state.progress = 0
     state.isFinishPic = false
     state.currPicPage = 0
     state.playState = 'init'
+  },
+  [types.REQ_LOADING] (state, { bool }) { // 请求加载
+    state.reqLoading = bool
   },
   [types.VIEW_WORD_DIC] (state, { word }) { // 看单词词典释义
     state.viewWordDic = word
@@ -77,12 +82,16 @@ const mutations = {
 const actions = {
   getPicBook (context, { id }) { // 通过 id 请求绘本列表子项的内容
     context.commit(types.DATA_RESET) // 数据重置
+    context.commit(types.REQ_LOADING, { bool: true }) // 请求加载
     return new Promise((resolve, reject) => {
+      // setTimeout(() => {
       REQUEST.get('course/' + id, null, r => {
         r.data.course_content = huiben.data.content_list
         context.commit(types.PICBOOK, { picbook: r.data })
+        context.commit(types.REQ_LOADING, { bool: false }) // 请求加载
         resolve()
       })
+      // }, 5000)
     })
   },
   nextPicBooks (context) { // 下一个绘画

@@ -1,5 +1,6 @@
 export const DATA_RESET = 'DATA_RESET' // 数据重置
 export const STATE_TRANSITION = 'STATE_TRANSITION' // 状态流转变迁
+export const REQ_LOADING = 'REQ_LOADING' // 请求加载
 export const PICBOOK = 'PICBOOK' // 绘本列表子项的内容
 // export const PIC_CONTENTS = 'PIC_CONTENTS' // 绘本内容
 export const PROGRESS = 'PROGRESS' // 进度
