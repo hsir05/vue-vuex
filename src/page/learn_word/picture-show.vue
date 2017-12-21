@@ -4,8 +4,8 @@
         <!-- <div class="show-word" v-for="(val, index) in getSecondDealWords" v-if="index === 0"> -->
           <div class="show-word" v-for="(val, index) in dat" v-if="index === 0">
             <img :src="preUrl + '/'+ val.pic_right" alt="" class="show-i">
-            <!-- {{val}} -->
-            <span class="img-w" :class=" judg === k?'addColor': ''" v-for="(k, i) in val.word">{{k}}</span>
+
+           <div class="pict-w"> <span class="img-w" :class=" judg === k?'addColor': ''" v-for="(k, i) in val.word">{{k}}</span></div>
        </div>
   </div>
 </template>

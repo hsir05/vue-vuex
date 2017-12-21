@@ -4,11 +4,11 @@
              <img src="static/img/bg_good.png" alt="" class="people" v-else>
             <div class="show-word" >
 
-                  <span class="answer " v-for="(item, index) in answerShow">
+                  <div class="answer " v-for="(item, index) in answerShow">
                         <i class="answer-sel answer-init" ref="checkSel"  @click="selAnswer(index)"></i>
                        <img src="static/img/bg_voice.png" alt="" class="answer-p" ref="animat" @click="showAudio(index)">
                         <audio :src="preUrl + '/'+ item.url" ref="selRight"></audio>
-                </span>
+                </div>
 
                   <span class="img-step3"  v-for="val in dat">
                     {{val.syllable}}
@@ -39,7 +39,6 @@ export default {
     if (this.getFirstDealWords.length - 1 !== this.step) {
       this.$store.commit('common/wordsStore/STEP', { step: this.step + 1 })
     } else {
-      console.log('没有单词了')
       this.$store.commit('common/wordsStore/STEP', { step: 0 })
     }
   },

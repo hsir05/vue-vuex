@@ -45,7 +45,7 @@ $font-bg: rgb(192, 224, 142);
   }
   .show-word {
     @include word-s;
-    position: relative;
+    display: table;
     .show-w {
       @include word-c(-60%);
       font-size: 117px;
@@ -53,10 +53,16 @@ $font-bg: rgb(192, 224, 142);
     }
     .img-w {
       position: relative;
-      bottom: -300px;
+      // bottom: -245px;
       color: $font;
       font-size: 60px;
       margin: 0 3px;
+    }
+    .pict-w{
+      position: absolute;
+      left: 50%;
+      bottom: -50%;
+      transform: translate(-50%,0);
     }
     .img-step3{
       position: absolute;
@@ -242,7 +248,7 @@ $font-bg: rgb(192, 224, 142);
     height:px2rem(124px);
   }
   .answer {
-    display: inline-block;
+    // display: inline-block;
     margin-top: px2rem(88px);
     .answer-sel {
       display: inline-block;

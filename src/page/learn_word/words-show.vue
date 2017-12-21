@@ -21,9 +21,7 @@ export default {
   },
   created () {
     this.$store.dispatch('common/wordsStore/getWords', {kinds: '单词'}).then(() => {
-      console.log(this.step)
       this.dat.push(this.getFirstDealWords[this.step])
-      console.log(this.dat)
     })
   }
 }
