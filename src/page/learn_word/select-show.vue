@@ -10,7 +10,9 @@
                         <audio :src="preUrl + '/'+ item.url" ref="selRight"></audio>
                 </span>
 
-                  <span class="img-step3"  v-for="val in getFirstDealWords">{{val.syllable}}</span>
+                  <span class="img-step3"  v-for="val in dat">
+                    {{val.syllable}}
+                  </span>
           </div>
         </div>
 </template>
@@ -21,16 +23,25 @@ export default {
     return {
       answerShow: [{url: ''}, {url: ''}],
       preUrl: process.env.API_PIC,
-      m: ''
+      m: '',
+      dat: []
     }
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
-    ...mapState('learnWords', ['flag', 'seIndex', 'rightIndex', 'rightShow'])
+    ...mapState('learnWords', ['flag', 'seIndex', 'rightIndex', 'rightShow']),
+    ...mapState('common/wordsStore', ['step'])
   },
   created () {
     // console.log(this.getFirstDealWords)
     this.answer()
+    this.dat.push(this.getFirstDealWords[this.step])
+    if (this.getFirstDealWords.length - 1 !== this.step) {
+      this.$store.commit('common/wordsStore/STEP', { step: this.step + 1 })
+    } else {
+      console.log('没有单词了')
+      this.$store.commit('common/wordsStore/STEP', { step: 0 })
+    }
   },
   methods: {
     selAnswer (index) {

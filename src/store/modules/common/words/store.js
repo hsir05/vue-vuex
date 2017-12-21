@@ -2,9 +2,9 @@ import REQUEST from '@/api/index.js'
 import * as types from './mutation-types'
 
 const state = {
-  words: []
+  words: [],
+  step: 0
 }
-
 // getters
 const getters = {
   getAllWords (state, getters, rootState, rootGetters) {
@@ -18,20 +18,20 @@ const getters = {
     }
   }, // 获取处理后的数据
   getFirstDealWords (state, getters, rootState, rootGetters) {
-    let dat = {}
+    let dat = []
     state.words.forEach((item, index) => {
-      if (item.syllable_array && item.words_array && index === 0) {
-        dat = item.syllable_array
+      // && index === state.step
+      if (item.syllable_array && item.words_array) {
+        dat.push(item.syllable_array[0])
       }
     })
     return dat
-  },
+  }, // 获取处理后的数据
   getSecondDealWords (state, getters, rootState, rootGetters) {
-    let dat = {}
+    let dat = []
     state.words.forEach((item, index) => {
-      if (item.words_array && index === 0) {
-        // dat.push(item.syllable_array)
-        dat = item.words_array
+      if (item.words_array) {
+        dat.push(item.words_array[0])
       }
     })
     return dat
@@ -78,6 +78,9 @@ const mutations = {
   [types.WORDS] (state, { words }) {
     // words
     state.words = words
+  },
+  [types.STEP] (state, {step}) {
+    state.step = step
   }
 }
 

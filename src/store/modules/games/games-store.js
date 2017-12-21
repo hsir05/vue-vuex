@@ -16,6 +16,28 @@ const state = {
 const getters = {
   getPicContents (state, getters, rootState, rootGetters) { // 获取内容
     return [...state.picBooks.content_list]
+  },
+  getFirstDealWords (state, getters, rootState, rootGetters) {
+    console.log(state.step)
+    let dat = {}
+    state.words.forEach((item, index) => {
+      if (item.syllable_array && item.words_array && index === 0) {
+        dat = item.syllable_array
+      } else {
+        // console.log(index)
+      }
+    })
+    return dat
+  },
+  getSecondDealWords (state, getters, rootState, rootGetters) {
+    let dat = {}
+    state.words.forEach((item, index) => {
+      if (item.words_array && index === 0) {
+        // dat.push(item.syllable_array)
+        dat = item.words_array
+      }
+    })
+    return dat
   }
 }
 // const getters = {

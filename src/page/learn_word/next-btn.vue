@@ -10,8 +10,9 @@
         <div v-for="item in getFirstDealWords"  v-if="flag === 1">
             <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right" v-if="flag"></audio>
         </div>
-      <div v-for="item in getSecondDealWords" v-if="flag ===2">
+        <div v-for="item in getSecondDealWords" v-if="flag ===2">
             <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right" v-if="flag"></audio>
+            audio
         </div>
 
   </div>
@@ -31,7 +32,8 @@ export default {
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
-    ...mapState('learnWords', ['flag', 'seIndex', 'rightIndex', 'rightShow'])
+    ...mapState('learnWords', ['flag', 'seIndex', 'rightIndex', 'rightShow']),
+    ...mapState('common/wordsStore', ['step'])
   },
   methods: {
     next (index) {
@@ -40,6 +42,10 @@ export default {
         flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
         this.$store.commit('learnWords/FLAG', { flag: flags })
       } else {
+        console.log(888888888888)
+        console.log(this.step)
+        console.log(this.flag)
+
         if (this.seIndex !== null && this.seIndex === this.rightIndex) {
           this.$store.commit('learnWords/RIGHTSHOW', { rightShow: {bool: true} })
           setTimeout(() => {

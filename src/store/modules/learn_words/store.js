@@ -2,6 +2,7 @@ import REQUEST from '@/api/index.js'
 import * as types from './mutation-types'
 
 const state = {
+  words: [],
   autoPlay: false,
   flag: 1,
   seIndex: null,
@@ -42,8 +43,8 @@ const actions = {
     // 请求works
     context.commit(types.DATA_RESET) // 数据重置
     return new Promise((resolve, reject) => {
-      REQUEST.get('weixin_words_view', null, r => {
-        // context.commit(types.WORDS, { words: r.data.list })
+      REQUEST.get('weixin_words_view', {kinds: '单词'}, r => {
+        context.commit(types.WORDS, { words: r.data.list })
         resolve()
       })
     })
