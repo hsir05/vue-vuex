@@ -11,13 +11,13 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api/aiwei/stat/**': {
-        // target: 'http://arcs.dev.congred.com/',
-        target: 'http://arcs-test.congred.com/',
+        target: 'http://arcs.dev.congred.com/',
+        // target: 'http://arcs-test.congred.com/',
         changeOrigin: true
       },
       '/aiwei/**': {
-        // target: 'http://arcs.dev.congred.com/',
-        target: 'http://arcs-test.congred.com/',
+        target: 'http://arcs.dev.congred.com/',
+        // target: 'http://arcs-test.congred.com/',
         changeOrigin: true
      }
       // '/wav/**': {

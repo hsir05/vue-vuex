@@ -1,8 +1,9 @@
-// import REQUEST from '@/store/api/index.js'
 import REQUEST from '@/api/index.js'
 import * as types from './mutation-types.js'
+// import PicbooksList from '@/datajson/picbooks-list.json'
 
 const state = {
+  reqLoading: false, // 请求加载，true-开始加载
   page: 0, // 页数
   total: 0, // 总数
   // wrapperHeight: 0, // 整体的高
@@ -21,12 +22,16 @@ const getters = {
 // mutations
 const mutations = {
   [types.DATA_RESET] (state) { // 数据重置
+    state.reqLoading = false
     state.page = 0
     state.total = 0
-    state.wrapperHeight = 0
+    // state.wrapperHeight = 0
     state.pullupStatus = ''
     state.isAllLoaded = false
     state.picBooksList = []
+  },
+  [types.REQ_LOADING] (state, { bool }) { // 请求加载
+    state.reqLoading = bool
   },
   [types.PIC_BOOKS_LIST] (state, { list }) { // 绘本列表
     state.picBooksList = list
@@ -58,12 +63,18 @@ const mutations = {
 const actions = {
   getPicBooksList (context) { // 请求PicBooks
     context.commit(types.DATA_RESET) // 数据重置
+    context.commit(types.REQ_LOADING, { bool: true }) // 请求加载
     return new Promise((resolve, reject) => {
-      REQUEST.get('course', null, r => {
-        context.commit(types.PIC_BOOKS_LIST, { list: r.data.list }) // 获取绘本列表
+      // setTimeout(() => {
+      REQUEST.get('course', {kinds: '绘本'}, r => {
+        // let list = PicbooksList.data.list
+        let list = r.data.list
+        context.commit(types.PIC_BOOKS_LIST, { list: list }) // 获取绘本列表
         context.commit(types.TOTAL, { total: r.data.total }) // 获取总数
+        context.commit(types.REQ_LOADING, { bool: false }) // 请求加载
         resolve()
       })
+      // }, 5000)
     })
   },
   setPullupChange (context, status) { // 获取上拉加载状态变化后设置相应的值

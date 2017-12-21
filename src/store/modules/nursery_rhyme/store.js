@@ -48,7 +48,7 @@ const mutations = {
     state.currAudioSrc = null
     state.nurseryRhyme = null
   },
-  [types.REQ_LOADING] (state, { bool }) { // 等待时间
+  [types.REQ_LOADING] (state, { bool }) { // 请求加载
     state.reqLoading = bool
   },
   [types.BEIN_STATER] (state, { status }) { // 进行的状态
