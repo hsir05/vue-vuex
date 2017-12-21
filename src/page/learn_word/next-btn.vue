@@ -22,7 +22,9 @@
 </template>
 <script>
 import { mapGetters, mapState } from 'vuex'
+import PreventClickMixin from '../../mixins/prevent-click.js'
 export default {
+  mixins: [PreventClickMixin],
   data () {
     return {
       preUrl: process.env.API_PIC
@@ -40,23 +42,27 @@ export default {
   },
   methods: {
     next (index) {
-      if (this.flag !== 3) {
-        let flags = null
-        flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
-        this.$store.commit('learnWords/FLAG', { flag: flags })
-      } else {
-        if (this.seIndex !== null && this.seIndex === this.rightIndex) {
-          this.$store.commit('learnWords/RIGHTSHOW', { rightShow: {bool: true} })
-          this.$refs.right.play()
-          setTimeout(() => {
-            let flags = null
-            flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
-            this.$store.commit('learnWords/FLAG', { flag: flags })
-            this.$store.commit('learnWords/SEINDEX', {seIndex: null})
-            this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
-          }, 1000)
+    /* @this.preventClick()  公用mixin 防止重复点击
+     */
+      if (this.preventClick()) {
+        if (this.flag !== 3) {
+          let flags = null
+          flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
+          this.$store.commit('learnWords/FLAG', { flag: flags })
         } else {
-          this.$refs.error.play()
+          if (this.seIndex !== null && this.seIndex === this.rightIndex) {
+            this.$store.commit('learnWords/RIGHTSHOW', { rightShow: {bool: true} })
+            this.$refs.right.play()
+            setTimeout(() => {
+              let flags = null
+              flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
+              this.$store.commit('learnWords/FLAG', { flag: flags })
+              this.$store.commit('learnWords/SEINDEX', {seIndex: null})
+              this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
+            }, 1000)
+          } else {
+            this.$refs.error.play()
+          }
         }
       }
     },

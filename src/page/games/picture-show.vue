@@ -11,13 +11,15 @@
         <span class="first " ref="animat" :class="'first-' + i + ' ' " v-for="(val, i) in showWord"  @click="pictSel(i)"> {{val}}</span>
       </div>
         <!-- <audio :src="preUrl +'/'+audi" :id="'randomAud' + n" v-for="(audi, n) in game[this.num[1]].audio_right" v-if="n === 0" ></audio> -->
-        <audio src="https://ali.bczcdn.com/paplab/f3/44167a0900fe2e453e9b00ab8979a11a7d654c.mp3" ref="succ"></audio>
+        <audio src="static/audio/right.wav" ref="succ"></audio>
     </div>
 </template>
 <script>
 import { Indicator } from 'mint-ui'
 import { mapMutations, mapActions, mapState, mapGetters } from 'vuex'
+import PreventClickMixin from '../../mixins/prevent-click.js'
 export default {
+  mixins: [PreventClickMixin],
   data () {
     return {
       game: [],
@@ -57,45 +59,47 @@ export default {
         if (item.words_array && item.words_array.length !== 0) {
           item.words_array.forEach((k, i) => {
             this.game.push(k)
-            console.log(k)
           })
         }
       })
-      console.log(this.$refs.randomAud0)
     },
-    pictSel (par) {
-      /* @picts  储存随积图片数组
+    pictSel (par) {  // 对点击按钮作出反应
+     /* @picts  储存随积图片数组
       *点击单词时判断是否与图片对应
       *@selword 图片对应的单词
       * @selBtnWord 按钮对应的单词
+        *@this.preventClick()  公用mixin 防止重复点击
       */
-      if (this.gamesFraction !== 100 || this.progress) {
-        let selword = this.game[parseInt(this.picts[1].flag)].word
-        let selBtnWord = this.showWord[par]
-        if (selBtnWord === selword) {
-          this.$refs.succ.play()
-          this.$refs.animat[par].classList.add('animat-true')
-          setTimeout(() => {
-            this.$refs.animat[par].classList.remove('animat-true')
-          }, 200)
-          setTimeout(() => {
-            this.picts.shift()
-            this.showWord.splice(par, 1)
-            this.random(this.game, this.picts)
-            this.addWord() // right  run
-            this.showScore.score += 10
-            this.$store.commit('games/GAMES_FRACTION', {fraction: this.showScore.score})
-          }, 600)
+      if (this.preventClick()) {
+        if (this.gamesFraction !== 100 || this.progress) {
+          let selword = this.game[parseInt(this.picts[1].flag)].word
+          let selBtnWord = this.showWord[par]
+
+          if (selBtnWord === selword) {
+            this.$refs.succ.play()
+            this.$refs.animat[par].classList.add('animat-true')
+            setTimeout(() => {
+              this.$refs.animat[par].classList.remove('animat-true')
+            }, 200)
+            setTimeout(() => {
+              this.picts.shift()
+              this.showWord.splice(par, 1)
+              this.random(this.game, this.picts)
+              this.addWord() // right  run
+              this.showScore.score += 10
+              this.$store.commit('games/GAMES_FRACTION', {fraction: this.showScore.score})
+            }, 600)
+          } else {
+            console.log('不对应')
+            this.$refs.animat[par].classList.add('animat-false')
+            setTimeout(() => {
+              this.$refs.animat[par].classList.remove('animat-false')
+            }, 200)
+          }
         } else {
-          console.log('不对应')
-          this.$refs.animat[par].classList.add('animat-false')
-          setTimeout(() => {
-            this.$refs.animat[par].classList.remove('animat-false')
-          }, 200)
+        // 分值达到100
+          this.$store.commit('games/GAMES_SCORE', {bool: true})
         }
-      } else {
-       // 分值达到100
-        this.$store.commit('games/GAMES_SCORE', {bool: true})
       }
     },
     random (par, param) {

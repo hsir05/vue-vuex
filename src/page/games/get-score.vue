@@ -13,7 +13,7 @@
                         </span>
                       <span class="btn-score2">
                           <img src="static/img/btn_crad.png" width="100%"height="100%">
-                          <router-link to="/picture_books" >进入绘本</router-link>
+                          <router-link to="/picture_books/list" >进入绘本</router-link>
                       </span>
               </div>
           </div>
