@@ -67,9 +67,9 @@ export default {
       /* @picts  储存随积图片数组
       *点击单词时判断是否与图片对应
       *@selword 图片对应的单词
-    *@selBtnWord 按钮对应的单词
+      * @selBtnWord 按钮对应的单词
       */
-      if (this.gamesFraction !== 100) {
+      if (this.gamesFraction !== 100 || this.progress) {
         let selword = this.game[parseInt(this.picts[1].flag)].word
         let selBtnWord = this.showWord[par]
         if (selBtnWord === selword) {

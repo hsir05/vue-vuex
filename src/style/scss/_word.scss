@@ -412,12 +412,12 @@ $font-bg: rgb(192, 224, 142);
 @keyframes animat-true
 {
     0% {transform: scale(1);
-      background: #ffe185;
-      color: white;}
+      color: #ffe185;
+      background: white;}
     50% {
       transform: scale(1.2);
-      background: #ffe185;
-      color: white;
+      color: #ffe185;
+      background: white;
     }
     // 75% {left: 10px;}
     100% {transform: scale(1);}

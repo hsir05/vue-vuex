@@ -40,17 +40,12 @@ const getters = {
     return dat
   }
 }
-// const getters = {
-//   getAllDate (state, getters, rootState, rootGetters) {
-//     // 获取所有单词
-//     return [...state.words]
-//   }
-// }
 // mutations
 const mutations = {
   [types.DATA_RESET] (state) { // 数据重置
-    state.progress = 100
+    state.progress = 30
     state.gamesTime = 90
+    state.progress = 0
     state.gamesFraction = 0
     state.gamesData = []
   },
@@ -98,6 +93,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       let timeWaitInterval = setInterval(r => {
         if (context.state.gamesTime <= 0) { // 如果计时器结束
+          context.commit(types.GAMES_SCORE, { bool: true })
           clearInterval(timeWaitInterval)
           resolve()
         } else {
@@ -108,7 +104,7 @@ const actions = {
     })
   },
   setProgress (context) { // 设置进度
-    let progress = (context.state.gamesTime / 90) * 100
+    let progress = Math.ceil((context.state.gamesTime / 90) * 100)
     context.commit(types.PROGRESS, { progress: progress })
   }
 }

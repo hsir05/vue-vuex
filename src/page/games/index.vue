@@ -2,21 +2,10 @@
     <div class="game-b">
             <div class="games">
               <header-progress :value="progress"></header-progress>
-                <div class="games-head">
-                  <!-- <img src="static/img/pragress.png">
-                  <img src="static/img/bg_head_kid.png" class="bg-head"> -->
-                  <!--分值 -->
-                  <!-- <div class="games-time-box">{{gamesFraction}}</div> -->
-                  <!-- 进度条 -->
-                  <!-- <div class="progress-box-layer" >
-                    <progress-bar :value="progress" bg="rgb(106, 167, 24)"></progress-bar>
-                  </div> -->
-                </div>
-
+               <div class="games-head"></div>
            <!-- 图片循环展示 -->
-          <picture-show ></picture-show>
-        </div>
-
+              <picture-show ></picture-show>
+            </div>
         <!-- 得分展示 -->
         <get-score  v-if="gameScore"></get-score>
     </div>
@@ -41,9 +30,14 @@ export default {
     ...mapState('games', ['requestLoading', 'gamesTime', 'gamesFraction', 'gameScore', 'progress', 'currWordIndex']),
     ...mapGetters('games', {})
   },
+  created () {
+    this.$store.dispatch('games/timeWait').then(() => {
+
+    })
+  },
   methods: {
     ...mapMutations('games', []),
-    ...mapActions('games', [])
+    ...mapActions('games', ['openCompete'])
   }
 }
 </script>
