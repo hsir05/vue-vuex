@@ -96,7 +96,7 @@ const actions = {
   timeWait (context) { // 倒计时
     context.commit(types.BEIN_STATER, { status: 'wait_item' }) // 进行的状态-倒计时
     return new Promise((resolve, reject) => {
-      context.commit(types.CURR_AUDIO_SRC, { src: '/static/audio/nursery-rhyme-num-begin.mp3' }) // 请求加载
+      context.commit(types.CURR_AUDIO_SRC, { src: 'static/audio/nursery-rhyme-num-begin.mp3' }) // 请求加载
       let timeWaitInterval = setInterval(r => {
         if (context.state.waitTime < 0) { // 如果计时器结束
           clearInterval(timeWaitInterval)
@@ -111,7 +111,7 @@ const actions = {
   delayChildSongs (context) { // 延迟5s开始儿歌:等待时间结束后，延迟5s开始儿歌，延迟5s时播放背景音频
     context.commit(types.BEIN_STATER, { status: 'delay' }) // 进行的状态-延迟播放背景
     return new Promise((resolve, reject) => {
-      context.commit(types.CURR_AUDIO_SRC, { src: '/static/audio/nursery-rhyme-begin-bgm.mp3' }) // 当前音频地址
+      context.commit(types.CURR_AUDIO_SRC, { src: 'static/audio/nursery-rhyme-begin-bgm.mp3' }) // 当前音频地址
       setTimeout(() => {
         context.dispatch('startSongs')
         context.dispatch('setSongsActionRule')
