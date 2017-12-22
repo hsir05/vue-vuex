@@ -27,9 +27,7 @@ export default {
     ...mapState('games', ['requestLoading', 'gamesTime', 'gamesFraction', 'gameScore', 'progress']),
     ...mapGetters('games', {})
   },
-  created () {
-    this.$store.dispatch('games/openCompete')
-  },
+  created () {},
   methods: {
     ...mapActions('games', ['openCompete'])
   }

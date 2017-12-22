@@ -41,9 +41,12 @@ export default {
   },
   methods: {
     ...mapMutations('games', []),
-    ...mapActions('games', []),
+    ...mapActions('games', ['openCompete']),
     init () {
-      Indicator.open('加载中...')
+      Indicator.open({
+        text: '加载中...',
+        spinnerType: 'fading-circle'
+      })
       this.$store.dispatch('games/getWords').then(() => {
         Indicator.close()
         this.dealGame(this.getAllWords)
@@ -51,6 +54,7 @@ export default {
           this.random(this.game, this.picts)
         }
         this.addWord()
+        this.$store.dispatch('games/openCompete')
         this.$store.commit('games/REQUEST_LOADING', { bool: false })
         this.$store.commit('games/DATA_RESET')
       })

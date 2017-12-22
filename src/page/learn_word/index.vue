@@ -42,12 +42,7 @@ export default {
   },
   methods: {
     init () {
-      Indicator.open('加载中...')
       this.$store.commit('learnWords/DATA_RESET')
-      this.$store.dispatch('common/wordsStore/getWords', {kinds: '单词'}).then(() => {
-        Indicator.close()
-        this.$store.commit('learnWords/AUTO_PLAY', { bool: true })
-      })
     }
   }
 }

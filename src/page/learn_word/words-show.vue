@@ -1,5 +1,5 @@
 <template>
-      <div class="word-img">
+      <div class="word-img" v-if="dat.length !== 0">
          <img src="static/img/bg_normal.png" alt="" class="people">
         <div class="show-word" v-for="item in dat">
             <span class="show-w"  >{{item.syllable}}</span>
@@ -8,6 +8,7 @@
 </template>
 <script>
 import { mapGetters, mapState } from 'vuex'
+import { Indicator } from 'mint-ui'
 export default {
   data () {
     return {
@@ -20,7 +21,14 @@ export default {
     ...mapState('common/wordsStore', ['step'])
   },
   created () {
-    this.$store.dispatch('common/wordsStore/getWords', {kinds: '单词'}).then(() => {
+    Indicator.open({
+      text: '加载中...',
+      spinnerType: 'fading-circle'
+    })
+    this.$store.commit('learnWords/DATA_RESET')
+    this.$store.dispatch('common/wordsStore/getWords').then(() => {
+      Indicator.close()
+      this.$store.commit('learnWords/AUTO_PLAY', { bool: true })
       this.dat.push(this.getFirstDealWords[this.step])
     })
   }
