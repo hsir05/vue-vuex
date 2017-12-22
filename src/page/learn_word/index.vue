@@ -25,26 +25,30 @@ import { mapGetters, mapState } from 'vuex'
 import WordsShow from './words-show.vue'
 import PictureShow from './picture-show.vue'
 import SelectShow from './select-show.vue'
-import end from './end'
+// import end from './end'
 import NextBtn from './next-btn.vue'
 import { Indicator } from 'mint-ui'
 export default {
-  components: {WordsShow, PictureShow, SelectShow, end, NextBtn},
+  components: {WordsShow, PictureShow, SelectShow, NextBtn},
   data () {
     return {}
   },
   created () {
-    Indicator.open('加载中...')
-    this.$store.dispatch('common/wordsStore/getWords', {kinds: '单词'}).then(() => {
-      Indicator.close()
-      this.$store.commit('learnWords/AUTO_PLAY', { bool: true })
-    })
+    this.init()
   },
   computed: {
-    ...mapGetters('common/wordsStore', ['getAllWords', 'getFirstDealWords', 'getWordItem']),
+    ...mapGetters('common/wordsStore', ['getAllWords', 'getFirstDealWords']),
     ...mapState('learnWords', ['autoPlay', 'flag'])
   },
   methods: {
+    init () {
+      Indicator.open('加载中...')
+      this.$store.commit('learnWords/DATA_RESET')
+      this.$store.dispatch('common/wordsStore/getWords', {kinds: '单词'}).then(() => {
+        Indicator.close()
+        this.$store.commit('learnWords/AUTO_PLAY', { bool: true })
+      })
+    }
   }
 }
 </script>

@@ -45,13 +45,13 @@ export default {
     /* @this.preventClick()  公用mixin 防止重复点击
      */
       if (this.preventClick()) {
-        if (this.flag !== 3) {
+        if (this.flag !== 3) { // 第一步  第二部时执行
           let flags = null
           flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
           this.$store.commit('learnWords/FLAG', { flag: flags })
-        } else {
-          if (this.seIndex !== null && this.seIndex === this.rightIndex) {
-            this.$store.commit('learnWords/RIGHTSHOW', { rightShow: {bool: true} })
+        } else { // 第三步 执行。
+          if (this.seIndex !== null && this.seIndex === this.rightIndex) { // 答案选择正确之后
+            this.$store.commit('learnWords/RIGHTSHOW', {bool: true})
             this.$refs.right.play()
             setTimeout(() => {
               let flags = null
@@ -59,14 +59,15 @@ export default {
               this.$store.commit('learnWords/FLAG', { flag: flags })
               this.$store.commit('learnWords/SEINDEX', {seIndex: null})
               this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
+              this.$store.commit('learnWords/RIGHTSHOW', {bool: false})
             }, 1000)
-          } else {
+          } else { // 选择错误
             this.$refs.error.play()
           }
         }
       }
     },
-    soundOpen () {
+    soundOpen () { // 音频播放
       if (this.$refs.syll) {
         this.$refs.syll[0].play()
       }

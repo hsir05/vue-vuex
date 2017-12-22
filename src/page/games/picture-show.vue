@@ -71,7 +71,7 @@ export default {
       * @selBtnWord 按钮对应的单词
         *@this.preventClick()  公用mixin 防止重复点击
       */
-      if (this.preventClick()) {
+      if (this.preventClick(1500)) {
         if (this.gamesFraction !== 100) {
           this.selAnswer(par)
         } else if (!this.progress) {
@@ -101,7 +101,7 @@ export default {
           this.$store.commit('games/GAMES_FRACTION', {fraction: this.gamesFraction + 10})
         }, 600)
       } else {
-        console.log('不对应')
+        console.log('错误答案')
         this.$refs.error.PlaybackRate = 2
         this.$refs.error.play()
         this.$refs.animat[par].classList.add('animat-false')

@@ -8,14 +8,6 @@
         <span class="sel-init sel-unit">一单元</span>
        <img src="static/img/sel_grade.png" alt="">
        <span class="start" @click="showSelGrade">开始</span>
-       <!-- <label>年级</label>
-       <select name="grade" >
-             <option value="学前班">学前班</option>
-       </select>
-       <label>单元</label>
-       <select name="unit" >
-         <option value="一单元">一单元</option>
-       </select> -->
      </div>
    </div>
     <div class="wechat">

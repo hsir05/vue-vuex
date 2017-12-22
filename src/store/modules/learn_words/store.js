@@ -3,11 +3,11 @@ import * as types from './mutation-types'
 
 const state = {
   words: [],
-  autoPlay: false,
-  flag: 1,
-  seIndex: null,
-  rightIndex: null,
-  rightShow: false
+  autoPlay: false, // 显示下一步按钮rightIndex
+  flag: 1, //  步骤控制共3步
+  seIndex: null, // 选择答案的序号
+  rightIndex: null, // 正确答案的序号
+  rightShow: false // 答案的选择正确与否
 }
 
 // getters
@@ -18,6 +18,11 @@ const getters = {
 const mutations = {
   [types.DATA_RESET] (state) {
     // 数据重置
+    state.autoPlay = false // 显示下一步按钮rightIndex
+    state.flag = 1//  步骤控制共3步
+    state.seIndex = null// 选择答案的序号
+    state.rightIndex = null// 正确答案的序号
+    state.rightShow = false // 答案的选择正确与否
   },
   [types.AUTO_PLAY] (state, {bool}) {
     state.autoPlay = bool

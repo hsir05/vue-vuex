@@ -33,7 +33,6 @@ export default {
     ...mapState('common/wordsStore', ['step'])
   },
   created () {
-    // console.log(this.getFirstDealWords)
     this.answer()
     this.dat.push(this.getFirstDealWords[this.step])
     if (this.getFirstDealWords.length - 1 !== this.step) {
@@ -43,7 +42,7 @@ export default {
     }
   },
   methods: {
-    selAnswer (index) {
+    selAnswer (index) {  // 选择答案时对按钮的样式做出更改
       this.$refs.checkSel[index].classList.forEach((item, k) => {
         if (item === 'answer-init') {
           this.$refs.checkSel[index].classList.remove('answer-init')
@@ -57,7 +56,7 @@ export default {
       this.$store.commit('learnWords/SEINDEX', {seIndex: index})
       this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: this.m })
     },
-    showAudio (index) {
+    showAudio (index) {  // 选择正确之后添加的样式
       this.$refs.selRight[index].play()
       this.$refs.animat[index].classList.add('sel-answer')
       setTimeout(() => {
@@ -65,7 +64,7 @@ export default {
       }, 200)
       this.selAnswer(index)
     },
-    answer () {
+    answer () {  // 产生随机答案
       this.m = Math.floor(Math.random() * 2)
       if (this.m === 0) {
         this.answerShow[this.m].url = this.getFirstDealWords[0].audio_right[0]
