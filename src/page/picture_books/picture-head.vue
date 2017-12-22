@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="picture-head">
-    <img class="home-btn" src="/static/img/home.png" alt="" @click="$router.push('/')">
+    <img class="home-btn" src="static/img/home.png" alt="" @click="$router.push('/')">
     <div v-if="!isCoverPic" class="picture-infor-sign">{{currPicPage}}/{{getPageTotal}}</div>
     <!-- <div class="home-btn white-bg" @click="$router.push('/')">
       <i class="base-i_cr fa fa-home"></i>

@@ -23,7 +23,7 @@
       <!-- 句子控制面板 -->
       <div class="picbook-sentence-control-panel">
         <div class="picbook-sentence-btn" @click="changeSentenceCnVisual">
-          <img src="/static/img/cn_en.png" alt="">
+          <img src="static/img/cn_en.png" alt="">
         </div>
       </div>
       <!-- 翻译 -->

@@ -2,7 +2,7 @@
   <div class="picbook-finish">
     <div class="picbook-finish-layer">
       <div class="picbook-finish-img">
-        <img src="/static/img/goodjob.png" alt="">
+        <img src="static/img/goodjob.png" alt="">
       </div>
       <!-- 绘本结束面板 -->
       <div class="picbook-finish-panel">

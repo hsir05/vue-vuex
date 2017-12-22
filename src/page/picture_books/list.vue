@@ -3,7 +3,7 @@
     <template v-if="!reqLoading">
       <!-- 绘本阅读 -->
       <header class="picture-books-read">
-        <img src="/static/img/picture_books_read.png" alt="">
+        <img src="static/img/picture_books_read.png" alt="">
       </header>
       <!-- 列表盒子 -->
       <div class="picture-books-box">
