@@ -20,7 +20,6 @@ const getters = {
   getFirstDealWords (state, getters, rootState, rootGetters) {
     let dat = []
     state.words.forEach((item, index) => {
-      // && index === state.step
       if (item.syllable_array && item.words_array) {
         dat.push(item.syllable_array[0])
       }

@@ -5,7 +5,7 @@
             <img :src="preUrl + '/'+ val.pic_right" alt="" class="show-i">
 
            <div class="pict-w">
-             <span class="img-w" :class=" judg === k?'addColor': ''" v-for="(k, i) in val.word">{{k}}</span>
+             <span class="img-w" :class="i >= comparStartLength && i <= comparEndLength ?'addColor': ''" v-for="(k, i) in val.word" >{{k}}</span>
            </div>
        </div>
   </div>
@@ -15,7 +15,8 @@ import { mapGetters, mapState } from 'vuex'
 export default {
   data () {
     return {
-      judg: '',
+      comparEndLength: null,
+      comparStartLength: null,
       dat: [],
       preUrl: process.env.API_PIC
     }
@@ -30,13 +31,14 @@ export default {
   methods: {
     wordDeal () {
       this.dat.push(this.getSecondDealWords[this.step])
-      this.judg = this.getFirstDealWords[this.step].syllable
+      let judg = this.getFirstDealWords[this.step].syllable
 
-      let same = this.getFirstDealWords[this.step].syllable
-      console.log(this.dat[0].word.slice(same.length, 1))
-    },
-    syllabelDeal () {
-      // this.dat[0].word
+      let compar = this.getFirstDealWords[this.step].syllable
+      let same = this.dat[0].word.indexOf(compar)
+      if (same !== -1) {
+        this.comparStartLength = same
+      }
+      this.comparEndLength = judg.length - 1 + this.comparStartLength
     }
   }
 }

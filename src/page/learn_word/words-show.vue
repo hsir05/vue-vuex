@@ -26,10 +26,11 @@ export default {
       spinnerType: 'fading-circle'
     })
     this.$store.commit('learnWords/DATA_RESET')
+    this.$store.commit('common/wordsStore/STEP', { step: 0 })
     this.$store.dispatch('common/wordsStore/getWords').then(() => {
-      Indicator.close()
       this.$store.commit('learnWords/AUTO_PLAY', { bool: true })
       this.dat.push(this.getFirstDealWords[this.step])
+      Indicator.close()
     })
   }
 }

@@ -27,23 +27,18 @@ import PictureShow from './picture-show.vue'
 import SelectShow from './select-show.vue'
 // import end from './end'
 import NextBtn from './next-btn.vue'
-import { Indicator } from 'mint-ui'
 export default {
   components: {WordsShow, PictureShow, SelectShow, NextBtn},
   data () {
     return {}
   },
   created () {
-    this.init()
+    this.$store.commit('learnWords/DATA_RESET')
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getAllWords', 'getFirstDealWords']),
     ...mapState('learnWords', ['autoPlay', 'flag'])
   },
-  methods: {
-    init () {
-      this.$store.commit('learnWords/DATA_RESET')
-    }
-  }
+  methods: {}
 }
 </script>
