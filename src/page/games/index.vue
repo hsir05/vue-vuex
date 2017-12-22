@@ -2,7 +2,9 @@
     <div class="game-b">
             <div class="games">
               <header-progress :value="progress"></header-progress>
-               <div class="games-head"></div>
+               <div class="games-head">
+
+               </div>
               <!-- 图片循环展示 -->
               <picture-show  v-if="!gameScore"></picture-show>
             </div>

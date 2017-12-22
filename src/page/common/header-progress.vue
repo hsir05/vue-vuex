@@ -1,6 +1,7 @@
 <template lang="html">
   <header class="header-progress">
     <img src="/static/img/pragress.png" alt="">
+   <img src="/static/img/bg_head_kid.png" class="bg-head-kid">
     <div class="progress-number">{{value}}</div>
     <div v-if="isProgress" class="progress-box-layer">
       <progress-bar :value="value" bg="rgb(106, 167, 24)"></progress-bar>
@@ -39,6 +40,13 @@ header.header-progress {
   .progress-box-layer {
     width: 4.26667rem; height: 0.65333rem;
     position: absolute; top: 0.37333rem; right: 1.89333rem;
+  }
+    .bg-head-kid{
+     width: 1.37333rem;
+    height: 1.28rem;
+    position: absolute;
+    right: 0.69rem;
+    top:0.10rem;
   }
 }
 
