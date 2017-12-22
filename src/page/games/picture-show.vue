@@ -12,6 +12,7 @@
       </div>
         <!-- <audio :src="preUrl +'/'+audi" :id="'randomAud' + n" v-for="(audi, n) in game[this.num[1]].audio_right" v-if="n === 0" ></audio> -->
         <audio src="static/audio/right.wav" ref="succ"></audio>
+        <audio src="static/audio/error.wav" ref="error"></audio>
     </div>
 </template>
 <script>
@@ -27,24 +28,11 @@ export default {
       pictNum: '',
       preUrl: process.env.API_PIC,
       picts: [],
-      showWord: [],
-      showScore: {
-        score: 0,
-        show: false
-      }
+      showWord: []
     }
   },
   created () {
-    Indicator.open('加载中...')
-    this.$store.dispatch('common/wordsStore/getWords', {kinds: '游戏'}).then(() => {
-      this.dealGame(this.getAllWords)
-      for (let i = 0; i < 3; i++) {
-        this.random(this.game, this.picts)
-      }
-      this.addWord()
-      this.$store.commit('games/REQUEST_LOADING', { bool: false })
-      Indicator.close()
-    })
+    this.init()
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getWordsIndexItem', 'getAllWords', 'getRandomWordItem']),
@@ -54,6 +42,19 @@ export default {
   methods: {
     ...mapMutations('games', []),
     ...mapActions('games', []),
+    init () {
+      Indicator.open('加载中...')
+      this.$store.dispatch('common/wordsStore/getWords', {kinds: '游戏'}).then(() => {
+        this.dealGame(this.getAllWords)
+        for (let i = 0; i < 3; i++) {
+          this.random(this.game, this.picts)
+        }
+        this.addWord()
+        this.$store.commit('games/REQUEST_LOADING', { bool: false })
+        this.$store.commit('games/DATA_RESET')
+        Indicator.close()
+      })
+    },
     dealGame (par) {
       par.forEach((item, index) => {
         if (item.words_array && item.words_array.length !== 0) {
@@ -71,35 +72,42 @@ export default {
         *@this.preventClick()  公用mixin 防止重复点击
       */
       if (this.preventClick()) {
-        if (this.gamesFraction !== 100 || this.progress) {
-          let selword = this.game[parseInt(this.picts[1].flag)].word
-          let selBtnWord = this.showWord[par]
-
-          if (selBtnWord === selword) {
-            this.$refs.succ.play()
-            this.$refs.animat[par].classList.add('animat-true')
-            setTimeout(() => {
-              this.$refs.animat[par].classList.remove('animat-true')
-            }, 200)
-            setTimeout(() => {
-              this.picts.shift()
-              this.showWord.splice(par, 1)
-              this.random(this.game, this.picts)
-              this.addWord() // right  run
-              this.showScore.score += 10
-              this.$store.commit('games/GAMES_FRACTION', {fraction: this.showScore.score})
-            }, 600)
-          } else {
-            console.log('不对应')
-            this.$refs.animat[par].classList.add('animat-false')
-            setTimeout(() => {
-              this.$refs.animat[par].classList.remove('animat-false')
-            }, 200)
-          }
+        if (this.gamesFraction !== 100) {
+          this.selAnswer(par)
+        } else if (!this.progress) {
+          // 进度为0
+          this.$store.commit('games/GAMES_SCORE', {bool: true})
         } else {
         // 分值达到100
           this.$store.commit('games/GAMES_SCORE', {bool: true})
         }
+      }
+    },
+    selAnswer (par) {
+      let selword = this.game[parseInt(this.picts[1].flag)].word
+      let selBtnWord = this.showWord[par]
+      if (selBtnWord === selword) {
+        this.$refs.succ.PlaybackRate = 2
+        this.$refs.succ.play()
+        this.$refs.animat[par].classList.add('animat-true')
+        setTimeout(() => {
+          this.$refs.animat[par].classList.remove('animat-true')
+        }, 200)
+        setTimeout(() => {
+          this.picts.shift()
+          this.showWord.splice(par, 1)
+          this.random(this.game, this.picts)
+          this.addWord() // right  run
+          this.$store.commit('games/GAMES_FRACTION', {fraction: this.gamesFraction + 10})
+        }, 600)
+      } else {
+        console.log('不对应')
+        this.$refs.error.PlaybackRate = 2
+        this.$refs.error.play()
+        this.$refs.animat[par].classList.add('animat-false')
+        setTimeout(() => {
+          this.$refs.animat[par].classList.remove('animat-false')
+        }, 200)
       }
     },
     random (par, param) {

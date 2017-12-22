@@ -9,7 +9,8 @@ const state = {
   currWordIndex: 0, // 当前单词的索引
   selectFrequency: 0, // 选择次数：1次则为10分，多次则为5分
   gamesData: [],
-  gameScore: false  // 游戏得分展示
+  gameScore: false,  // 游戏得分展示
+  timeWaitInterval: null
 }
 
 // getters
@@ -43,11 +44,12 @@ const getters = {
 // mutations
 const mutations = {
   [types.DATA_RESET] (state) { // 数据重置
-    state.progress = 30
-    state.gamesTime = 90
     state.progress = 0
+    state.gamesTime = 90
+    state.progress = 100
     state.gamesFraction = 0
     state.gamesData = []
+    state.gameScore = false
   },
   [types.GAMES_TIME] (state, { time }) { // 游戏倒计时
     state.gamesTime = time
@@ -63,6 +65,9 @@ const mutations = {
   },
   [types.GAMES_SCORE] (state, { bool }) { // 游戏结束得分展示
     state.gameScore = bool
+  },
+  [types.TIMERWAITINTERVAL] (state, { timeWaitInterval }) { // 定时器id
+    state.timeWaitInterval = timeWaitInterval
   }
 }
 
@@ -70,10 +75,11 @@ const mutations = {
 /* eslint-disable prefer-promise-reject-errors */
 const actions = {
   openCompete (context) { // 开启竞争:计时和记录得分满100竞争
-    let btn = document.getElementById('games-select-right-btn')
+    // let btn = document.getElementById('games-select-right-btn')
+    context.commit(types.DATA_RESET)
     return Promise.race([
-      context.dispatch('timeWait'),
-      context.dispatch('recordScore', { element: btn, event: 'click' })
+      context.dispatch('timeWait')
+      // context.dispatch('recordScore', { element: btn, event: 'click' })
     ])
   },
   recordScore (context, { element, event, useCapture = false }) { // 记录得分
@@ -90,18 +96,31 @@ const actions = {
     })
   },
   timeWait (context) { // 计时
-    return new Promise((resolve, reject) => {
-      let timeWaitInterval = setInterval(r => {
-        if (context.state.gamesTime <= 0) { // 如果计时器结束
-          context.commit(types.GAMES_SCORE, { bool: true })
-          clearInterval(timeWaitInterval)
-          resolve()
-        } else {
-          context.commit(types.GAMES_TIME, { time: context.state.gamesTime - 1 })
-          context.dispatch('setProgress')
-        }
-      }, 1000)
-    })
+    // 每次进入时必须清除定时器
+    clearInterval(context.state.timeWaitInterval)
+    let timer = setInterval(r => {
+      if (context.state.gamesTime <= 0) { // 如果计时器结束
+        context.commit(types.GAMES_SCORE, { bool: true })
+        // clearInterval(context.state.timeWaitInterval)
+      } else {
+        context.commit(types.GAMES_TIME, { time: context.state.gamesTime - 1 })
+        context.dispatch('setProgress')
+      }
+    }, 1000)
+    context.commit(types.TIMERWAITINTERVAL, { timeWaitInterval: timer })
+    // return new Promise((resolve, reject) => {
+    //   let timer = setInterval(r => {
+    //     if (context.state.gamesTime <= 0) { // 如果计时器结束
+    //       context.commit(types.GAMES_SCORE, { bool: true })
+    //       clearInterval(context.state.timeWaitInterval)
+    //       resolve()
+    //     } else {
+    //       context.commit(types.GAMES_TIME, { time: context.state.gamesTime - 1 })
+    //       context.dispatch('setProgress')
+    //     }
+    //   }, 1000)
+    //   context.commit(types.TIMERWAITINTERVAL, { timeWaitInterval: timer })
+    // })
   },
   setProgress (context) { // 设置进度
     let progress = Math.ceil((context.state.gamesTime / 90) * 100)

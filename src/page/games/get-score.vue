@@ -9,7 +9,7 @@
               <div class="btn-score-w">
                         <span class="btn-score">
                             <img src="static/img/btn_crad.png" width="100%"height="100%">
-                          <a @click="start" href="javascript:;">重新开始</a>
+                          <a @click="DATA_RESET" href="javascript:;">重新开始</a>
                         </span>
                       <span class="btn-score2">
                           <img src="static/img/btn_crad.png" width="100%"height="100%">
@@ -20,15 +20,14 @@
        </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   data () {
     return {
       stars: []
     }
   },
-  created () {
-  },
+  created () {},
   computed: {
     ...mapState('games', ['gamesFraction'])
   },
@@ -36,8 +35,12 @@ export default {
     this.dealStars(this.gamesFraction)
   },
   methods: {
+    ...mapActions('games', ['openCompete']),
+    ...mapMutations('games', ['DATA_RESET']),
     start () {
-      location.reload()
+      // this.$store.commit('games/DATA_RESET')
+      console.log(23423)
+      this.$store.dispatch('games/openCompete')
     },
     dealStars (n) {
       switch (n) {

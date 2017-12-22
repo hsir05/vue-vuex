@@ -5,3 +5,4 @@ export const PROGRESS = 'PROGRESS' // 进度
 export const GAMES_TIME = 'GAMES_TIME' // 游戏时间
 export const GAMES_FRACTION = 'GAMES_FRACTION' // 游戏分数
 export const GAMES_SCORE = 'GAMES_SCORE' // 游戏得分展示
+export const TIMERWAITINTERVAL = 'TIMERWAITINTERVAL' // 定时器id

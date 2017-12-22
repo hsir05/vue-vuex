@@ -3,17 +3,17 @@
             <div class="games">
               <header-progress :value="progress"></header-progress>
                <div class="games-head"></div>
-           <!-- 图片循环展示 -->
-              <picture-show ></picture-show>
+              <!-- 图片循环展示 -->
+              <picture-show  v-if="!gameScore"></picture-show>
             </div>
-        <!-- 得分展示 -->
-        <get-score  v-if="gameScore"></get-score>
+            <!-- 得分展示 -->
+            <get-score  v-if="gameScore"></get-score>
     </div>
 </template>
 
 <script>
 import { Swipe, SwipeItem } from 'mint-ui'
-import { mapMutations, mapActions, mapState, mapGetters } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 
 import GamesFooter from './games-footer.vue'
 import PictureShow from './picture-show.vue'
@@ -26,17 +26,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('common/wordsStore', ['getWordsIndexItem', 'getAllWords', 'getRandomWordItem']),
-    ...mapState('games', ['requestLoading', 'gamesTime', 'gamesFraction', 'gameScore', 'progress', 'currWordIndex']),
+    ...mapGetters('common/wordsStore', ['getRandomWordItem']),
+    ...mapState('games', ['requestLoading', 'gamesTime', 'gamesFraction', 'gameScore', 'progress']),
     ...mapGetters('games', {})
   },
   created () {
-    this.$store.dispatch('games/timeWait').then(() => {
-
-    })
+    this.$store.dispatch('games/openCompete')
   },
   methods: {
-    ...mapMutations('games', []),
     ...mapActions('games', ['openCompete'])
   }
 }

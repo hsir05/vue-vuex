@@ -54,7 +54,7 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      showSel: true
+      showSel: false
     }
   },
   computed: {
