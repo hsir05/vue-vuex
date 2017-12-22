@@ -3,14 +3,17 @@
       <div class="game-t-img" >
         <ul >
           <li v-for="(pict, p) in picts" class="show-cal" :class="'img-'+p">
-              <img :src="preUrl +'/'+ pict.url"   width="100%"height="100%">
+
+                   <transition name="fade" mode="in-out" >
+                      <img :src="preUrl +'/'+ pict.url"   width="100%"height="100%">
+                  </transition>
+
           </li>
         </ul>
       </div>
       <div class="game-wo">
         <span class="first " ref="animat" :class="'first-' + i + ' ' " v-for="(val, i) in showWord"  @click="pictSel(i)"> {{val}}</span>
       </div>
-        <!-- <audio :src="preUrl +'/'+audi" :id="'randomAud' + n" v-for="(audi, n) in game[this.num[1]].audio_right" v-if="n === 0" ></audio> -->
         <audio src="static/audio/right.wav" ref="succ"></audio>
         <audio src="static/audio/error.wav" ref="error"></audio>
     </div>
