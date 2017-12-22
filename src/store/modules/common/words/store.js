@@ -2,8 +2,7 @@ import REQUEST from '@/api/index.js'
 import * as types from './mutation-types'
 
 const state = {
-  words: [],
-  step: 0
+  words: []
 }
 // getters
 const getters = {
@@ -77,9 +76,6 @@ const mutations = {
   [types.WORDS] (state, { words }) {
     // words
     state.words = words
-  },
-  [types.STEP] (state, {step}) {
-    state.step = step
   }
 }
 

@@ -3,6 +3,7 @@ import * as types from './mutation-types'
 
 const state = {
   words: [],
+  step: 0,  // 显示单词
   autoPlay: false, // 显示下一步按钮rightIndex
   flag: 1, //  步骤控制共3步
   seIndex: null, // 选择答案的序号
@@ -38,6 +39,9 @@ const mutations = {
   },
   [types.RIGHTSHOW] (state, {bool}) {
     state.rightShow = bool
+  },
+  [types.STEP] (state, {step}) {
+    state.step = step
   }
 }
 

@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getAllWords', 'getFirstDealWords']),
-    ...mapState('common/wordsStore', ['step'])
+    ...mapState('learnWords', ['step'])
   },
   created () {
     Indicator.open({

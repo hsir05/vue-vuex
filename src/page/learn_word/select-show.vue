@@ -30,15 +30,15 @@ export default {
   computed: {
     ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
     ...mapState('learnWords', ['flag', 'seIndex', 'rightIndex', 'rightShow']),
-    ...mapState('common/wordsStore', ['step'])
+    ...mapState('learnWords', ['step'])
   },
   created () {
     this.answer()
     this.dat.push(this.getFirstDealWords[this.step])
     if (this.getFirstDealWords.length - 1 !== this.step) {
-      this.$store.commit('common/wordsStore/STEP', { step: this.step + 1 })
+      this.$store.commit('learnWords/STEP', { step: this.step + 1 })
     } else {
-      this.$store.commit('common/wordsStore/STEP', { step: 0 })
+      this.$store.commit('learnWords/STEP', { step: 0 })
     }
   },
   methods: {

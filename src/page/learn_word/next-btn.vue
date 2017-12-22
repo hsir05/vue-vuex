@@ -38,7 +38,7 @@ export default {
   computed: {
     ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
     ...mapState('learnWords', ['flag', 'seIndex', 'rightIndex', 'rightShow']),
-    ...mapState('common/wordsStore', ['step'])
+    ...mapState('learnWords', ['step'])
   },
   methods: {
     next (index) {

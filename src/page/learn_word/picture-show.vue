@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
-    ...mapState('common/wordsStore', ['step'])
+    ...mapState('learnWords', ['step'])
   },
   created () {
     this.wordDeal()
