@@ -2,12 +2,10 @@
     <div class="game-img-wrop" >
       <div class="game-t-img" >
         <ul >
-          <li v-for="(pict, p) in picts" class="show-cal" :class="'img-'+p">
-
+          <li v-for="(pict, p) in picts" class="show-cal" :class="'img-'+p" v-if="pict">
                    <transition name="fade" mode="in-out" >
                       <img :src="preUrl +'/'+ pict.url"   width="100%"height="100%">
                   </transition>
-
           </li>
         </ul>
       </div>
@@ -38,16 +36,16 @@ export default {
     this.init()
   },
   computed: {
-    ...mapGetters('common/wordsStore', ['getWordsIndexItem', 'getAllWords', 'getRandomWordItem']),
     ...mapState('games', ['requestLoading', 'gamesTime', 'gamesFraction', 'gameScore', 'progress', 'currWordIndex']),
-    ...mapGetters('games', {})
+    ...mapGetters('games', ['getAllWords'])
   },
   methods: {
     ...mapMutations('games', []),
     ...mapActions('games', []),
     init () {
       Indicator.open('加载中...')
-      this.$store.dispatch('common/wordsStore/getWords', {kinds: '游戏'}).then(() => {
+      this.$store.dispatch('games/getWords').then(() => {
+        Indicator.close()
         this.dealGame(this.getAllWords)
         for (let i = 0; i < 3; i++) {
           this.random(this.game, this.picts)
@@ -55,10 +53,9 @@ export default {
         this.addWord()
         this.$store.commit('games/REQUEST_LOADING', { bool: false })
         this.$store.commit('games/DATA_RESET')
-        Indicator.close()
       })
     },
-    dealGame (par) {
+    dealGame (par) { // 要展示的单词
       par.forEach((item, index) => {
         if (item.words_array && item.words_array.length !== 0) {
           item.words_array.forEach((k, i) => {
@@ -74,7 +71,7 @@ export default {
       * @selBtnWord 按钮对应的单词
         *@this.preventClick()  公用mixin 防止重复点击
       */
-      if (this.preventClick(1500)) {
+      if (this.preventClick(1000)) {
         if (this.gamesFraction !== 100) {
           this.selAnswer(par)
         } else if (!this.progress) {

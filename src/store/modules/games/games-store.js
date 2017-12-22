@@ -1,7 +1,8 @@
-// import REQUEST from '@/api/index.js'
+import REQUEST from '@/api/index.js'
 import * as types from './mutation-types.js'
 
 const state = {
+  words: [],
   requestLoading: true, // 请求加载
   gamesTime: 90, // 游戏倒计时
   gamesFraction: 0, // 游戏分数
@@ -15,11 +16,14 @@ const state = {
 
 // getters
 const getters = {
+  getAllWords (state, getters, rootState, rootGetters) {
+    // 获取所有单词
+    return [...state.words]
+  },
   getPicContents (state, getters, rootState, rootGetters) { // 获取内容
     return [...state.picBooks.content_list]
   },
   getFirstDealWords (state, getters, rootState, rootGetters) {
-    console.log(state.step)
     let dat = {}
     state.words.forEach((item, index) => {
       if (item.syllable_array && item.words_array && index === 0) {
@@ -51,6 +55,10 @@ const mutations = {
     state.gamesData = []
     state.gameScore = false
   },
+  [types.WORDS] (state, { words }) {
+    // words
+    state.words = words
+  },
   [types.GAMES_TIME] (state, { time }) { // 游戏倒计时
     state.gamesTime = time
   },
@@ -74,6 +82,16 @@ const mutations = {
 // actions
 /* eslint-disable prefer-promise-reject-errors */
 const actions = {
+  getWords (context) {
+    // 请求works
+    context.commit(types.DATA_RESET) // 数据重置
+    return new Promise((resolve, reject) => {
+      REQUEST.get('weixin_words_view', {kinds: '游戏'}, r => {
+        context.commit(types.WORDS, { words: r.data.list })
+        resolve()
+      })
+    })
+  },
   openCompete (context) { // 开启竞争:计时和记录得分满100竞争
     // let btn = document.getElementById('games-select-right-btn')
     context.commit(types.DATA_RESET)
