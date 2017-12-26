@@ -23,7 +23,8 @@ const state = {
 // getters
 const getters = {
   getPicContents (state, getters, rootState, rootGetters) { // 获取内容
-    return [...state.nurseryRhyme.course_content]
+    // return [...state.nurseryRhyme.course_content]
+    return [...state.nurseryRhyme]
   },
   getPicContentCurrItem (state, getters, rootState, rootGetters) { // 通过当前绘画页数获取某一项
     // console.log(8888)
@@ -138,12 +139,10 @@ const actions = {
     context.commit(types.PLAY_STATE, { status: 'init' })
     let currPicPage = context.state.currPicPage + 1
     console.log(currPicPage)
-    console.log(context.getters.getPicContents.length)
+    console.log(context.getters.getPicContents)
     if (currPicPage < context.getters.getPicContents.length) {
       context.dispatch('setCurrPicPage', { index: currPicPage }) // 设置当前pic索引
-      console.log(22)
     } else {
-      console.log(33)
       context.commit(types.IS_FINISH_PIC, { bool: true })
     }
   },
@@ -159,6 +158,11 @@ const actions = {
       context.dispatch('setProgress') // 设置进度
     } else {
       context.commit(types.DATA_RESET) // 数据重置
+      context.dispatch('nurseryRhyme/getNurseryRhyme').then(() => {
+        context.dispatch('nurseryRhyme/timeWait').then(() => {
+          context.dispatch('nurseryRhyme/delayChildSongs')
+        })
+      })
     }
   },
   timeWait (context) { // 倒计时

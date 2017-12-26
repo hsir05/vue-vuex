@@ -10,9 +10,9 @@
     <!-- 图片列表 -->
     <ul class="img-list" v-if="getWords.length !== 0">
       <!-- 图片列表子项 -->
-      <li v-for="(w, index) in getWords">
+      <li v-for="(w, index) in getWords" v-if="index < 3">
         <div class="img-list-item">
-          <img :src="preUrl +'/'+w.pic_right[0]" alt="">
+          <img :src="preUrl +'/'+w.pic_right[0]" alt="" v-if="index < 3">
           <!-- 遮罩单词信息 -->
           <div v-if="index === currWordsIndex && isStartSongs" class="mask-word-infor">{{w.word}}</div>
         </div>
