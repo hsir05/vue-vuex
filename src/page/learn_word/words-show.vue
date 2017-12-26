@@ -25,11 +25,11 @@ export default {
       text: '加载中...',
       spinnerType: 'fading-circle'
     })
-    this.$store.commit('learnWords/DATA_RESET')
-    this.$store.commit('learnWords/STEP', { step: 0 })
     this.$store.dispatch('common/wordsStore/getWords').then(() => {
       this.$store.commit('learnWords/AUTO_PLAY', { bool: true })
-      this.dat.push(this.getFirstDealWords[this.step])
+      let arr = []
+      arr = this.getFirstDealWords.reverse()
+      this.dat.push(arr[this.step])
       Indicator.close()
     })
   }

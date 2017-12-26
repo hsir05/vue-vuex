@@ -20,7 +20,10 @@ const getters = {
     let dat = []
     state.words.forEach((item, index) => {
       if (item.syllable_array && item.words_array) {
-        dat.push(item.syllable_array[0])
+        item.syllable_array.forEach((val, k) => {
+          dat.push(val)
+        })
+        // dat.push(item.syllable_array[index])
       }
     })
     return dat
@@ -28,8 +31,11 @@ const getters = {
   getSecondDealWords (state, getters, rootState, rootGetters) {
     let dat = []
     state.words.forEach((item, index) => {
-      if (item.words_array) {
-        dat.push(item.words_array[0])
+      if (item.syllable_array && item.words_array) {
+        item.words_array.forEach((val, k) => {
+          dat.push(val)
+        })
+        // dat.push(item.words_array[0])
       }
     })
     return dat

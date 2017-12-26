@@ -60,13 +60,31 @@ export default {
       })
     },
     dealGame (par) { // 要展示的单词
+      let arr = []
       par.forEach((item, index) => {
         if (item.words_array && item.words_array.length !== 0) {
           item.words_array.forEach((k, i) => {
-            this.game.push(k)
+            // this.game.push(k)
+            arr.push(k)
           })
         }
       })
+
+      this.game = this.distinct(arr)
+    },
+    distinct (arr) { //  去重
+      let ret = []
+      let json = {}
+      let length = arr.length
+
+      for (var i = 0; i < length; i++) {
+        let val = arr[i].id
+        if (!json[val]) {
+          json[val] = 1
+          ret.push(arr[i])
+        }
+      }
+      return ret
     },
     pictSel (par) {  // 对点击按钮作出反应
      /* @picts  储存随积图片数组
@@ -99,7 +117,8 @@ export default {
         }, 200)
         setTimeout(() => {
           this.picts.shift()
-          this.showWord.splice(par, 1)
+          // this.showWord.splice(par, 1)
+          // this.showWord.length = 0
           this.random(this.game, this.picts)
           this.addWord() // right  run
           this.$store.commit('games/GAMES_FRACTION', {fraction: this.gamesFraction + 10})
@@ -132,15 +151,24 @@ export default {
       *根据随机图片添加单词
       *单词初始化时只允许添加2个，且必须有一个是图片对应的单词
       */
+      this.showWord.length = 0
       if (this.game[this.num[1]].word) {
-        let m = Math.floor(Math.random() * (this.game.length)) // 游戏中产生随机单词
+        // let m = Math.floor(Math.random() * (this.game.length)) // 游戏中产生随机单词
         let randomFirst = Math.floor(Math.random() * 2) // 随机单词位置
 
         this.showWord[randomFirst] = this.game[this.num[1]].word // 正确单词
-        if (randomFirst === 0) {
-          this.showWord[1] = this.game[m].word
+        let n = this.num[1]
+        if (n === 0) {
+          n = n + 1
+        } else if (n === this.game.length) {
+          n = n - 1
         } else {
-          this.showWord[0] = this.game[m].word
+          n = n - 1
+        }
+        if (randomFirst === 0) {
+          this.showWord[1] = this.game[n].word
+        } else {
+          this.showWord[0] = this.game[n].word
         }
       }
     }

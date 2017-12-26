@@ -24,6 +24,7 @@ const mutations = {
     state.seIndex = null// 选择答案的序号
     state.rightIndex = null// 正确答案的序号
     state.rightShow = false // 答案的选择正确与否
+    state.step = 0
   },
   [types.AUTO_PLAY] (state, {bool}) {
     state.autoPlay = bool
