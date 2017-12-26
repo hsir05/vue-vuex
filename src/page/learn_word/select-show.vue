@@ -11,7 +11,7 @@
                 </div>
 
                   <span class="img-step3"  v-for="val in dat">
-                    {{val.syllable}}
+                    {{val.word}}
                   </span>
           </div>
         </div>
@@ -34,11 +34,10 @@ export default {
   },
   created () {
     this.answer()
-    this.dat.push(this.getFirstDealWords[this.step])
+    // this.dat.push(this.getFirstDealWords[this.step])
+    this.dat.push(this.getSecondDealWords[this.step])
     if (this.getFirstDealWords.length - 1 !== this.step) {
       this.$store.commit('learnWords/STEP', { step: this.step + 1 })
-      console.log('step')
-      console.log(this.step)
     } else {
       this.$store.commit('learnWords/STEP', { step: 0 })
     }

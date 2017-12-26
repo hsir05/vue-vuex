@@ -1,6 +1,6 @@
 import REQUEST from '@/api/index.js'
 import * as types from './mutation-types.js'
-import huiben from '@/datajson/huiben.json'
+// import huiben from '@/datajson/huiben.json'
 
 const state = {
   reqLoading: false, // 请求加载，true-开始加载
@@ -86,7 +86,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       // setTimeout(() => {
       REQUEST.get('course/' + id, null, r => {
-        r.data.course_content = huiben.data.content_list
+        // r.data.course_content = huiben.data.content_list
         context.commit(types.PICBOOK, { picbook: r.data })
         context.commit(types.REQ_LOADING, { bool: false }) // 请求加载
         resolve()

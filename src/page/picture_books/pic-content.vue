@@ -2,7 +2,7 @@
   <div class="picbook-content picbook-body">
     <div class="picbook-body-img">
       <div class="picbook-body-img-bg white-bg">
-        <img :src="getPicContentCurrItem.pic_photo" alt="">
+        <img :src="preUrl +'/'+getPicContentCurrItem.pic_photo" alt="">
         <!-- <img :src="$Constant.GET_FILE_URL + getPicContentCurrItem.pic_photo[0]" alt=""> -->
       </div>
     </div>
@@ -16,7 +16,7 @@
     <div class="picbook-sentence-wrapper">
       <!-- 句子词组 -->
       <sentence-words class="picbook-sentence" :sentence="getPicContentCurrItem.sentence" @wordsEvent="wordsEvent"
-        :audio="getPicContentCurrItem.sentence_audio" :play-time-chunk="getPicContentCurrItem.play_time_chunk"
+        :audio="getPicContentCurrItem.sentence_audio[0]" :play-time-chunk="getPicContentCurrItem.play_time_chunk"
         ref="sentenceWords"
         @pauseEvent="playAudioEvent" @playEvent="playAudioEvent" @endedEvent="playAudioEvent"
       ></sentence-words>
@@ -43,6 +43,7 @@ export default {
   },
   data () {
     return {
+      preUrl: process.env.API_PIC
     }
   },
   watch: {

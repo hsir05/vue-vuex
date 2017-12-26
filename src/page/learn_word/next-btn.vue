@@ -14,8 +14,11 @@
         <div v-for="(item, index) in getFirstDealWords"  v-if="flag === 1 && index === 0">
             <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right" autoplay="autoplay" v-if="flag && k === 0"></audio>
         </div>
-        <div v-for="(item, i) in getSecondDealWords" v-if="flag ===2 && i === 0">
-            <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right"  autoplay="autoplay" v-if="flag && k === 0"></audio>
+        <!-- <div v-for="(item, i) in audioSecond" v-if="flag ===2 && i === 0">{{item.audio_right}}
+            <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right" controls  autoplay="autoplay" v-if="flag && k === 0"></audio>
+        </div> -->
+          <div v-for="(item, i) in audioSecond.audio_right" v-if="flag ===2 ">
+            <audio :src="preUrl + '/'+ item" ref="syll"   autoplay="autoplay" v-if="flag && i === 0"></audio>
         </div>
 
   </div>
@@ -27,13 +30,15 @@ export default {
   mixins: [PreventClickMixin],
   data () {
     return {
-      preUrl: process.env.API_PIC
+      preUrl: process.env.API_PIC,
+      audioSecond: ''
     }
   },
   created () {
   },
   mounted () {
     this.soundOpen()
+    this.audioSecond = this.getSecondDealWords[this.step]
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),

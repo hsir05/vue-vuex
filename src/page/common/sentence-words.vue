@@ -5,7 +5,7 @@
       :class="{'sentence-word-light': wordLightAble(index)}"
     ></div>
     <!-- @timeupdate="timeupdateEvent" @loadeddata="loadeddataEvent" @progress="progressEvent" -->
-    <audio :id="audio_id" :src="audio" @ended="endedEvent" @play="playEvent" @pause="pauseEvent">
+    <audio :id="audio_id" :src="preUrl +'/'+audio"  @ended="endedEvent" @play="playEvent"  @pause="pauseEvent">
       不支持播放音频
     </audio>
   </div>
@@ -30,6 +30,7 @@ export default {
   },
   data () {
     return {
+      preUrl: process.env.API_PIC,
       audio_id: 'sentence-words-id',
       currentTime: 0, // 播放音频的当前时间
       play_state: 'init' // init-初始状态，play-播放状态，pause-暂停状态，ended-结束状态

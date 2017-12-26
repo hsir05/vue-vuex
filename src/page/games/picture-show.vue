@@ -4,7 +4,7 @@
         <ul >
           <li v-for="(pict, p) in picts" class="show-cal" :class="'img-'+p" v-if="pict">
                    <transition name="fade" mode="in-out" >
-                      <img :src="preUrl +'/'+ pict.url"   width="100%"height="100%">
+                      <img :src="preUrl +'/'+ pict.url"   width="100%"height="100%" @click="clickPict(p)">
                   </transition>
           </li>
         </ul>
@@ -14,6 +14,7 @@
       </div>
         <audio src="static/audio/right.wav" ref="succ"></audio>
         <audio src="static/audio/error.wav" ref="error"></audio>
+        <audio :src="preUrl +'/'+ rightAudio" ref="clickpictAudio"></audio>
     </div>
 </template>
 <script>
@@ -26,6 +27,7 @@ export default {
     return {
       game: [],
       num: [],
+      rightAudio: '',
       pictNum: '',
       preUrl: process.env.API_PIC,
       picts: [],
@@ -85,6 +87,11 @@ export default {
         }
       }
       return ret
+    },
+    clickPict (index) {
+      if (index === 1) {
+        this.$refs.clickpictAudio.play()
+      }
     },
     pictSel (par) {  // 对点击按钮作出反应
      /* @picts  储存随积图片数组
@@ -170,6 +177,7 @@ export default {
         } else {
           this.showWord[0] = this.game[n].word
         }
+        this.rightAudio = this.game[this.num[1]].audio_right[0] // 点击图片正确音频
       }
     }
   }
