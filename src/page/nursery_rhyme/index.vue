@@ -6,7 +6,7 @@
       <!-- 主体 儿歌开篇 -->
       <openings v-if="beinState === 'wait_item' || beinState === 'delay' || beinState === 'openings'"></openings>
       <!-- 儿歌句子 -->
-      <sentence></sentence>
+      <sentence v-else></sentence>
     </template>
     <audio-play :src="currAudioSrc" :autoplay="true"></audio-play>
   </div>

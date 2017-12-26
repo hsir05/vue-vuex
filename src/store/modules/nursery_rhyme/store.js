@@ -1,6 +1,6 @@
 import REQUEST from '@/api/index.js'
 import * as types from './mutation-types'
-import NurseryRhyme from '@/datajson/nursery-rhyme.json'
+// import NurseryRhyme from '@/datajson/nursery-rhyme.json'
 // import DatahandleMethods from '@/utils/datahandle-methods.js'
 
 const state = {
@@ -11,13 +11,32 @@ const state = {
   isStartSongs: false, // 是否开启儿歌
   progress: 0, // 进度
   currAudioSrc: null, // 当前音频地址
-  nurseryRhyme: null // 儿歌信息
+  nurseryRhyme: null, // 儿歌信息
+  isShowSentenceCn: false, // 是否显示句子的汉译
+  playState: 'init',
+  infor: null,
+  viewWordDic: null,
+  isFinishPic: false,  // 判断是否完成绘本
+  currPicPage: 0 // 当前绘画页数：0首页-0以后是内容
 }
 
 // getters
 const getters = {
+  getPicContents (state, getters, rootState, rootGetters) { // 获取内容
+    return [...state.nurseryRhyme.course_content]
+  },
+  getPicContentCurrItem (state, getters, rootState, rootGetters) { // 通过当前绘画页数获取某一项
+    // console.log(8888)
+    // console.log(state.currPicPage)
+    return state.currPicPage < 0 ? {} : getters.getPicContentsItem(state.currPicPage)
+  },
   getWords (state, getters, rootState, rootGetters) { // 获取儿歌单词相关
     return state.nurseryRhyme ? [...state.nurseryRhyme.words_array] : []
+  },
+  getPicContentsItem (state, getters, rootState, rootGetters) { // 通过索引获取某一项
+    return (index) => {
+      return [...state.nurseryRhyme.course_content][index]
+    }
   },
   getWordItem (state, getters, rootState, rootGetters) { // 通过索引获取某一项
     return (index) => {
@@ -42,11 +61,16 @@ const mutations = {
     state.reqLoading = false
     state.beinState = 'init'
     state.waitTime = 3
+    state.isShowSentenceCn = false
     state.currWordsIndex = 0
     state.isStartSongs = false
+    state.isFinishPic = false
+    state.viewWordDic = null
     state.progress = 0
     state.currAudioSrc = null
     state.nurseryRhyme = null
+    state.playState = 'init'
+    state.currPicPage = 0
   },
   [types.REQ_LOADING] (state, { bool }) { // 请求加载
     state.reqLoading = bool
@@ -56,6 +80,12 @@ const mutations = {
   },
   [types.WAIT_TIME] (state, { time }) { // 等待时间
     state.waitTime = time
+  },
+  [types.IS_SHOW_SENTENCE_CN] (state, { bool }) { // 是否显示句子的汉译
+    state.isShowSentenceCn = bool
+  },
+  [types.VIEW_WORD_DIC] (state, { word }) { // 看单词词典释义
+    state.viewWordDic = word
   },
   [types.CURR_WORDS_INDEX] (state, { index }) { // 当前高亮单词索引
     state.currWordsIndex = index
@@ -71,6 +101,15 @@ const mutations = {
   },
   [types.NURSERY_RHYME] (state, { infor }) { // 儿歌信息
     state.nurseryRhyme = infor
+  },
+  [types.PLAY_STATE] (state, { status }) { // 是否播放音频
+    state.playState = status
+  },
+  [types.IS_FINISH_PIC] (state, { bool }) { // 判断是否完成绘本
+    state.isFinishPic = bool
+  },
+  [types.CURR_PIC_IDX] (state, { index }) { // 当前绘画页数
+    state.currPicPage = index
   }
 }
 
@@ -85,13 +124,42 @@ const actions = {
       // setTimeout(() => {
       // grade: null, unit: null
       REQUEST.get('weixin_words_view', {kinds: '儿歌', sort: 'create_time'}, r => {
-        context.commit(types.NURSERY_RHYME, { infor: NurseryRhyme.data.list[0] })
-        // context.commit(types.NURSERY_RHYME, { infor: r.data.list[0] })
+        // context.commit(types.NURSERY_RHYME, { infor: NurseryRhyme.data.list[0] })
+        // console.log(NurseryRhyme.data.list[0])
+        context.commit(types.NURSERY_RHYME, { infor: r.data.list[0] })
         context.commit(types.REQ_LOADING, { bool: false }) // 请求加载
         resolve()
       })
       // }, 5000)
     })
+  },
+  nextPicBooks (context) { // 下一个绘画
+    context.commit(types.VIEW_WORD_DIC, { word: null })
+    context.commit(types.PLAY_STATE, { status: 'init' })
+    let currPicPage = context.state.currPicPage + 1
+    console.log(currPicPage)
+    console.log(context.getters.getPicContents.length)
+    if (currPicPage < context.getters.getPicContents.length) {
+      context.dispatch('setCurrPicPage', { index: currPicPage }) // 设置当前pic索引
+      console.log(22)
+    } else {
+      console.log(33)
+      context.commit(types.IS_FINISH_PIC, { bool: true })
+    }
+  },
+  setCurrPicPage (context, { index }) { // 设置当前pic索引
+    context.commit(types.CURR_PIC_IDX, { index: index })
+  },
+  lastPicBooks (context) { // 上一个绘画
+    context.commit(types.VIEW_WORD_DIC, { word: null })
+    context.commit(types.PLAY_STATE, { status: 'init' })
+    let currPicPage = context.state.currPicPage - 1
+    if (currPicPage > 0) {
+      context.dispatch('setCurrPicPage', { index: currPicPage }) // 设置当前pic索引
+      context.dispatch('setProgress') // 设置进度
+    } else {
+      context.commit(types.DATA_RESET) // 数据重置
+    }
   },
   timeWait (context) { // 倒计时
     context.commit(types.BEIN_STATER, { status: 'wait_item' }) // 进行的状态-倒计时
@@ -127,13 +195,11 @@ const actions = {
   },
   setSongsAction (context, { index }) { // 设置歌曲播放行为
     context.commit(types.CURR_WORDS_INDEX, { index: index }) // 当前高亮单词索引
-    let currWrod = context.getters.getWordCurrItem
-    context.commit(types.CURR_AUDIO_SRC, { src: currWrod.audio_right[0] }) // 当前音频地址
+    // let currWrod = context.getters.getWordCurrItem
+    // context.commit(types.CURR_AUDIO_SRC, { src: currWrod.audio_right[0] }) // 当前音频地址
   },
   setSongsProgress (context, { prec, length }) { // 设置进度
     let progress = Math.ceil((prec / length) * 100)
-    // console.log(prec, length)
-    // console.log(progress)
     context.commit(types.PROGRESS, { progress: progress })
   },
   setSongsActionRule (context) { // 设置歌曲播放行为规则
@@ -163,6 +229,9 @@ const actions = {
   },
   setSentence (context) {
     context.commit(types.BEIN_STATER, { status: 'sentence' }) // 进行的状态-句子
+  },
+  changeSentenceCnVisual (context) { // 改变句子的汉译的可见
+    context.commit(types.IS_SHOW_SENTENCE_CN, { bool: !context.state.isShowSentenceCn })
   }
 }
 

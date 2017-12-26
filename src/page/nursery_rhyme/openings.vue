@@ -12,7 +12,7 @@
       <!-- 图片列表子项 -->
       <li v-for="(w, index) in getWords">
         <div class="img-list-item">
-          <img :src="w.pic_right[0]" alt="">
+          <img :src="preUrl +'/'+w.pic_right[0]" alt="">
           <!-- 遮罩单词信息 -->
           <div v-if="index === currWordsIndex && isStartSongs" class="mask-word-infor">{{w.word}}</div>
         </div>
@@ -29,6 +29,11 @@ import { mapActions, mapState, mapGetters } from 'vuex'
 export default {
   components: {
     HeaderProgress
+  },
+  data () {
+    return {
+      preUrl: process.env.API_PIC
+    }
   },
   computed: {
     ...mapState('nurseryRhyme', ['currWordsIndex', 'isStartSongs', 'progress']),

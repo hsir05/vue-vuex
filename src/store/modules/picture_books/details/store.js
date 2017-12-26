@@ -100,7 +100,7 @@ const actions = {
     let currPicPage = context.state.currPicPage + 1
     if (currPicPage <= context.getters.getPicContents.length) {
       context.dispatch('setCurrPicPage', { index: currPicPage }) // 设置当前pic索引
-      context.dispatch('setProgress') // 设置进度
+      // context.dispatch('setProgress') // 设置进度
     } else {
       context.commit(types.IS_FINISH_PIC, { bool: true })
     }
