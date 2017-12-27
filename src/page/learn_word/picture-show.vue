@@ -33,7 +33,12 @@ export default {
     ...mapGetters('learnWords', ['getIndexWord'])
   },
   created () {
-    this.wordDeal()
+
+  },
+  mounted () {
+    document.addEventListener('WeixinJSBridgeReady', () => {
+      this.wordDeal()
+    }, false)
   },
   methods: {
     wordDeal () {

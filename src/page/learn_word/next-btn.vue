@@ -39,18 +39,16 @@ export default {
     }
   },
   mounted () {
-    setTimeout(() => {
+    document.addEventListener('WeixinJSBridgeReady', () => {
       this.soundOpen()
-    }, 1000)
-    // this.audioSecond = this.getSecondDealWords[this.step]
-    // 000
+    }, false)
     this.audioSecond = this.getIndexWord.type[0]
   },
   watch: {
     flag () {
-      setTimeout(() => {
+      document.addEventListener('WeixinJSBridgeReady', () => {
         this.soundOpen()
-      }, 1000)
+      }, false)
     }
   },
   computed: {

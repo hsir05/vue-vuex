@@ -92,8 +92,9 @@ export default {
     },
     clickPict (index) {
       if (index === 1) {
-        console.log(123)
-        this.$refs.clickpictAudio.play()
+        document.addEventListener('WeixinJSBridgeReady', () => {
+          this.$refs.clickpictAudio.play()
+        }, false)
       }
     },
     pictSel (par) {  // 对点击按钮作出反应
