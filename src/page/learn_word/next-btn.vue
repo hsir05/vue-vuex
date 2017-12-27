@@ -18,11 +18,11 @@
 
         <!-- 000 -->
           <div v-for="(item, index) in getIndexWord.syllable.audio_right"  v-if="flag === 1 && index === 0">
-            <audio :src="preUrl + '/'+ item" ref="syll" v-for="(val, k) in item" autoplay="autoplay" v-if="flag && k === 0"></audio>
+            <audio :src="preUrl + '/'+ item" ref="syll" v-for="(val, k) in item"  v-if="flag && k === 0"></audio>
         </div>
 
           <div v-for="(item, i) in audioSecond.audio_right" v-if="flag ===2">
-            <audio :src="preUrl + '/'+ item" ref="syll"   autoplay="autoplay" v-if="flag && i === 0"></audio>
+            <audio :src="preUrl + '/'+ item" ref="syll"    v-if="flag && i === 0"></audio>
         </div>
 
   </div>
@@ -38,18 +38,19 @@ export default {
       audioSecond: ''
     }
   },
-  created () {
-    this.soundOpen()
-  },
   mounted () {
-    this.soundOpen()
+    setTimeout(() => {
+      this.soundOpen()
+    }, 1000)
     // this.audioSecond = this.getSecondDealWords[this.step]
     // 000
     this.audioSecond = this.getIndexWord.type[0]
   },
   watch: {
-    step () {
-      // this.audioSecond = this.getSecondDealWords[this.step]
+    flag () {
+      setTimeout(() => {
+        this.soundOpen()
+      }, 1000)
     }
   },
   computed: {
