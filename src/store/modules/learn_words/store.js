@@ -20,12 +20,17 @@ const state = {
 // getters
 const getters = {
   getIndexWord (state, getters, rootState, rootGetters) {
-    let dat = []
     let length = state.words[0].course_content[state.index].syllable.relation.length
-    if (length > 1) {
+    if (length > 1 && state.moreIndex < length) {
+      let dat = []
       dat = state.words[0].course_content[state.index]
-      dat.syllable.relation = dat.syllable.relation[state.moreIndex]
-      dat.type = dat.type[state.moreIndex]
+      // dat.syllable.relation.length = 0
+      // dat.type.length = 0
+      // // dat.syllable.relation = state.words[0].course_content[state.index].syllable.relation[state.moreIndex]
+      // console.log(state.words[0].course_content[state.index])
+      // dat.type.push(state.words[0].course_content[state.index].type[state.moreIndex])
+      // console.log('store')
+      // console.log(dat)
       return dat
     } else {
       return state.words[0].course_content[state.index]

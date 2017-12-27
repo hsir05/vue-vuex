@@ -41,6 +41,8 @@ export default {
     ...mapState('games', ['requestLoading', 'gamesTime', 'gamesFraction', 'gameScore', 'progress', 'currWordIndex']),
     ...mapGetters('games', ['getAllWords'])
   },
+  mounted () {
+  },
   methods: {
     ...mapMutations('games', []),
     ...mapActions('games', ['openCompete']),
@@ -90,6 +92,7 @@ export default {
     },
     clickPict (index) {
       if (index === 1) {
+        console.log(123)
         this.$refs.clickpictAudio.play()
       }
     },
@@ -124,11 +127,12 @@ export default {
         }, 200)
         setTimeout(() => {
           this.picts.shift()
-          // this.showWord.splice(par, 1)
-          // this.showWord.length = 0
           this.random(this.game, this.picts)
           this.addWord() // right  run
           this.$store.commit('games/GAMES_FRACTION', {fraction: this.gamesFraction + 10})
+          setTimeout(() => {
+            this.clickPict(1)
+          }, 1000)
         }, 600)
       } else {
         console.log('错误答案')

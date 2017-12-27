@@ -37,17 +37,6 @@ export default {
   },
   methods: {
     wordDeal () {
-      // this.dat.push(this.getSecondDealWords[this.step])
-      // let judg = this.getFirstDealWords[this.step].syllable
-
-      // let compar = this.getFirstDealWords[this.step].syllable
-      // let same = this.dat[0].word.indexOf(compar)
-      // if (same !== -1) {
-      //   this.comparStartLength = same
-      // }
-      // this.comparEndLength = judg.length - 1 + this.comparStartLength
-
-      // 000
       this.dat = this.getIndexWord.type
     }
   }
