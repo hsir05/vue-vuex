@@ -107,6 +107,7 @@ export default {
       }
     },
     autoPlayAudio () {
+      console.log(23232323)
       wx.config({
         debug: false,
         appId: '',
@@ -116,6 +117,7 @@ export default {
         jsApiList: []
       })
       wx.ready(() => {
+        alert(222)
         this.soundOpen()
       })
     }
