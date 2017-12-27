@@ -39,16 +39,12 @@ export default {
     }
   },
   mounted () {
-    document.addEventListener('WeixinJSBridgeReady', () => {
-      this.soundOpen()
-    }, false)
+    this.soundOpen()
     this.audioSecond = this.getIndexWord.type[0]
   },
   watch: {
     flag () {
-      document.addEventListener('WeixinJSBridgeReady', () => {
-        this.soundOpen()
-      }, false)
+      this.soundOpen()
     }
   },
   computed: {
@@ -105,7 +101,9 @@ export default {
     },
     soundOpen () { // 音频播放
       if (this.$refs.syll) {
-        this.$refs.syll[0].play()
+        wx.ready(function() {
+          this.$refs.syll[0].play()
+        })
       }
     }
   }

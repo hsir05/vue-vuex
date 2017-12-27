@@ -36,9 +36,12 @@ export default {
 
   },
   mounted () {
-    document.addEventListener('WeixinJSBridgeReady', () => {
+    // document.addEventListener('WeixinJSBridgeReady', () => {
+    //   this.wordDeal()
+    // }, false)
+    wx.ready(function() {
       this.wordDeal()
-    }, false)
+    })
   },
   methods: {
     wordDeal () {
