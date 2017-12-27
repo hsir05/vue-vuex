@@ -90,11 +90,22 @@ export default {
       }
       return ret
     },
+    autoPlayAudio () {
+      wx.config({
+        debug: false,
+        appId: '',
+        timestamp: 1,
+        nonceStr: '',
+        signature: '',
+        jsApiList: []
+      })
+      wx.ready(() => {
+        this.clickPict(1)
+      })
+    },
     clickPict (index) {
       if (index === 1) {
-        document.addEventListener('WeixinJSBridgeReady', () => {
-          this.$refs.clickpictAudio.play()
-        }, false)
+        this.$refs.clickpictAudio.play()
       }
     },
     pictSel (par) {  // 对点击按钮作出反应
@@ -131,9 +142,7 @@ export default {
           this.random(this.game, this.picts)
           this.addWord() // right  run
           this.$store.commit('games/GAMES_FRACTION', {fraction: this.gamesFraction + 10})
-          setTimeout(() => {
-            this.clickPict(1)
-          }, 1000)
+          this.autoPlayAudio(1)
         }, 600)
       } else {
         console.log('错误答案')

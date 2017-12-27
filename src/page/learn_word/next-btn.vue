@@ -116,7 +116,7 @@ export default {
         jsApiList: []
       })
       wx.ready(() => {
-        this.soundOpen(1)
+        this.soundOpen()
       })
     }
   }
