@@ -39,12 +39,14 @@ export default {
     }
   },
   mounted () {
-    this.soundOpen()
+    // this.soundOpen()
+    this.autoPlayAudio()
     this.audioSecond = this.getIndexWord.type[0]
   },
   watch: {
     flag () {
-      this.soundOpen()
+      // this.soundOpen()
+      this.autoPlayAudio()
     }
   },
   computed: {
