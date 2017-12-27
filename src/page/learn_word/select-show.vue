@@ -66,13 +66,23 @@ export default {
       this.selAnswer(index)
     },
     answer () {  // 产生随机答案
+      console.log(this.answerShow)
       this.m = Math.floor(Math.random() * 2)
+      // if (this.m === 0) {
+      //   this.answerShow[this.m].url = this.getFirstDealWords[0].audio_right[0]
+      //   console.log(this.getFirstDealWords[0].audio_right[0])
+      //   this.answerShow[1].url = this.getFirstDealWords[0].audio_error[0]
+      // } else {
+      //   this.answerShow[this.m].url = this.getFirstDealWords[0].audio_right[0]
+      //   this.answerShow[0].url = this.getFirstDealWords[0].audio_error[0]
+      // }
       if (this.m === 0) {
-        this.answerShow[this.m].url = this.getFirstDealWords[0].audio_right[0]
-        this.answerShow[1].url = this.getFirstDealWords[0].audio_error[0]
+        this.answerShow[this.m].url = this.getSecondDealWords[0].audio_right[0]
+        console.log(this.getFirstDealWords[0].audio_right[0])
+        this.answerShow[1].url = this.getSecondDealWords[0].audio_error[0]
       } else {
-        this.answerShow[this.m].url = this.getFirstDealWords[0].audio_right[0]
-        this.answerShow[0].url = this.getFirstDealWords[0].audio_error[0]
+        this.answerShow[this.m].url = this.getSecondDealWords[0].audio_right[0]
+        this.answerShow[0].url = this.getSecondDealWords[0].audio_error[0]
       }
     }
   }

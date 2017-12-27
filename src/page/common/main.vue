@@ -43,6 +43,7 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import { Indicator } from 'mint-ui'
 export default {
   data () {
     return {
@@ -51,6 +52,9 @@ export default {
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getAllWords'])
+  },
+  created () {
+    Indicator.close()
   },
   methods: {
     ...mapActions('getWords', ['words']),

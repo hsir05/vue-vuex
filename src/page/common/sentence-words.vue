@@ -63,7 +63,7 @@ export default {
       }
     },
     panelAudio () { // init-play-pause-ended
-      // console.log(this.play_state)
+      console.log(this.play_state)
       switch (this.play_state) {
         case 'init':
           this.play_state = 'play'

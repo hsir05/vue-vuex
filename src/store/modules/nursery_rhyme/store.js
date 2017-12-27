@@ -199,8 +199,8 @@ const actions = {
   },
   setSongsAction (context, { index }) { // 设置歌曲播放行为
     context.commit(types.CURR_WORDS_INDEX, { index: index }) // 当前高亮单词索引
-    // let currWrod = context.getters.getWordCurrItem
-    // context.commit(types.CURR_AUDIO_SRC, { src: currWrod.audio_right[0] }) // 当前音频地址
+    let currWrod = context.getters.getWordCurrItem
+    context.commit(types.CURR_AUDIO_SRC, { src: process.env.API_PIC + '/' + currWrod.audio_right[0] }) // 当前音频地址
   },
   setSongsProgress (context, { prec, length }) { // 设置进度
     let progress = Math.ceil((prec / length) * 100)

@@ -13,7 +13,8 @@ import Games from '@/page/games/index.vue'
 import NurseryRhyme from '@/page/nursery_rhyme/index.vue'
 // 404
 import NotFound from '@/page/common/404.vue'
-
+// finish
+import Finish from '@/page/common/finish.vue'
 export default [
   {
     path: '/',
@@ -27,6 +28,12 @@ export default [
     path: '/404',
     component: NotFound,
     name: '',
+    hidden: true
+  },
+  {
+    path: '/finish',
+    component: Finish,
+    name: 'finish',
     hidden: true
   },
   {

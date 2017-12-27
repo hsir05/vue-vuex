@@ -27,9 +27,10 @@ export default {
     })
     this.$store.dispatch('common/wordsStore/getWords').then(() => {
       this.$store.commit('learnWords/AUTO_PLAY', { bool: true })
-      let arr = []
-      arr = this.getFirstDealWords.reverse()
-      this.dat.push(arr[this.step])
+      // let arr = []
+      // arr = this.getFirstDealWords.reverse()
+      // this.dat.push(arr[this.step])
+      this.dat.push(this.getFirstDealWords[this.step])
       Indicator.close()
     })
   }

@@ -130,3 +130,30 @@ $font-bg: rgb(192, 224, 142);
   }
 }
 
+.finish{
+  width:100%;
+  height: 100%;
+  margin:0 auto;
+  .wechat-share{
+    text-align: center;
+    margin:0 auto;
+    margin-top:px2rem(214px);
+    width: px2rem(430px);
+    height: px2rem(488px);
+    background:white;
+    .wechat-share-img{
+       width:px2rem(274px);
+       height: px2rem(274px);
+    }
+  }
+  .finish-info{
+    font-size:18px;
+    color:rgb(132,201,39);
+  }
+  .mores{
+    width:px2rem(200px);
+    height: px2rem(80px);
+    line-height:px2rem(80px);
+    color: white;
+  }
+}
