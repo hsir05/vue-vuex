@@ -117,7 +117,7 @@ export default {
         jsApiList: []
       })
       wx.ready(() => {
-        alert(222)
+        alert(this.$refs.syll[0])
         // this.soundOpen()
         this.$refs.syll[0].play()
       })
