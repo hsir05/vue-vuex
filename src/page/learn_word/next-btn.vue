@@ -101,10 +101,21 @@ export default {
     },
     soundOpen () { // 音频播放
       if (this.$refs.syll) {
-        wx.ready(function() {
-          this.$refs.syll[0].play()
-        })
+        this.$refs.syll[0].play()
       }
+    },
+    autoPlayAudio () {
+      wx.config({
+        debug: false,
+        appId: '',
+        timestamp: 1,
+        nonceStr: '',
+        signature: '',
+        jsApiList: []
+      })
+      wx.ready(() => {
+        this.soundOpen(1)
+      })
     }
   }
 }

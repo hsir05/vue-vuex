@@ -33,15 +33,9 @@ export default {
     ...mapGetters('learnWords', ['getIndexWord'])
   },
   created () {
-
   },
   mounted () {
-    // document.addEventListener('WeixinJSBridgeReady', () => {
-    //   this.wordDeal()
-    // }, false)
-    wx.ready(function() {
-      this.wordDeal()
-    })
+    this.wordDeal()
   },
   methods: {
     wordDeal () {
