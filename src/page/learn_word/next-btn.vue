@@ -118,7 +118,8 @@ export default {
       })
       wx.ready(() => {
         alert(222)
-        this.soundOpen()
+        // this.soundOpen()
+        this.$refs.syll[0].play()
       })
     }
   }
