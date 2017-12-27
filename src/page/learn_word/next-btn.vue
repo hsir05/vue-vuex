@@ -17,7 +17,7 @@
         <!-- <div v-for="(item, i) in audioSecond" v-if="flag ===2 && i === 0">{{item.audio_right}}
             <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right" controls  autoplay="autoplay" v-if="flag && k === 0"></audio>
         </div> -->
-          <div v-for="(item, i) in audioSecond.audio_right" v-if="flag ===2 ">
+          <div v-for="(item, i) in audioSecond.audio_right" v-if="flag ===2">
             <audio :src="preUrl + '/'+ item" ref="syll"   autoplay="autoplay" v-if="flag && i === 0"></audio>
         </div>
 
@@ -40,6 +40,11 @@ export default {
     this.soundOpen()
     this.audioSecond = this.getSecondDealWords[this.step]
   },
+  watch: {
+    step () {
+      this.audioSecond = this.getSecondDealWords[this.step]
+    }
+  },
   computed: {
     ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
     ...mapState('learnWords', ['flag', 'seIndex', 'rightIndex', 'rightShow']),
@@ -55,8 +60,6 @@ export default {
           flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
           this.$store.commit('learnWords/FLAG', { flag: flags })
         } else { // 第三步 执行。
-          console.log(this.seIndex)
-          console.log(this.rightIndex)
           if (this.seIndex !== null && this.seIndex === this.rightIndex) { // 答案选择正确之后
             this.$store.commit('learnWords/RIGHTSHOW', {bool: true})
             this.$refs.right.play()
@@ -68,6 +71,11 @@ export default {
               this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
               this.$store.commit('learnWords/RIGHTSHOW', {bool: false})
             }, 1000)
+            if (this.getFirstDealWords.length - 1 !== this.step) {
+              this.$store.commit('learnWords/STEP', { step: this.step + 1 })
+            } else {
+              this.$store.commit('learnWords/STEP', { step: 0 })
+            }
           } else { // 选择错误
             this.$refs.error.play()
           }

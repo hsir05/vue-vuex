@@ -32,15 +32,21 @@ export default {
     ...mapState('learnWords', ['flag', 'seIndex', 'rightIndex', 'rightShow']),
     ...mapState('learnWords', ['step'])
   },
+  watch: {
+    step () {
+      this.answer()
+      console.log(3333)
+    }
+  },
   created () {
     this.answer()
     // this.dat.push(this.getFirstDealWords[this.step])
     this.dat.push(this.getSecondDealWords[this.step])
-    if (this.getFirstDealWords.length - 1 !== this.step) {
-      this.$store.commit('learnWords/STEP', { step: this.step + 1 })
-    } else {
-      this.$store.commit('learnWords/STEP', { step: 0 })
-    }
+    // if (this.getFirstDealWords.length - 1 !== this.step) {
+    //   this.$store.commit('learnWords/STEP', { step: this.step + 1 })
+    // } else {
+    //   this.$store.commit('learnWords/STEP', { step: 0 })
+    // }
   },
   methods: {
     selAnswer (index) {  // 选择答案时对按钮的样式做出更改
@@ -77,12 +83,11 @@ export default {
       //   this.answerShow[0].url = this.getFirstDealWords[0].audio_error[0]
       // }
       if (this.m === 0) {
-        this.answerShow[this.m].url = this.getSecondDealWords[0].audio_right[0]
-        console.log(this.getFirstDealWords[0].audio_right[0])
-        this.answerShow[1].url = this.getSecondDealWords[0].audio_error[0]
+        this.answerShow[this.m].url = this.getSecondDealWords[this.step].audio_right[0]
+        this.answerShow[1].url = this.getSecondDealWords[this.step].audio_error[0]
       } else {
-        this.answerShow[this.m].url = this.getSecondDealWords[0].audio_right[0]
-        this.answerShow[0].url = this.getSecondDealWords[0].audio_error[0]
+        this.answerShow[this.m].url = this.getSecondDealWords[this.step].audio_right[0]
+        this.answerShow[0].url = this.getSecondDealWords[this.step].audio_error[0]
       }
     }
   }
