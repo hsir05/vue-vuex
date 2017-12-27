@@ -24,13 +24,11 @@ const getters = {
     if (length > 1 && state.moreIndex < length) {
       let dat = []
       dat = state.words[0].course_content[state.index]
-      // dat.syllable.relation.length = 0
-      // dat.type.length = 0
-      // // dat.syllable.relation = state.words[0].course_content[state.index].syllable.relation[state.moreIndex]
-      // console.log(state.words[0].course_content[state.index])
-      // dat.type.push(state.words[0].course_content[state.index].type[state.moreIndex])
-      // console.log('store')
-      // console.log(dat)
+      dat.syllable.relation.length = 0
+      dat.type.length = 0
+      // dat.syllable.relation = state.words[0].course_content[state.index].syllable.relation[state.moreIndex]
+      console.log(state.words[0].course_content[state.index])
+      dat.type.push(state.words[0].course_content[state.index].type[state.moreIndex])
       return dat
     } else {
       return state.words[0].course_content[state.index]

@@ -18,11 +18,11 @@
 
         <!-- 000 -->
           <div v-for="(item, index) in getIndexWord.syllable.audio_right"  v-if="flag === 1 && index === 0">
-            <audio :src="preUrl + '/'+ item" ref="syll" v-for="(val, k) in item"  v-if="flag && k === 0"></audio>
+            <audio :src="preUrl + '/'+ item" ref="syll" id ="audio1" v-for="(val, k) in item"  v-if="flag && k === 0"></audio>
         </div>
 
           <div v-for="(item, i) in audioSecond.audio_right" v-if="flag ===2">
-            <audio :src="preUrl + '/'+ item" ref="syll"    v-if="flag && i === 0"></audio>
+            <audio :src="preUrl + '/'+ item" ref="syll" id ="audio2"    v-if="flag && i === 0"></audio>
         </div>
 
   </div>
@@ -119,7 +119,14 @@ export default {
       wx.ready(() => {
         alert(this.$refs.syll[0])
         // this.soundOpen()
-        this.$refs.syll[0].play()
+        setTimeout(() => {
+          this.$refs.syll[0].play()
+          if (this.flag === 1){
+            document.getElementById('audio1').play()
+          } else if (this.flag === 2) {
+            document.getElementById('audio2').play()
+          }
+        }, 1000)
       })
     }
   }
