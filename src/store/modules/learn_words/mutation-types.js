@@ -8,3 +8,8 @@ export const RIGHTINDEX = 'RIGHTINDEX' // 正确答案的序号
 export const RIGHTSHOW = 'RIGHTSHOW' // 正确答案
 export const STEP = 'STEP' // 单词信息
 export const SHOWEND = 'SHOWEND'
+// 000
+export const INDEX = 'INDEX'
+export const RELATlENGTH = 'RELATlENGTH'
+export const MOREINDEX = 'MOREINDEX'
+export const WORDlENGTH = 'WORDlENGTH'

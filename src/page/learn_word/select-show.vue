@@ -29,8 +29,8 @@ export default {
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
-    ...mapState('learnWords', ['flag', 'seIndex', 'rightIndex', 'rightShow']),
-    ...mapState('learnWords', ['step'])
+    ...mapState('learnWords', ['flag', 'step', 'seIndex', 'rightIndex', 'rightShow']),
+    ...mapGetters('learnWords', ['getIndexWord'])
   },
   watch: {
     step () {
@@ -38,14 +38,11 @@ export default {
     }
   },
   created () {
+    // this.answer()
+    // this.dat.push(this.getSecondDealWords[this.step])
+    // 000
+    this.dat.push(this.getIndexWord.type[0])
     this.answer()
-    // this.dat.push(this.getFirstDealWords[this.step])
-    this.dat.push(this.getSecondDealWords[this.step])
-    // if (this.getFirstDealWords.length - 1 !== this.step) {
-    //   this.$store.commit('learnWords/STEP', { step: this.step + 1 })
-    // } else {
-    //   this.$store.commit('learnWords/STEP', { step: 0 })
-    // }
   },
   methods: {
     selAnswer (index) {  // 选择答案时对按钮的样式做出更改
@@ -71,22 +68,21 @@ export default {
       this.selAnswer(index)
     },
     answer () {  // 产生随机答案
-      console.log(this.answerShow)
       this.m = Math.floor(Math.random() * 2)
-      // if (this.m === 0) {
-      //   this.answerShow[this.m].url = this.getFirstDealWords[0].audio_right[0]
-      //   console.log(this.getFirstDealWords[0].audio_right[0])
-      //   this.answerShow[1].url = this.getFirstDealWords[0].audio_error[0]
-      // } else {
-      //   this.answerShow[this.m].url = this.getFirstDealWords[0].audio_right[0]
-      //   this.answerShow[0].url = this.getFirstDealWords[0].audio_error[0]
-      // }
+    //   if (this.m === 0) {
+    //     this.answerShow[this.m].url = this.getSecondDealWords[this.step].audio_right[0]
+    //     this.answerShow[1].url = this.getSecondDealWords[this.step].audio_error[0]
+    //   } else {
+    //     this.answerShow[this.m].url = this.getSecondDealWords[this.step].audio_right[0]
+    //     this.answerShow[0].url = this.getSecondDealWords[this.step].audio_error[0]
+    //   }
+    // 000
       if (this.m === 0) {
-        this.answerShow[this.m].url = this.getSecondDealWords[this.step].audio_right[0]
-        this.answerShow[1].url = this.getSecondDealWords[this.step].audio_error[0]
+        this.answerShow[this.m].url = this.dat[0].audio_right[0]
+        this.answerShow[1].url = this.dat[0].audio_error[0]
       } else {
-        this.answerShow[this.m].url = this.getSecondDealWords[this.step].audio_right[0]
-        this.answerShow[0].url = this.getSecondDealWords[this.step].audio_error[0]
+        this.answerShow[this.m].url = this.dat[0].audio_right[0]
+        this.answerShow[0].url = this.dat[0].audio_error[0]
       }
     }
   }

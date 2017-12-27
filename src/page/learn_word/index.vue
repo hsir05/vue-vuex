@@ -21,7 +21,8 @@
   </div>
 </template>
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapState } from 'vuex'
+import { Indicator } from 'mint-ui'
 import WordsShow from './words-show.vue'
 import PictureShow from './picture-show.vue'
 import SelectShow from './select-show.vue'
@@ -34,10 +35,22 @@ export default {
   },
   created () {
     this.$store.commit('learnWords/DATA_RESET')
+    Indicator.open({
+      text: '加载中...',
+      spinnerType: 'fading-circle'
+    })
+    this.$store.dispatch('learnWords/getWordsId').then(() => {
+      Indicator.close()
+      this.$store.commit('learnWords/AUTO_PLAY', { bool: true })
+      let length = this.words[0].course_content[this.index].syllable.relation.length
+      let len = this.words[0].course_content.length
+      this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
+      this.$store.commit('learnWords/WORDlENGTH', {wordLength: len})
+    })
   },
   computed: {
-    ...mapGetters('common/wordsStore', ['getAllWords', 'getFirstDealWords']),
-    ...mapState('learnWords', ['autoPlay', 'flag', 'showEnd'])
+    // ...mapGetters('common/wordsStore', ['getAllWords', 'getFirstDealWords']),
+    ...mapState('learnWords', ['autoPlay', 'index', 'words', 'flag', 'showEnd'])
   },
   methods: {}
 }

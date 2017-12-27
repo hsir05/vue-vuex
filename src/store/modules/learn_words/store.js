@@ -9,11 +9,28 @@ const state = {
   seIndex: null, // 选择答案的序号
   rightIndex: null, // 正确答案的序号
   rightShow: false, // 答案的选择正确与否
-  showEnd: false
+  showEnd: false,
+  // 000
+  index: 0,
+  moreIndex: 0,
+  reationLength: null,
+  wordLength: null
 }
 
 // getters
 const getters = {
+  getIndexWord (state, getters, rootState, rootGetters) {
+    let dat = []
+    let length = state.words[0].course_content[state.index].syllable.relation.length
+    if (length > 1) {
+      dat = state.words[0].course_content[state.index]
+      dat.syllable.relation = dat.syllable.relation[state.moreIndex]
+      dat.type = dat.type[state.moreIndex]
+      return dat
+    } else {
+      return state.words[0].course_content[state.index]
+    }
+  }
 }
 
 // mutations
@@ -27,6 +44,11 @@ const mutations = {
     state.rightShow = false // 答案的选择正确与否
     state.step = 0
     state.showEnd = false
+    // 000
+    state.index = 0
+    state.moreIndex = 0
+    state.reationLength = null
+    state.wordLength = null
   },
   [types.AUTO_PLAY] (state, {bool}) {
     state.autoPlay = bool
@@ -48,6 +70,23 @@ const mutations = {
   },
   [types.STEP] (state, {step}) {
     state.step = step
+  },
+  // 000
+  [types.WORDS] (state, { words }) {
+    // words
+    state.words = words
+  },
+  [types.INDEX] (state, {index}) {
+    state.index = index
+  },
+  [types.RELATlENGTH] (state, {reationLength}) {
+    state.reationLength = reationLength
+  },
+  [types.MOREINDEX] (state, {moreIndex}) {
+    state.moreIndex = moreIndex
+  },
+  [types.WORDlENGTH] (state, {wordLength}) {
+    state.wordLength = wordLength
   }
 }
 
@@ -55,6 +94,17 @@ const mutations = {
 /* eslint-disable prefer-promise-reject-errors */
 const actions = {
   getWords (context) {
+    // 请求works
+    context.commit(types.DATA_RESET) // 数据重置
+    return new Promise((resolve, reject) => {
+      REQUEST.get('weixin_words_view', {kinds: '单词'}, r => {
+        context.commit(types.WORDS, { words: r.data.list })
+        resolve()
+      })
+    })
+  },
+  // 000
+  getWordsId (context) {
     // 请求works
     context.commit(types.DATA_RESET) // 数据重置
     return new Promise((resolve, reject) => {

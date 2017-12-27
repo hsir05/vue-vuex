@@ -11,12 +11,16 @@
         <span class="sound" v-if="flag !== 3" @click="soundOpen(flag)">
           <img src="static/img/btn_sound.png" alt="" >
         </span>
-        <div v-for="(item, index) in getFirstDealWords"  v-if="flag === 1 && index === 0">
+
+        <!-- <div v-for="(item, index) in getFirstDealWords"  v-if="flag === 1 && index === 0">
             <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right" autoplay="autoplay" v-if="flag && k === 0"></audio>
-        </div>
-        <!-- <div v-for="(item, i) in audioSecond" v-if="flag ===2 && i === 0">{{item.audio_right}}
-            <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right" controls  autoplay="autoplay" v-if="flag && k === 0"></audio>
         </div> -->
+
+        <!-- 000 -->
+          <div v-for="(item, index) in getIndexWord.syllable.audio_right"  v-if="flag === 1 && index === 0">
+            <audio :src="preUrl + '/'+ item" ref="syll" v-for="(val, k) in item" autoplay="autoplay" v-if="flag && k === 0"></audio>
+        </div>
+
           <div v-for="(item, i) in audioSecond.audio_right" v-if="flag ===2">
             <audio :src="preUrl + '/'+ item" ref="syll"   autoplay="autoplay" v-if="flag && i === 0"></audio>
         </div>
@@ -38,17 +42,19 @@ export default {
   },
   mounted () {
     this.soundOpen()
-    this.audioSecond = this.getSecondDealWords[this.step]
+    // this.audioSecond = this.getSecondDealWords[this.step]
+    // 000
+    this.audioSecond = this.getIndexWord.type[0]
   },
   watch: {
     step () {
-      this.audioSecond = this.getSecondDealWords[this.step]
+      // this.audioSecond = this.getSecondDealWords[this.step]
     }
   },
   computed: {
-    ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
-    ...mapState('learnWords', ['flag', 'seIndex', 'rightIndex', 'rightShow']),
-    ...mapState('learnWords', ['step'])
+    // ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
+    ...mapGetters('learnWords', ['getIndexWord']),
+    ...mapState('learnWords', ['flag', 'seIndex', 'step', 'index', 'wordLength', 'reationLength', 'moreIndex', 'rightIndex', 'rightShow'])
   },
   methods: {
     next (index) {
@@ -70,13 +76,27 @@ export default {
               this.$store.commit('learnWords/SEINDEX', {seIndex: null})
               this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
               this.$store.commit('learnWords/RIGHTSHOW', {bool: false})
+              // 000
+              if (this.reationLength <= 1) {
+                if (this.index < this.wordLength) {
+                  this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
+                } else {
+                  this.$store.commit('learnWords/SHOWEND', { bool: true })
+                }
+              } else {
+                if (this.moreIndex < this.reationLength) {
+                  this.$store.commit('learnWords/MOREINDEX', { moreIndex: this.moreIndex + 1 })
+                } else {
+                  this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
+                  this.$store.commit('learnWords/MOREINDEX', { moreIndex: 0 })
+                }
+              }
             }, 1000)
-            if (this.getFirstDealWords.length - 1 !== this.step) {
-              this.$store.commit('learnWords/STEP', { step: this.step + 1 })
-            } else {
-              // this.$store.commit('learnWords/STEP', { step: 0 })
-              this.$store.commit('learnWords/SHOWEND', { bool: true })
-            }
+            // if (this.getFirstDealWords.length - 1 !== this.step) {
+            //   this.$store.commit('learnWords/STEP', { step: this.step + 1 })
+            // } else {
+            //   this.$store.commit('learnWords/SHOWEND', { bool: true })
+            // }
           } else { // 选择错误
             this.$refs.error.play()
           }
