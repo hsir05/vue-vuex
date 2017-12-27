@@ -12,7 +12,7 @@
           <select-show v-if="flag === 3"></select-show>
 
              <!-- 4 .end -->
-          <!-- <end v-if="flag === 3"></end> -->
+          <end v-if="showEnd"></end>
 
           <!-- 下一步按钮 -->
           <next-btn  v-if="autoPlay"></next-btn>
@@ -25,10 +25,10 @@ import { mapGetters, mapState } from 'vuex'
 import WordsShow from './words-show.vue'
 import PictureShow from './picture-show.vue'
 import SelectShow from './select-show.vue'
-// import end from './end'
+import end from './end'
 import NextBtn from './next-btn.vue'
 export default {
-  components: {WordsShow, PictureShow, SelectShow, NextBtn},
+  components: {WordsShow, PictureShow, SelectShow, end, NextBtn},
   data () {
     return {}
   },
@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getAllWords', 'getFirstDealWords']),
-    ...mapState('learnWords', ['autoPlay', 'flag'])
+    ...mapState('learnWords', ['autoPlay', 'flag', 'showEnd'])
   },
   methods: {}
 }

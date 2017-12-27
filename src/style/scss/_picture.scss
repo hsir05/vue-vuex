@@ -138,6 +138,7 @@
       width: px2rem(150px);
     }
   }
+}
   // 完成弹框
   .picbook-finish {
     position: fixed; top: 0; bottom: 0; left: 0; right: 0; z-index: 1000; background: rgba(#000, 0.8);
@@ -161,4 +162,3 @@
       }
     }
   }
-}

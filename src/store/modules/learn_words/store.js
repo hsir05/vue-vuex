@@ -8,7 +8,8 @@ const state = {
   flag: 1, //  步骤控制共3步
   seIndex: null, // 选择答案的序号
   rightIndex: null, // 正确答案的序号
-  rightShow: false // 答案的选择正确与否
+  rightShow: false, // 答案的选择正确与否
+  showEnd: false
 }
 
 // getters
@@ -25,9 +26,13 @@ const mutations = {
     state.rightIndex = null// 正确答案的序号
     state.rightShow = false // 答案的选择正确与否
     state.step = 0
+    state.showEnd = false
   },
   [types.AUTO_PLAY] (state, {bool}) {
     state.autoPlay = bool
+  },
+  [types.SHOWEND] (state, {bool}) {
+    state.showEnd = bool
   },
   [types.FLAG] (state, {flag}) {
     state.flag = flag

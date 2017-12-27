@@ -35,7 +35,6 @@ export default {
   watch: {
     step () {
       this.answer()
-      console.log(3333)
     }
   },
   created () {

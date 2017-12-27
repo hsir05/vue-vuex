@@ -74,7 +74,8 @@ export default {
             if (this.getFirstDealWords.length - 1 !== this.step) {
               this.$store.commit('learnWords/STEP', { step: this.step + 1 })
             } else {
-              this.$store.commit('learnWords/STEP', { step: 0 })
+              // this.$store.commit('learnWords/STEP', { step: 0 })
+              this.$store.commit('learnWords/SHOWEND', { bool: true })
             }
           } else { // 选择错误
             this.$refs.error.play()
