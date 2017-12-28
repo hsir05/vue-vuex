@@ -1,7 +1,6 @@
 <template>
   <div class="learn-word">
     <div class="wrop">
-
          <!-- 1 单词显示 -->
          <words-show v-if="flag === 1"></words-show>
 

@@ -3,6 +3,12 @@ $font: rgb(106, 167, 24);
 $font-bg: rgb(192, 224, 142);
 .learn-word {
   text-align: center;
+  .head-bg{
+    display: inline-block;
+    width:100%;
+    height:px2rem(160px);
+    background:url('../static/img/heabg.png') no-repeat;
+  }
   .wrop {
     // height: px2rem(624px);
     overflow: hidden;
@@ -50,6 +56,7 @@ $font-bg: rgb(192, 224, 142);
       font-size: 117px;
       color: $font;
       font-family: "PingFang";
+      font-family:'Heiti sc';
       text-shadow: 4px 4px 8px rgba(108,176,10,.35);
     }
     .img-w {

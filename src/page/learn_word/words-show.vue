@@ -1,5 +1,6 @@
 <template>
        <div class="word-img" v-if="flag == 1 && autoPlay">
+         <span class="head-bg"></span>
          <img src="static/img/bg_normal.png" alt="" class="people">
         <div class="show-word" >
             <span class="show-w"  >{{getIndexWord.syllable.syllable}}</span>
