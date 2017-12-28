@@ -109,12 +109,12 @@ $font-bg: rgb(192, 224, 142);
       display: inline-block;
       border-radius: px2rem(15px);
       img {
-        width: px2rem(60px);
-        height: px2rem(60px);
+        width: px2rem(74px);
+        height: px2rem(74px);
       }
     }
     .next {
-      @include btn-img(372px,90px );
+      @include btn-img(372px,90px);
       margin-right: px2rem(19px);
       position: relative;
       i {
