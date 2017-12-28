@@ -22,7 +22,6 @@ export default {
     }
   },
   computed: {
-    // ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
     ...mapState('learnWords', ['step', 'moreIndex']),
     ...mapGetters('learnWords', ['getIndexWord'])
   },

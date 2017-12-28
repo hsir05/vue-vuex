@@ -30,6 +30,9 @@ export default {
   created () {
     this.audio_id = 'sentence-words-id-' + new Date().getTime()
   },
+  mounted () {
+    this.playEvent()
+  },
   data () {
     return {
       preUrl: process.env.API_PIC,
@@ -87,8 +90,6 @@ export default {
     },
     play () { // 播放
       let playMedia = document.getElementById(this.audio_id)
-      console.log(33333333)
-      // console.log('play', playMedia.currentSrc)
       this.playAudio(this.audio_id)  // mixin下引入
       playMedia.play()
       let playCurrTime = setInterval(() => {
