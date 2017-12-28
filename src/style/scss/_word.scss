@@ -43,11 +43,12 @@ $font-bg: rgb(192, 224, 142);
   .show-word {
     @include word-s;
     display: table;
+    box-shadow: 0 7px 18px rgba(223,179,17,.30);
     .show-w {
       @include word-c(-60%);
       font-size: 117px;
       color: $font;
-      font-family: 'PingFang';
+      font-family: "PingFang";
       text-shadow: 4px 4px 8px rgba(108,176,10,.29);
     }
     .img-w {

@@ -6,6 +6,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow:hidden;
   .picture-books-read { // 绘本阅读
     width: 100%; height: px2rem(105px); padding: px2rem(40px) 0;
     position: fixed; top: 0; left: 0;
