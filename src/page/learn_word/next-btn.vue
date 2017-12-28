@@ -40,9 +40,9 @@ export default {
     this.soundOpen()
     // this.playAudio()
     if (document.getElementById('audio1')) {
-         this.playAudio(audio1)
+         this.playAudio('audio1')
       } else {
-        this.playAudio(audio2)
+        this.playAudio('audio2')
       }
     if (this.getIndexWord.syllable.relation.length > 1) {
       this.audioSecond = this.getIndexWord.type[this.moreIndex]
@@ -56,9 +56,9 @@ export default {
         this.soundOpen()
       })
       if (document.getElementById('audio1')) {
-         this.playAudio(audio1)
+         this.playAudio('audio1')
       } else {
-        this.playAudio(audio2)
+        this.playAudio('audio2')
       }
       if (this.getIndexWord.syllable.relation.length > 1) {
         this.audioSecond = this.getIndexWord.type[this.moreIndex]
