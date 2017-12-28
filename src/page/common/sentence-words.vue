@@ -50,6 +50,7 @@ export default {
       this.audio_id = 'sentence-words-id-' + new Date().getTime()
       this.play_state = 'init'
       playMedia.src = this.audio // 必须在此修改当前播放来源，不然playMedia.currentSrc则始终为加载的第一个
+      this.playEvent()
     }
   },
   methods: {
