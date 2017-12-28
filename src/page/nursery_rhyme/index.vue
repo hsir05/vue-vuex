@@ -8,7 +8,7 @@
       <!-- 儿歌句子 -->
       <sentence v-else></sentence>
     </template>
-    <audio-play :src="currAudioSrc" :autoplay="true"></audio-play>
+    <audio-play :src="currAudioSrc" :autoplay="true" id="nursery"></audio-play>
   </div>
 </template>
 
@@ -19,7 +19,9 @@ import Sentence from './sentence.vue'
 
 import { Indicator } from 'mint-ui'
 import { mapState, mapGetters } from 'vuex'
+import AuddioAutoPlay from '../../mixins/audio-auto-play.js'
 export default {
+  mixins: [AuddioAutoPlay],
   components: {
     Openings, StartEnter, Sentence
   },
@@ -34,6 +36,7 @@ export default {
       this.$store.dispatch('nurseryRhyme/timeWait').then(() => {
         this.$store.dispatch('nurseryRhyme/delayChildSongs')
       })
+      this.playAudio('nursery')// mixin引入
     })
     window.onpopstate = function () { // 当url发生变化时，清除页面所有的定时器
       var end = setTimeout(function () {}, 1)

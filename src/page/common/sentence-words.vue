@@ -12,7 +12,9 @@
 </template>
 
 <script>
+import AuddioAutoPlay from '../../mixins/audio-auto-play.js'
 export default {
+  mixins: [AuddioAutoPlay],
   props: {
     // playState: {
     //   type: String,
@@ -83,35 +85,11 @@ export default {
         default:
       }
     },
-    playAudio () { // 微信下
-      let _this = this
-      alert(document.getElementById(_this.audio_id))
-      if (window.WeixinJSBridge) {
-        wx.getNetworkType({
-          success: function (res) {
-            document.getElementById(_this.audio_id).play()
-          },
-          fail: function (res) {
-            document.getElementById(_this.audio_id).play()
-          }
-        })
-      } else {
-        document.addEventListener('WeixinJSBridgeReady', function () {
-          wx.getNetworkType({
-            success: function (res) {
-              document.getElementById(_this.audio_id).play()
-            },
-            fail: function (res) {
-              document.getElementById(_this.audio_id).play()
-            }
-          })
-        }, false)
-      }
-    },
     play () { // 播放
       let playMedia = document.getElementById(this.audio_id)
+      console.log(33333333)
       // console.log('play', playMedia.currentSrc)
-      this.playAudio()  // 微信下
+      this.playAudio(this.audio_id)  // mixin下引入
       playMedia.play()
       let playCurrTime = setInterval(() => {
         if (playMedia.ended) {
