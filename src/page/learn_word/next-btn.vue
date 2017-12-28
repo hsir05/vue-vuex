@@ -38,7 +38,8 @@ export default {
   },
   mounted () {
     this.soundOpen()
-    this.autoPlayAudio()
+    // this.autoPlayAudio()
+    this.playAudio()
     if (this.getIndexWord.syllable.relation.length > 1) {
       this.audioSecond = this.getIndexWord.type[this.moreIndex]
     } else {
@@ -50,7 +51,8 @@ export default {
       setTimeout(() => {
         this.soundOpen()
       })
-      this.autoPlayAudio()
+      // this.autoPlayAudio()
+      this.playAudio()
       if (this.getIndexWord.syllable.relation.length > 1) {
         this.audioSecond = this.getIndexWord.type[this.moreIndex]
       } else {
@@ -60,7 +62,6 @@ export default {
 
   },
   computed: {
-    // ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
     ...mapGetters('learnWords', ['getIndexWord']),
     ...mapState('learnWords', ['flag', 'seIndex', 'step', 'words', 'index', 'wordLength', 'reationLength', 'moreIndex', 'rightIndex', 'rightShow'])
   },
@@ -112,33 +113,68 @@ export default {
         }
       }
     },
-    soundOpen () { // 音频播放
+    soundOpen () { // 播放音频
       if (this.$refs.syll) {
         this.$refs.syll[0].play()
       }
     },
-    autoPlayAudio () {
-      wx.config({
-        debug: false,
-        appId: '',
-        timestamp: 1,
-        nonceStr: '',
-        signature: '',
-        jsApiList: []
-      })
-      wx.ready(() => {
-        console.log(this.$refs.syll[0])
-        // this.soundOpen()
-        setTimeout(() => {
-          // this.$refs.syll[0].play()
-          if (this.flag === 1) {
-            document.getElementById('audio1').play()
-          } else if (this.flag === 2) {
-            document.getElementById('audio2').play()
-          }
-        }, 1000)
-      })
+    playAudio () {
+      if (setting.autoplay) {
+        if (window.WeixinJSBridge) {
+          WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+            if (this.flag === 1) {
+              document.getElementById('audio1').play()
+            } else if (this.flag === 2) {
+              document.getElementById('audio2').play()
+            }
+          }, false)
+        } else {
+          document.addEventListener('WeixinJSBridgeReady', function () {
+            WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+              if (this.flag === 1) {
+                document.getElementById('audio1').play()
+              } else if (this.flag === 2) {
+                document.getElementById('audio2').play()
+              }
+            })
+          }, false)
+        }
+        if (this.flag === 1) {
+          document.getElementById('audio1').play()
+        } else if (this.flag === 2) {
+          document.getElementById('audio2').play()
+        }
+      } else {
+        if (this.flag === 1) {
+          document.getElementById('audio1').pause()
+        } else if (this.flag === 2) {
+          document.getElementById('audio2').pause()
+        }
+      }
+      return false
     }
+    // autoPlayAudio () {
+    //   wx.config({
+    //     debug: false,
+    //     appId: '',
+    //     timestamp: 1,
+    //     nonceStr: '',
+    //     signature: '',
+    //     jsApiList: []
+    //   })
+    //   wx.ready(() => {
+    //     console.log(this.$refs.syll[0])
+    //     // this.soundOpen()
+    //     setTimeout(() => {
+    //       // this.$refs.syll[0].play()
+    //       if (this.flag === 1) {
+    //         document.getElementById('audio1').play()
+    //       } else if (this.flag === 2) {
+    //         document.getElementById('audio2').play()
+    //       }
+    //     }, 1000)
+    //   })
+    // }
   }
 }
 </script>
