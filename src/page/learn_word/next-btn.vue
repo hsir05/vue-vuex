@@ -16,8 +16,8 @@
             <audio :src="preUrl + '/'+ item" ref="syll" id ="audio1" v-for="(val, k) in item"  v-if="flag && k === 0"></audio>
         </div>
 
-          <div v-for="(item, i) in audioSecond.audio_right" v-if="flag === 2">{{audioSecond.audio_right}}
-            <audio :src="preUrl + '/'+ item" ref="syll" id ="audio2" controls    v-if="flag && i === 0"></audio>
+          <div v-for="(item, i) in audioSecond.audio_right" v-if="flag === 2">
+            <audio :src="preUrl + '/'+ item" ref="syll" id ="audio2"     v-if="flag && i === 0"></audio>
         </div>
 
   </div>
