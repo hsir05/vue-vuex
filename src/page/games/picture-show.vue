@@ -21,8 +21,9 @@
 import { Indicator } from 'mint-ui'
 import { mapMutations, mapActions, mapState, mapGetters } from 'vuex'
 import PreventClickMixin from '../../mixins/prevent-click.js'
+import AuddioAutoPlay from '../../mixins/audio-auto-play.js'
 export default {
-  mixins: [PreventClickMixin],
+  mixins: [PreventClickMixin, AuddioAutoPlay],
   data () {
     return {
       game: [],
@@ -89,29 +90,6 @@ export default {
         }
       }
       return ret
-    },
-    playAudio () {
-      if (window.WeixinJSBridge) {
-        wx.getNetworkType({
-          success: function (res) {
-            document.getElementById('clickpictAudio').play()
-          },
-          fail: function (res) {
-            document.getElementById('clickpictAudio').play()
-          }
-        })
-      } else {
-        document.addEventListener('WeixinJSBridgeReady', function () {
-          wx.getNetworkType({
-            success: function (res) {
-              document.getElementById('clickpictAudio').play()
-            },
-            fail: function (res) {
-              document.getElementById('clickpictAudio').play()
-            }
-          })
-        }, false)
-      }
     },
     clickPict (index) {
       if (index === 1) {
@@ -201,7 +179,7 @@ export default {
           this.showWord[0] = this.game[n].word
         }
         this.rightAudio = this.game[this.num[1]].audio_right[0] // 点击图片正确音频
-        this.playAudio()
+        this.playAudio('clickpictAudio')
         this.clickPict(1)
       }
     }

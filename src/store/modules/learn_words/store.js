@@ -8,7 +8,7 @@ const state = {
   flag: 1, //  步骤控制共3步
   seIndex: null, // 选择答案的序号
   rightIndex: null, // 正确答案的序号
-  rightShow: false, // 答案的选择正确与否
+  rightShow: 2, // 答案的选择 正确0 错误1 初始2
   showEnd: false,
   // 000
   index: 0, // 单个relation 时的index
@@ -48,7 +48,7 @@ const mutations = {
     state.flag = 1//  步骤控制共3步
     state.seIndex = null// 选择答案的序号
     state.rightIndex = null// 正确答案的序号
-    state.rightShow = false // 答案的选择正确与否
+    state.rightShow = 2 // 答案的选择正确与否
     state.step = 0
     state.showEnd = false
     // 000
@@ -72,8 +72,8 @@ const mutations = {
   [types.RIGHTINDEX] (state, {rightIndex}) {
     state.rightIndex = rightIndex
   },
-  [types.RIGHTSHOW] (state, {bool}) {
-    state.rightShow = bool
+  [types.RIGHTSHOW] (state, {rightShow}) {
+    state.rightShow = rightShow
   },
   [types.STEP] (state, {step}) {
     state.step = step

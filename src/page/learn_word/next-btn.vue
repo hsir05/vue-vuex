@@ -35,12 +35,15 @@ export default {
       dat: []
     }
   },
-  created () {
-  },
+  created () {},
   mounted () {
     this.soundOpen()
-    // this.autoPlayAudio()
-    this.playAudio()
+    // this.playAudio()
+    if (document.getElementById('audio1')) {
+         this.playAudio(audio1)
+      } else {
+        this.playAudio(audio2)
+      }
     if (this.getIndexWord.syllable.relation.length > 1) {
       this.audioSecond = this.getIndexWord.type[this.moreIndex]
     } else {
@@ -52,8 +55,11 @@ export default {
       setTimeout(() => {
         this.soundOpen()
       })
-      // this.autoPlayAudio()
-      this.playAudio()
+      if (document.getElementById('audio1')) {
+         this.playAudio(audio1)
+      } else {
+        this.playAudio(audio2)
+      }
       if (this.getIndexWord.syllable.relation.length > 1) {
         this.audioSecond = this.getIndexWord.type[this.moreIndex]
       } else {
@@ -78,14 +84,14 @@ export default {
         } else { // 第三步 执行。
           if (this.seIndex !== null && this.seIndex === this.rightIndex) { // 答案选择正确之后
             this.$refs.right.play()
-            this.$store.commit('learnWords/RIGHTSHOW', {bool: true})
+            this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 0})
             setTimeout(() => {
               let flags = null
               flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
               this.$store.commit('learnWords/FLAG', { flag: flags })
               this.$store.commit('learnWords/SEINDEX', {seIndex: null})
               this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
-              this.$store.commit('learnWords/RIGHTSHOW', {bool: false})
+              this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
               // 000
               if (this.reationLength <= 1) {  // 说明关联单词是一个
                 if (this.index < this.wordLength) {
@@ -109,6 +115,7 @@ export default {
               }
             }, 1000)
           } else { // 选择错误
+           this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 1})
             this.$refs.error.play()
           }
         }
@@ -117,52 +124,6 @@ export default {
     soundOpen () { // 播放音频
       if (this.$refs.syll[0]) {
         this.$refs.syll[0].play()
-      }
-    },
-    audioSound () {
-      if (this.flag === 1) {
-        document.getElementById('audio1').play()
-      } else if (this.flag === 2) {
-        document.getElementById('audio2').play()
-      }
-    },
-    playAudio () {
-      if (window.WeixinJSBridge) {
-        wx.getNetworkType({
-          success: function (res) {
-            if (document.getElementById('audio1')) {
-              document.getElementById('audio1').play()
-            } else {
-              document.getElementById('audio2').play()
-            }
-          },
-          fail: function (res) {
-            if (document.getElementById('audio1')) {
-              document.getElementById('audio1').play()
-            } else {
-              document.getElementById('audio2').play()
-            }
-          }
-        })
-      } else {
-        document.addEventListener('WeixinJSBridgeReady', function () {
-          wx.getNetworkType({
-            success: function (res) {
-              if (document.getElementById('audio1')) {
-                document.getElementById('audio1').play()
-              } else {
-                document.getElementById('audio2').play()
-              }
-            },
-            fail: function (res) {
-              if (document.getElementById('audio1')) {
-                document.getElementById('audio1').play()
-              } else {
-                document.getElementById('audio2').play()
-              }
-            }
-          })
-        }, false)
       }
     }
   }
