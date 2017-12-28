@@ -77,8 +77,8 @@ export default {
           this.$store.commit('learnWords/FLAG', { flag: flags })
         } else { // 第三步 执行。
           if (this.seIndex !== null && this.seIndex === this.rightIndex) { // 答案选择正确之后
-            this.$store.commit('learnWords/RIGHTSHOW', {bool: true})
             this.$refs.right.play()
+            this.$store.commit('learnWords/RIGHTSHOW', {bool: true})
             setTimeout(() => {
               let flags = null
               flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
