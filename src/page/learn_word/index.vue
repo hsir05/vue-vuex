@@ -1,6 +1,9 @@
 <template>
   <div class="learn-word">
     <div class="wrop">
+          <span class="head-bg">
+            <img src="static/img/heabg.png" alt="" class="head-bg-img" width="100%" height="100%">
+          </span>
          <!-- 1 单词显示 -->
          <words-show v-if="flag === 1"></words-show>
 

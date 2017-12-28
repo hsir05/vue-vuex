@@ -1,6 +1,5 @@
 <template>
        <div class="word-img" v-if="flag == 1 && autoPlay">
-         <span class="head-bg"></span>
          <img src="static/img/bg_normal.png" alt="" class="people">
         <div class="show-word" >
             <span class="show-w"  >{{getIndexWord.syllable.syllable}}</span>
@@ -25,14 +24,6 @@ export default {
     let len = this.words[0].course_content.length
     this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
     this.$store.commit('learnWords/WORDlENGTH', {wordLength: len})
-    // this.$store.dispatch('learnWords/getWordsId').then(() => {
-    //   Indicator.close()
-    //   this.$store.commit('learnWords/AUTO_PLAY', { bool: true })
-    //   let length = this.words[0].course_content[this.index].syllable.relation.length
-    //   let len = this.words[0].course_content.length
-    //   this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
-    //   this.$store.commit('learnWords/WORDlENGTH', {wordLength: len})
-    // })
   }
 }
 </script>
