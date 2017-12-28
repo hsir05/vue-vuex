@@ -82,16 +82,17 @@ $font-bg: rgb(192, 224, 142);
       // bottom: -100px;
       color: $font;
       font-size: 60px;
+      font-weight: bolder;
       // margin: 0 3px;
     }
     .show-i {
       @include word-c(-48%);
-      width: 90%;
+      width: 68%;
       height: 90%;
     }
   }
   .addColor {
-    opacity: 0.4;
+    opacity: 0.2;
   }
   .show-img {
     @include word-s;
