@@ -24,6 +24,14 @@ export default {
     let len = this.words[0].course_content.length
     this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
     this.$store.commit('learnWords/WORDlENGTH', {wordLength: len})
+    // this.$store.dispatch('learnWords/getWordsId').then(() => {
+    //   Indicator.close()
+    //   this.$store.commit('learnWords/AUTO_PLAY', { bool: true })
+    //   let length = this.words[0].course_content[this.index].syllable.relation.length
+    //   let len = this.words[0].course_content.length
+    //   this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
+    //   this.$store.commit('learnWords/WORDlENGTH', {wordLength: len})
+    // })
   }
 }
 </script>

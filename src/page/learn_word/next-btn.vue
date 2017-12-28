@@ -79,9 +79,6 @@ export default {
               this.$store.commit('learnWords/RIGHTSHOW', {bool: false})
               // 000
               if (this.reationLength <= 1) {  // 说明关联单词是一个
-                console.log(222)
-                console.log(this.index)
-                console.log(this.wordLength)
                 if (this.index < this.wordLength) {
                   this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
                   let length = this.words[0].course_content[this.index].syllable.relation.length

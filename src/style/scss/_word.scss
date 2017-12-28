@@ -47,10 +47,11 @@ $font-bg: rgb(192, 224, 142);
       @include word-c(-60%);
       font-size: 117px;
       color: $font;
+      font-family: 'PingFang';
+      text-shadow: 9px 4px 8px rgba(108,176,10,.29);
     }
     .img-w {
       position: relative;
-      // bottom: -245px;
       color: $font;
       font-size: 60px;
       margin: 0 3px;

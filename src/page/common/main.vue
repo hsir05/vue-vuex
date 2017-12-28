@@ -5,7 +5,7 @@
      <div class="wrop"></div>
      <div class="sele">
         <span class="sel-init sel-grade">学前班</span>
-        <span class="sel-init sel-unit">一单元</span>
+        <span class="sel-init sel-unit">1</span>
        <img src="static/img/sel_grade.png" alt="">
        <span class="start" @click="showSelGrade">开始</span>
      </div>
