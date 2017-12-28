@@ -14,7 +14,7 @@
       </div>
         <audio src="static/audio/right.wav" ref="succ"></audio>
         <audio src="static/audio/error.wav" ref="error"></audio>
-        <audio :src="preUrl +'/'+ rightAudio" ref="clickpictAudio"></audio>
+        <audio :src="preUrl +'/'+ rightAudio" id="clickpictAudio" ref="clickpictAudio"></audio>
     </div>
 </template>
 <script>
@@ -90,18 +90,28 @@ export default {
       }
       return ret
     },
-    autoPlayAudio () {
-      wx.config({
-        debug: false,
-        appId: '',
-        timestamp: 1,
-        nonceStr: '',
-        signature: '',
-        jsApiList: []
-      })
-      wx.ready(() => {
-        this.$refs.clickpictAudio.play()
-      })
+    playAudio () {
+      if (window.WeixinJSBridge) {
+        wx.getNetworkType({
+          success: function (res) {
+            document.getElementById('clickpictAudio').play()
+          },
+          fail: function (res) {
+            document.getElementById('clickpictAudio').play()
+          }
+        })
+      } else {
+        document.addEventListener('WeixinJSBridgeReady', function () {
+          wx.getNetworkType({
+            success: function (res) {
+              document.getElementById('clickpictAudio').play()
+            },
+            fail: function (res) {
+              document.getElementById('clickpictAudio').play()
+            }
+          })
+        }, false)
+      }
     },
     clickPict (index) {
       if (index === 1) {
@@ -142,8 +152,6 @@ export default {
           this.random(this.game, this.picts)
           this.addWord() // right  run
           this.$store.commit('games/GAMES_FRACTION', {fraction: this.gamesFraction + 10})
-          this.autoPlayAudio(1)
-          this.clickPict(1)
         }, 600)
       } else {
         console.log('错误答案')
@@ -193,6 +201,8 @@ export default {
           this.showWord[0] = this.game[n].word
         }
         this.rightAudio = this.game[this.num[1]].audio_right[0] // 点击图片正确音频
+        this.playAudio()
+        this.clickPict(1)
       }
     }
   }
