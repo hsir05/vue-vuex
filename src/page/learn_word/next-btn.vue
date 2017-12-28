@@ -25,8 +25,9 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import PreventClickMixin from '../../mixins/prevent-click.js'
+import AuddioAutoPlay from '../../mixins/audio-auto-play.js'
 export default {
-  mixins: [PreventClickMixin],
+  mixins: [PreventClickMixin, AuddioAutoPlay],
   data () {
     return {
       preUrl: process.env.API_PIC,
@@ -163,62 +164,7 @@ export default {
           })
         }, false)
       }
-      // if (setting.autoplay) {
-      //   if (window.WeixinJSBridge) {
-      //     WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-      //       if (this.flag === 1) {
-      //         document.getElementById('audio1').play()
-      //       } else if (this.flag === 2) {
-      //         document.getElementById('audio2').play()
-      //       }
-      //     }, false)
-      //   } else {
-      //     document.addEventListener('WeixinJSBridgeReady', function () {
-      //       WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-      //         if (this.flag === 1) {
-      //           document.getElementById('audio1').play()
-      //         } else if (this.flag === 2) {
-      //           document.getElementById('audio2').play()
-      //         }
-      //       })
-      //     }, false)
-      //   }
-      //   if (this.flag === 1) {
-      //     document.getElementById('audio1').play()
-      //   } else if (this.flag === 2) {
-      //     document.getElementById('audio2').play()
-      //   }
-      // } else {
-      //   if (this.flag === 1) {
-      //     document.getElementById('audio1').pause()
-      //   } else if (this.flag === 2) {
-      //     document.getElementById('audio2').pause()
-      //   }
-      // }
-      // return false
     }
-    // autoPlayAudio () {
-    //   wx.config({
-    //     debug: false,
-    //     appId: '',
-    //     timestamp: 1,
-    //     nonceStr: '',
-    //     signature: '',
-    //     jsApiList: []
-    //   })
-    //   wx.ready(() => {
-    //     console.log(this.$refs.syll[0])
-    //     // this.soundOpen()
-    //     setTimeout(() => {
-    //       // this.$refs.syll[0].play()
-    //       if (this.flag === 1) {
-    //         document.getElementById('audio1').play()
-    //       } else if (this.flag === 2) {
-    //         document.getElementById('audio2').play()
-    //       }
-    //     }, 1000)
-    //   })
-    // }
   }
 }
 </script>
