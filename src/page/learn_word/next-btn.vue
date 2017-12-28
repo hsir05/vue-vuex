@@ -17,7 +17,7 @@
         </div>
 
           <div v-for="(item, i) in audioSecond.audio_right" v-if="flag === 2">
-            <audio :src="preUrl + '/'+ item" ref="syll" id ="audio2"     v-if="flag && i === 0"></audio>
+            <audio :src="preUrl + '/'+ item" ref="syll" id ="audio2"    v-if="flag && i === 0"></audio>
         </div>
 
   </div>
@@ -118,40 +118,68 @@ export default {
         this.$refs.syll[0].play()
       }
     },
-    playAudio () {
-      if (setting.autoplay) {
-        if (window.WeixinJSBridge) {
-          WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-            if (this.flag === 1) {
-              document.getElementById('audio1').play()
-            } else if (this.flag === 2) {
-              document.getElementById('audio2').play()
-            }
-          }, false)
-        } else {
-          document.addEventListener('WeixinJSBridgeReady', function () {
-            WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-              if (this.flag === 1) {
-                document.getElementById('audio1').play()
-              } else if (this.flag === 2) {
-                document.getElementById('audio2').play()
-              }
-            })
-          }, false)
-        }
-        if (this.flag === 1) {
-          document.getElementById('audio1').play()
-        } else if (this.flag === 2) {
-          document.getElementById('audio2').play()
-        }
-      } else {
-        if (this.flag === 1) {
-          document.getElementById('audio1').pause()
-        } else if (this.flag === 2) {
-          document.getElementById('audio2').pause()
-        }
+    audioSound () {
+      if (this.flag === 1) {
+        document.getElementById('audio1').play()
+      } else if (this.flag === 2) {
+        document.getElementById('audio2').play()
       }
-      return false
+    },
+    playAudio () {
+      if (window.WeixinJSBridge) {
+        wx.getNetworkType({
+          success: function (res) {
+            this.audioSound()
+          },
+          fail: function (res) {
+            this.audioSound()
+          }
+        })
+      } else {
+        document.addEventListener('WeixinJSBridgeReady', function () {
+          wx.getNetworkType({
+            success: function (res) {
+              this.audioSound()
+            },
+            fail: function (res) {
+              this.audioSound()
+            }
+          })
+        }, false)
+      }
+      // if (setting.autoplay) {
+      //   if (window.WeixinJSBridge) {
+      //     WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+      //       if (this.flag === 1) {
+      //         document.getElementById('audio1').play()
+      //       } else if (this.flag === 2) {
+      //         document.getElementById('audio2').play()
+      //       }
+      //     }, false)
+      //   } else {
+      //     document.addEventListener('WeixinJSBridgeReady', function () {
+      //       WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+      //         if (this.flag === 1) {
+      //           document.getElementById('audio1').play()
+      //         } else if (this.flag === 2) {
+      //           document.getElementById('audio2').play()
+      //         }
+      //       })
+      //     }, false)
+      //   }
+      //   if (this.flag === 1) {
+      //     document.getElementById('audio1').play()
+      //   } else if (this.flag === 2) {
+      //     document.getElementById('audio2').play()
+      //   }
+      // } else {
+      //   if (this.flag === 1) {
+      //     document.getElementById('audio1').pause()
+      //   } else if (this.flag === 2) {
+      //     document.getElementById('audio2').pause()
+      //   }
+      // }
+      // return false
     }
     // autoPlayAudio () {
     //   wx.config({
