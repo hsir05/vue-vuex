@@ -26,8 +26,6 @@ export default {
       Indicator.open({text: '加载中...', spinnerType: 'fading-circle'})
       this.$store.dispatch('learnWords/getWordsId').then(() => {
         this.$store.commit('learnWords/AUTO_PLAY', {bool: true})
-        console.log(this.words)
-        console.log(33333)
         Indicator.close()
       })
     }

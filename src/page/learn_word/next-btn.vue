@@ -37,7 +37,7 @@ export default {
   created () {
   },
   mounted () {
-    // this.soundOpen()
+    this.soundOpen()
     this.autoPlayAudio()
     // this.audioSecond = this.getIndexWord.type[0]
     if (this.getIndexWord.syllable.relation.length > 1) {
@@ -48,7 +48,7 @@ export default {
   },
   watch: {
     flag () {
-      // this.soundOpen()
+      this.soundOpen()
       this.autoPlayAudio()
     }
   },
