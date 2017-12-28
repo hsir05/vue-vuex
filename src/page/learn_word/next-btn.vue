@@ -129,20 +129,36 @@ export default {
       if (window.WeixinJSBridge) {
         wx.getNetworkType({
           success: function (res) {
-            this.audioSound()
+            if (document.getElementById('audio1')) {
+              document.getElementById('audio1').play()
+            } else {
+              document.getElementById('audio2').play()
+            }
           },
           fail: function (res) {
-            this.audioSound()
+            if (document.getElementById('audio1')) {
+              document.getElementById('audio1').play()
+            } else {
+              document.getElementById('audio2').play()
+            }
           }
         })
       } else {
         document.addEventListener('WeixinJSBridgeReady', function () {
           wx.getNetworkType({
             success: function (res) {
-              this.audioSound()
+              if (document.getElementById('audio1')) {
+                document.getElementById('audio1').play()
+              } else {
+                document.getElementById('audio2').play()
+              }
             },
             fail: function (res) {
-              this.audioSound()
+              if (document.getElementById('audio1')) {
+                document.getElementById('audio1').play()
+              } else {
+                document.getElementById('audio2').play()
+              }
             }
           })
         }, false)
