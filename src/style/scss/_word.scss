@@ -114,7 +114,7 @@ $font-bg: rgb(192, 224, 142);
       }
     }
     .next {
-      @include btn-img(372px,90px);
+      @include btn-img(380px,100px);
       margin-right: px2rem(19px);
       position: relative;
       i {
@@ -133,7 +133,7 @@ $font-bg: rgb(192, 224, 142);
       width: px2rem(544px);
     }
     .sound {
-      @include btn-img(150px,90px );
+      @include btn-img(150px,100px );
     }
   }
 }
