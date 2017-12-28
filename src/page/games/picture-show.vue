@@ -100,7 +100,7 @@ export default {
         jsApiList: []
       })
       wx.ready(() => {
-        this.clickPict(1)
+        this.$refs.clickpictAudio.play()
       })
     },
     clickPict (index) {
@@ -143,6 +143,7 @@ export default {
           this.addWord() // right  run
           this.$store.commit('games/GAMES_FRACTION', {fraction: this.gamesFraction + 10})
           this.autoPlayAudio(1)
+          this.clickPict(1)
         }, 600)
       } else {
         console.log('错误答案')

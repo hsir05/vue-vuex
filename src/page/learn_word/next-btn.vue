@@ -48,7 +48,9 @@ export default {
   },
   watch: {
     flag () {
-      this.soundOpen()
+      setTimeout(() => {
+        this.soundOpen()
+      })
       this.autoPlayAudio()
     }
   },
@@ -120,7 +122,7 @@ export default {
         jsApiList: []
       })
       wx.ready(() => {
-        alert(this.$refs.syll[0])
+        console.log(this.$refs.syll[0])
         // this.soundOpen()
         setTimeout(() => {
           // this.$refs.syll[0].play()
