@@ -14,18 +14,22 @@
 </template>
 
 <script>
-// import { Indicator } from 'mint-ui'
+import { Indicator } from 'mint-ui'
+import { mapState } from 'vuex'
 export default {
   computed: {
+    ...mapState('learnWords', ['autoPlay', 'index', 'words', 'flag', 'showEnd'])
   },
   methods: {
     reStart () {
       this.$store.commit('learnWords/DATA_RESET')
-      // this.$store.commit('learnWords/AUTO_PLAY', {bool: true})
-      // Indicator.open({text: '加载中...', spinnerType: 'fading-circle'})
-      // this.$store.dispatch('learnWords/getWordsId').then(() => {
-      //   Indicator.close()
-      // })
+      Indicator.open({text: '加载中...', spinnerType: 'fading-circle'})
+      this.$store.dispatch('learnWords/getWordsId').then(() => {
+        this.$store.commit('learnWords/AUTO_PLAY', {bool: true})
+        console.log(this.words)
+        console.log(33333)
+        Indicator.close()
+      })
     }
   }
 }
