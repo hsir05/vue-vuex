@@ -110,8 +110,8 @@ export default {
     play () { // 播放
       let playMedia = document.getElementById(this.audio_id)
       // console.log('play', playMedia.currentSrc)
-      playMedia.play()
       this.playAudio()  // 微信下
+      playMedia.play()
       let playCurrTime = setInterval(() => {
         if (playMedia.ended) {
           clearInterval(playCurrTime)
