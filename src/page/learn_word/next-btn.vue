@@ -55,9 +55,11 @@ export default {
       setTimeout(() => {
         this.soundOpen()
       })
-      if (document.getElementById('audio1')) {
+      if (this.flag === 1) {
+        console.log(11)
          this.playAudio('audio1')
-      } else {
+      } else if (this.flag === 2) {
+        console.log(22)
         this.playAudio('audio2')
       }
       if (this.getIndexWord.syllable.relation.length > 1) {
