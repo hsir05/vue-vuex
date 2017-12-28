@@ -12,11 +12,6 @@
           <img src="static/img/btn_sound.png" alt="" >
         </span>
 
-        <!-- <div v-for="(item, index) in getFirstDealWords"  v-if="flag === 1 && index === 0">
-            <audio :src="preUrl + '/'+ val" ref="syll" v-for="(val, k) in item.audio_right" autoplay="autoplay" v-if="flag && k === 0"></audio>
-        </div> -->
-
-        <!-- 000 -->
           <div v-for="(item, index) in getIndexWord.syllable.audio_right"  v-if="flag === 1 && index === 0">
             <audio :src="preUrl + '/'+ item" ref="syll" id ="audio1" v-for="(val, k) in item"  v-if="flag && k === 0"></audio>
         </div>
@@ -35,13 +30,21 @@ export default {
   data () {
     return {
       preUrl: process.env.API_PIC,
-      audioSecond: ''
+      audioSecond: '',
+      dat: []
     }
+  },
+  created () {
   },
   mounted () {
     // this.soundOpen()
     this.autoPlayAudio()
-    this.audioSecond = this.getIndexWord.type[0]
+    // this.audioSecond = this.getIndexWord.type[0]
+    if (this.getIndexWord.syllable.relation.length > 1) {
+      this.audioSecond = this.getIndexWord.type[this.moreIndex]
+    } else {
+      this.audioSecond = this.getIndexWord.type[0]
+    }
   },
   watch: {
     flag () {
@@ -52,7 +55,7 @@ export default {
   computed: {
     // ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
     ...mapGetters('learnWords', ['getIndexWord']),
-    ...mapState('learnWords', ['flag', 'seIndex', 'step', 'index', 'wordLength', 'reationLength', 'moreIndex', 'rightIndex', 'rightShow'])
+    ...mapState('learnWords', ['flag', 'seIndex', 'step', 'words', 'index', 'wordLength', 'reationLength', 'moreIndex', 'rightIndex', 'rightShow'])
   },
   methods: {
     next (index) {
@@ -75,26 +78,30 @@ export default {
               this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
               this.$store.commit('learnWords/RIGHTSHOW', {bool: false})
               // 000
-              if (this.reationLength <= 1) {
+              if (this.reationLength <= 1) {  // 说明关联单词是一个
+                console.log(222)
+                console.log(this.index)
+                console.log(this.wordLength)
                 if (this.index < this.wordLength) {
                   this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
+                  let length = this.words[0].course_content[this.index].syllable.relation.length
+                  this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
                 } else {
                   this.$store.commit('learnWords/SHOWEND', { bool: true })
                 }
-              } else {
-                if (this.moreIndex < this.reationLength) {
+              } else { // 多个关联单词
+                if (this.moreIndex + 1 < this.words[0].course_content[this.index].syllable.relation.length) {
                   this.$store.commit('learnWords/MOREINDEX', { moreIndex: this.moreIndex + 1 })
                 } else {
-                  this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
-                  this.$store.commit('learnWords/MOREINDEX', { moreIndex: 0 })
+                  if (this.index + 1 < this.wordLength) {
+                    this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
+                    this.$store.commit('learnWords/MOREINDEX', { moreIndex: 0 })
+                  } else {
+                    this.$store.commit('learnWords/SHOWEND', { bool: true })
+                  }
                 }
               }
             }, 1000)
-            // if (this.getFirstDealWords.length - 1 !== this.step) {
-            //   this.$store.commit('learnWords/STEP', { step: this.step + 1 })
-            // } else {
-            //   this.$store.commit('learnWords/SHOWEND', { bool: true })
-            // }
           } else { // 选择错误
             this.$refs.error.play()
           }
@@ -107,7 +114,6 @@ export default {
       }
     },
     autoPlayAudio () {
-      console.log(23232323)
       wx.config({
         debug: false,
         appId: '',
@@ -120,8 +126,8 @@ export default {
         alert(this.$refs.syll[0])
         // this.soundOpen()
         setTimeout(() => {
-          this.$refs.syll[0].play()
-          if (this.flag === 1){
+          // this.$refs.syll[0].play()
+          if (this.flag === 1) {
             document.getElementById('audio1').play()
           } else if (this.flag === 2) {
             document.getElementById('audio2').play()

@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
-    ...mapState('learnWords', ['flag', 'step', 'seIndex', 'rightIndex', 'rightShow']),
+    ...mapState('learnWords', ['flag', 'step', 'seIndex', 'rightIndex', 'moreIndex', 'rightShow']),
     ...mapGetters('learnWords', ['getIndexWord'])
   },
   watch: {
@@ -38,10 +38,12 @@ export default {
     }
   },
   created () {
-    // this.answer()
-    // this.dat.push(this.getSecondDealWords[this.step])
-    // 000
-    this.dat.push(this.getIndexWord.type[0])
+    // this.dat.push(this.getIndexWord.type[0])
+    if (this.getIndexWord.syllable.relation.length > 1) {
+      this.dat.push(this.getIndexWord.type[this.moreIndex])
+    } else {
+      this.dat.push(this.getIndexWord.type[0])
+    }
     this.answer()
   },
   methods: {
@@ -69,14 +71,7 @@ export default {
     },
     answer () {  // 产生随机答案
       this.m = Math.floor(Math.random() * 2)
-    //   if (this.m === 0) {
-    //     this.answerShow[this.m].url = this.getSecondDealWords[this.step].audio_right[0]
-    //     this.answerShow[1].url = this.getSecondDealWords[this.step].audio_error[0]
-    //   } else {
-    //     this.answerShow[this.m].url = this.getSecondDealWords[this.step].audio_right[0]
-    //     this.answerShow[0].url = this.getSecondDealWords[this.step].audio_error[0]
-    //   }
-    // 000
+
       if (this.m === 0) {
         this.answerShow[this.m].url = this.dat[0].audio_right[0]
         this.answerShow[1].url = this.dat[0].audio_error[0]

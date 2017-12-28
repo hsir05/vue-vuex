@@ -11,10 +11,10 @@ const state = {
   rightShow: false, // 答案的选择正确与否
   showEnd: false,
   // 000
-  index: 0,
-  moreIndex: 0,
-  reationLength: null,
-  wordLength: null
+  index: 0, // 单个relation 时的index
+  moreIndex: 0, // 多个relation时 index
+  reationLength: null, // 单个relation 时的length
+  wordLength: null // course_content  --length
 }
 
 // getters
@@ -22,16 +22,20 @@ const getters = {
   getIndexWord (state, getters, rootState, rootGetters) {
     let length = state.words[0].course_content[state.index].syllable.relation.length
     if (length > 1 && state.moreIndex < length) {
-      let dat = []
-      dat = state.words[0].course_content[state.index]
-      dat.syllable.relation.length = 0
-      dat.type.length = 0
-      // dat.syllable.relation = state.words[0].course_content[state.index].syllable.relation[state.moreIndex]
-      console.log(state.words[0].course_content[state.index])
-      dat.type.push(state.words[0].course_content[state.index].type[state.moreIndex])
-      return dat
+      // let dat = []
+      // dat = state.words[0].course_content[state.index]
+      // dat.syllable.relation.unshift(dat.syllable.relation[state.moreIndex])
+      // dat.type.unshift(dat.type[state.moreIndex])
+      // return dat
+      return state.words[0].course_content[state.index]
     } else {
       return state.words[0].course_content[state.index]
+    }
+  },
+  getIndexWordMore (state, getters, rootState, rootGetters) {
+    let length = state.words[0].course_content[state.index].syllable.relation.length
+    if (length < state.moreIndex) {
+      return state.words[0].course_content[state.index].type[state.moreIndex]
     }
   }
 }

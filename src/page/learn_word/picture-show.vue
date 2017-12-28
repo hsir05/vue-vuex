@@ -1,13 +1,7 @@
 <template>
    <div class="word-img" >
        <img src="static/img/bg_normal.png" alt="" class="people">
-          <!-- <div class="show-word" v-for="(val, index) in dat" v-if="index === 0">
-            <img :src="preUrl + '/'+ v" alt="" class="show-i" v-for="(v, k) in val.pic_right" v-if="k == 0">
-            <div class="pict-w">
-               <span class="img-w" :class="i >= comparStartLength && i <= comparEndLength ?'addColor': ''" v-for="(k, i) in val.word" >{{k}}</span>
-            </div>
-          </div> -->
-          <!-- 000 -->
+
            <div class="show-word" v-for="(val, index) in dat" v-if="index === 0">
             <img :src="preUrl + '/'+ v" alt="" class="show-i" v-for="(v, k) in val.pic_right" v-if="k == 0">
             <div class="pict-w">
@@ -29,17 +23,24 @@ export default {
   },
   computed: {
     // ...mapGetters('common/wordsStore', ['getFirstDealWords', 'getSecondDealWords']),
-    ...mapState('learnWords', ['step']),
+    ...mapState('learnWords', ['step', 'moreIndex']),
     ...mapGetters('learnWords', ['getIndexWord'])
   },
   created () {
+    this.wordDeal()
   },
   mounted () {
-    this.wordDeal()
+    // this.wordDeal()
   },
   methods: {
     wordDeal () {
-      this.dat = this.getIndexWord.type
+      console.log(this.getIndexWord.type)
+      console.log(this.moreIndex)
+      if (this.getIndexWord.syllable.relation.length > 1) {
+        this.dat.push(this.getIndexWord.type[this.moreIndex])
+      } else {
+        this.dat = this.getIndexWord.type
+      }
     }
   }
 }

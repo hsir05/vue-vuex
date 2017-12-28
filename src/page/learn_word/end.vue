@@ -14,13 +14,18 @@
 </template>
 
 <script>
+// import { Indicator } from 'mint-ui'
 export default {
   computed: {
   },
   methods: {
     reStart () {
       this.$store.commit('learnWords/DATA_RESET')
-      this.$store.commit('learnWords/AUTO_PLAY', {bool: true})
+      // this.$store.commit('learnWords/AUTO_PLAY', {bool: true})
+      // Indicator.open({text: '加载中...', spinnerType: 'fading-circle'})
+      // this.$store.dispatch('learnWords/getWordsId').then(() => {
+      //   Indicator.close()
+      // })
     }
   }
 }
