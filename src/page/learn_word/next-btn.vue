@@ -114,7 +114,7 @@ export default {
       }
     },
     soundOpen () { // 播放音频
-      if (this.$refs.syll) {
+      if (this.$refs.syll[0]) {
         this.$refs.syll[0].play()
       }
     },

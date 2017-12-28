@@ -85,6 +85,7 @@ export default {
     },
     playAudio () { // 微信下
       let _this = this
+      alert(document.getElementById(_this.audio_id))
       if (window.WeixinJSBridge) {
         wx.getNetworkType({
           success: function (res) {
