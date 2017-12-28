@@ -123,14 +123,15 @@ $font-bg: rgb(192, 224, 142);
       position: relative;
       i {
         font-size: 17px;
-        color: $font;
+        color: rgb(132,201,39);
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        font-weight: bolder;
       }
       .chanColor {
-        color: silver;
+        // color: silver;
       }
     }
     .sure {
