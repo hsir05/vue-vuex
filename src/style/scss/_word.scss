@@ -3,6 +3,7 @@ $font: rgb(106, 167, 24);
 $font-bg: rgb(192, 224, 142);
 .learn-word {
   text-align: center;
+  height: 100%;
   .head-bg{
     display: inline-block;
     width:100%;
@@ -11,6 +12,7 @@ $font-bg: rgb(192, 224, 142);
   }
   .wrop {
     // height: px2rem(624px);
+    height: 100%;
     overflow: hidden;
   }
   ul {
@@ -46,6 +48,7 @@ $font-bg: rgb(192, 224, 142);
     top: 50%;
     left: 50%;
     transform: translate(-50%, $y);
+
   }
   .show-word {
     @include word-s;
@@ -123,6 +126,7 @@ $font-bg: rgb(192, 224, 142);
       @include btn-img(380px,100px);
       margin-right: px2rem(19px);
       position: relative;
+      box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
       i {
         font-size: 17px;
         color: rgb(132,201,39);
@@ -141,6 +145,7 @@ $font-bg: rgb(192, 224, 142);
       width: px2rem(544px);
     }
     .sound {
+      box-shadow: 0 3px 12px rgba(223, 179, 17, 0.3);
       @include btn-img(150px,100px );
     }
   }
