@@ -38,12 +38,11 @@ export default {
   created () {},
   mounted () {
     this.soundOpen()
-    // this.playAudio()
     if (document.getElementById('audio1')) {
-         this.playAudio('audio1')
-      } else {
-        this.playAudio('audio2')
-      }
+      this.playAudio('audio1')
+    } else {
+      this.playAudio('audio2')
+    }
     if (this.getIndexWord.syllable.relation.length > 1) {
       this.audioSecond = this.getIndexWord.type[this.moreIndex]
     } else {
@@ -57,7 +56,7 @@ export default {
       })
       if (this.flag === 1) {
         console.log(11)
-         this.playAudio('audio1')
+        this.playAudio('audio1')
       } else if (this.flag === 2) {
         console.log(22)
         this.playAudio('audio2')
@@ -117,7 +116,7 @@ export default {
               }
             }, 2000)
           } else { // 选择错误
-           this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 1})
+            this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 1})
             this.$refs.error.play()
           }
         }
