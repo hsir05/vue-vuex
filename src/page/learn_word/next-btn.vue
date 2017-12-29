@@ -84,18 +84,18 @@ export default {
           if (this.seIndex !== null && this.seIndex === this.rightIndex) { // 答案选择正确之后
             this.$refs.right.play()
             this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 0})
-            if (!this.$refs.right.paused) {
-              setTimeout(() => {
-                let flags = null
-                flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
-                this.$store.commit('learnWords/FLAG', { flag: flags })
-                this.$store.commit('learnWords/SEINDEX', {seIndex: null})
-                this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
-                this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
-                // 000
+            setTimeout(() => {
+              if (!this.$refs.right.paused) {
+              }
+              let flags = null
+              flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
+              this.$store.commit('learnWords/FLAG', { flag: flags })
+              this.$store.commit('learnWords/SEINDEX', {seIndex: null})
+              this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
+              this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
+              // 000
               this.three()
-              }, 1500)
-            }
+          }, 1500)
           } else { // 选择错误
             this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 1})
             this.$refs.error.play()
