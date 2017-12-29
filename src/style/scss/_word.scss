@@ -145,7 +145,7 @@ $font-bg: rgb(192, 224, 142);
       width: px2rem(544px);
     }
     .sound {
-      box-shadow: 0 3px 12px rgba(223, 179, 17, 0.3);
+      box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
       @include btn-img(150px,100px );
     }
   }

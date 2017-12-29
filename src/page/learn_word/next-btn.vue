@@ -55,10 +55,8 @@ export default {
         this.soundOpen()
       })
       if (this.flag === 1) {
-        console.log(11)
         this.playAudio('audio1')
       } else if (this.flag === 2) {
-        console.log(22)
         this.playAudio('audio2')
       }
       if (this.getIndexWord.syllable.relation.length > 1) {
@@ -85,36 +83,19 @@ export default {
         } else { // 第三步 执行。
           if (this.seIndex !== null && this.seIndex === this.rightIndex) { // 答案选择正确之后
             this.$refs.right.play()
+            console.log(this.$refs.right)
+            console.log(222)
             this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 0})
-            setTimeout(() => {
-              let flags = null
-              flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
-              this.$store.commit('learnWords/FLAG', { flag: flags })
-              this.$store.commit('learnWords/SEINDEX', {seIndex: null})
-              this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
-              this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
-              // 000
-              if (this.reationLength <= 1) {  // 说明关联单词是一个
-                if (this.index < this.wordLength) {
-                  this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
-                  let length = this.words[0].course_content[this.index].syllable.relation.length
-                  this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
-                } else {
-                  this.$store.commit('learnWords/SHOWEND', { bool: true })
-                }
-              } else { // 多个关联单词
-                if (this.moreIndex + 1 < this.words[0].course_content[this.index].syllable.relation.length) {
-                  this.$store.commit('learnWords/MOREINDEX', { moreIndex: this.moreIndex + 1 })
-                } else {
-                  if (this.index + 1 < this.wordLength) {
-                    this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
-                    this.$store.commit('learnWords/MOREINDEX', { moreIndex: 0 })
-                  } else {
-                    this.$store.commit('learnWords/SHOWEND', { bool: true })
-                  }
-                }
-              }
-            }, 2000)
+            // setTimeout(() => {
+            //   let flags = null
+            //   flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
+            //   this.$store.commit('learnWords/FLAG', { flag: flags })
+            //   this.$store.commit('learnWords/SEINDEX', {seIndex: null})
+            //   this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
+            //   this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
+            //   // 000
+            //  this.three()
+            // }, 2000)
           } else { // 选择错误
             this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 1})
             this.$refs.error.play()
@@ -122,7 +103,28 @@ export default {
         }
       }
     },
-    three () {},
+    three () {
+      if (this.reationLength <= 1) {  // 说明关联单词是一个
+        if (this.index < this.wordLength) {
+          this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
+          let length = this.words[0].course_content[this.index].syllable.relation.length
+          this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
+        } else {
+          this.$store.commit('learnWords/SHOWEND', { bool: true })
+        }
+      } else { // 多个关联单词
+        if (this.moreIndex + 1 < this.words[0].course_content[this.index].syllable.relation.length) {
+          this.$store.commit('learnWords/MOREINDEX', { moreIndex: this.moreIndex + 1 })
+        } else {
+          if (this.index + 1 < this.wordLength) {
+            this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
+            this.$store.commit('learnWords/MOREINDEX', { moreIndex: 0 })
+          } else {
+            this.$store.commit('learnWords/SHOWEND', { bool: true })
+          }
+        }
+      }
+    },
     soundOpen () { // 播放音频
       if (this.$refs.syll[0]) {
         this.$refs.syll[0].play()
