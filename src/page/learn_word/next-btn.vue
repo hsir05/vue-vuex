@@ -115,7 +115,7 @@ export default {
                   }
                 }
               }
-            }, 1000)
+            }, 2000)
           } else { // 选择错误
            this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 1})
             this.$refs.error.play()
@@ -123,6 +123,7 @@ export default {
         }
       }
     },
+    three () {},
     soundOpen () { // 播放音频
       if (this.$refs.syll[0]) {
         this.$refs.syll[0].play()
