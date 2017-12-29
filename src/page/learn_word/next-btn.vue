@@ -93,7 +93,6 @@ export default {
               this.$store.commit('learnWords/SEINDEX', {seIndex: null})
               this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
               this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
-              // 000
               this.three()
           }, 1500)
           } else { // 选择错误
@@ -110,8 +109,8 @@ export default {
           let length = this.words[0].course_content[this.index].syllable.relation.length
           this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
         } else {
-          this.$store.commit('learnWords/SHOWEND', { bool: true })
           this.$store.commit('learnWords/DATA_RESET')
+          this.$store.commit('learnWords/SHOWEND', { bool: true })
         }
       } else { // 多个关联单词
         if (this.moreIndex + 1 < this.words[0].course_content[this.index].syllable.relation.length) {
@@ -121,8 +120,8 @@ export default {
             this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
             this.$store.commit('learnWords/MOREINDEX', { moreIndex: 0 })
           } else {
-            this.$store.commit('learnWords/SHOWEND', { bool: true })
             this.$store.commit('learnWords/DATA_RESET')
+            this.$store.commit('learnWords/SHOWEND', { bool: true })
           }
         }
       }
