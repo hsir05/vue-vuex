@@ -92,7 +92,7 @@ export default {
               this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
               this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
               this.three()
-          }, 2500)
+          }, 2000)
           } else { // 选择错误
             this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 1})
             this.$refs.error.play()
