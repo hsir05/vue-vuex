@@ -75,7 +75,7 @@ export default {
     next (index) {
     /* @this.preventClick()  公用mixin 防止重复点击
      */
-      if (this.preventClick()) {
+      if (this.preventClick(2000)) {
         if (this.flag !== 3) { // 第一步  第二部时执行
           let flags = null
           flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
@@ -85,8 +85,6 @@ export default {
             this.$refs.right.play()
             this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 0})
             setTimeout(() => {
-              if (!this.$refs.right.paused) {
-              }
               let flags = null
               flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
               this.$store.commit('learnWords/FLAG', { flag: flags })
@@ -94,7 +92,7 @@ export default {
               this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
               this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
               this.three()
-          }, 1500)
+          }, 2500)
           } else { // 选择错误
             this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 1})
             this.$refs.error.play()
