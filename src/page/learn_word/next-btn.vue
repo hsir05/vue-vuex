@@ -4,9 +4,9 @@
           <img src="static/img/btn_next.png" v-if="flag !== 3">
           <i v-if="flag === 3" :class="seIndex===null?'chanColor':''">确定</i>
           <!-- 正确音效 -->
-          <audio src="static/audio/right.wav" ref="right" > </audio>
+          <audio src="static/audio/right.mp3"  ref="right" > </audio>
            <!-- 错误音效 -->
-          <audio src="static/audio/error.wav" ref="error" > </audio>
+          <audio src="static/audio/error.mp3"  ref="error" > </audio>
         </span>
         <span class="sound" v-if="flag !== 3" @click="soundOpen(flag)">
           <img src="static/img/btn_sound.png" alt="" >
@@ -94,8 +94,8 @@ export default {
               this.three()
           }, 2000)
           } else { // 选择错误
-            this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 1})
             this.$refs.error.play()
+            this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 1})
           }
         }
       }
