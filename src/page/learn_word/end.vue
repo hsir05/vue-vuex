@@ -18,7 +18,7 @@ import { Indicator } from 'mint-ui'
 import { mapState } from 'vuex'
 export default {
   computed: {
-    ...mapState('learnWords', ['autoPlay', 'index', 'words', 'flag', 'showEnd'])
+    ...mapState('learnWords', ['autoPlay', 'index', 'words', 'flag', 'showEnd', 'reationLength'])
   },
   methods: {
     reStart () {
@@ -26,6 +26,10 @@ export default {
       Indicator.open({text: '加载中...', spinnerType: 'fading-circle'})
       this.$store.dispatch('learnWords/getWordsId').then(() => {
         this.$store.commit('learnWords/AUTO_PLAY', {bool: true})
+        let length = this.words[0].course_content[this.index].syllable.relation.length
+        let len = this.words[0].course_content.length
+        this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
+        this.$store.commit('learnWords/WORDlENGTH', {wordLength: len})
         Indicator.close()
       })
     }

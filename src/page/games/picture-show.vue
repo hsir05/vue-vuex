@@ -39,6 +39,11 @@ export default {
   created () {
     this.init()
   },
+  watch: {
+    picts () {
+      // console.log(333)
+    }
+  },
   computed: {
     ...mapState('games', ['requestLoading', 'gamesTime', 'gamesFraction', 'gameScore', 'progress', 'currWordIndex']),
     ...mapGetters('games', ['getAllWords'])
