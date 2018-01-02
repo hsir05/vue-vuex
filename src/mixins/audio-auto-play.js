@@ -5,7 +5,7 @@ module.exports = {
   methods: {
     playAudio (ElemId) {
       if (window.WeixinJSBridge) {
-        wx.getNetworkType({
+        this.wx.getNetworkType({
           success: function (res) {
             document.getElementById(ElemId).play()
           },
@@ -15,7 +15,7 @@ module.exports = {
         })
       } else {
         document.addEventListener('WeixinJSBridgeReady', function () {
-          wx.getNetworkType({
+          this.wx.getNetworkType({
             success: function (res) {
               document.getElementById(ElemId).play()
             },
@@ -30,5 +30,6 @@ module.exports = {
 }
 /* 解决ios微信下自动播放问题
 *使用此方法必须传入音频的id  -- ElemId
-*且在项目中引入 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+*参考文档 https://www.npmjs.com/package/weixin-js-sdk
+*且在项目中引入 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>  或 npm install weixin-js-sdk  ------使用  var wx = require('weixin-js-sdk')
 */
