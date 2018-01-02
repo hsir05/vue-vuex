@@ -45,7 +45,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('games', ['requestLoading', 'gamesTime', 'gamesFraction', 'gameScore', 'progress', 'currWordIndex']),
+    ...mapState('games', ['requestLoading', 'words', 'gamesTime', 'gamesFraction', 'gameScore', 'progress', 'currWordIndex']),
     ...mapGetters('games', ['getAllWords'])
   },
   mounted () {},
@@ -58,7 +58,9 @@ export default {
         spinnerType: 'fading-circle'
       })
       this.$store.dispatch('games/getWords').then(() => {
-        Indicator.close()
+        if (this.words.length === 0) {
+          Toast({message: '没有数据了，请稍后重试', position: 'center', duration: 3000})
+        }
         this.dealGame(this.getAllWords)
         for (let i = 0; i < 3; i++) {
           this.random(this.game, this.picts)
@@ -67,6 +69,7 @@ export default {
         this.$store.dispatch('games/openCompete')
         this.$store.commit('games/REQUEST_LOADING', { bool: false })
         this.$store.commit('games/DATA_RESET')
+        Indicator.close()
       }).catch((err) => {
         Toast({message: '请求失败，数据错误，请稍候重试!', position: 'center', duration: 3000})
         console.log(err)

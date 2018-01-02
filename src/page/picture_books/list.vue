@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { Indicator } from 'mint-ui'
+import { Indicator, Toast } from 'mint-ui'
 import { mapActions, mapState, mapGetters } from 'vuex'
 
 export default {
@@ -53,6 +53,9 @@ export default {
       spinnerType: 'fading-circle'
     })
     this.$store.dispatch('pictureBooks/list/getPicBooksList').then(() => {
+      if (this.getPicBooksList.length === 0) {
+        Toast({message: '没有数据了，请稍后重试', position: 'center', duration: 3000})
+      }
       Indicator.close()
     })
   },

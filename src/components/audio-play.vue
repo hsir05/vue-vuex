@@ -38,7 +38,7 @@ export default {
   watch: {
     src () { // 当音频地址发生改变时
       let playMedia = document.getElementById(this.audio_id)
-      if (!playMedia.paused) { // 如果音频地址发生改变时，当前音频还在播放，则让其播放结束
+      if (playMedia && !playMedia.paused) { // 如果音频地址发生改变时，当前音频还在播放，则让其播放结束
         playMedia.currentTime = playMedia.duration // 当前音频时间设置为总时间
       }
       this.audio_id = 'audio-play-id-' + new Date().getTime()
