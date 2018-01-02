@@ -42,7 +42,7 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import { Indicator } from 'mint-ui'
 export default {
   data () {
@@ -51,10 +51,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('common/wordsStore', ['getAllWords'])
+    ...mapGetters('common/wordsStore', ['getAllWords']),
+    ...mapState('games', ['timeWaitInterval'])
   },
   created () {
     Indicator.close()
+    clearInterval(this.timeWaitInterval)
   },
   methods: {
     ...mapActions('getWords', ['words']),

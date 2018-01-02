@@ -18,7 +18,7 @@
     </div>
 </template>
 <script>
-import { Indicator } from 'mint-ui'
+import { Indicator, Toast } from 'mint-ui'
 import { mapMutations, mapActions, mapState, mapGetters } from 'vuex'
 import PreventClickMixin from '../../mixins/prevent-click.js'
 import AuddioAutoPlay from '../../mixins/audio-auto-play.js'
@@ -42,8 +42,7 @@ export default {
     ...mapState('games', ['requestLoading', 'gamesTime', 'gamesFraction', 'gameScore', 'progress', 'currWordIndex']),
     ...mapGetters('games', ['getAllWords'])
   },
-  mounted () {
-  },
+  mounted () {},
   methods: {
     ...mapMutations('games', []),
     ...mapActions('games', ['openCompete']),
@@ -62,6 +61,9 @@ export default {
         this.$store.dispatch('games/openCompete')
         this.$store.commit('games/REQUEST_LOADING', { bool: false })
         this.$store.commit('games/DATA_RESET')
+      }).catch((err) => {
+        Toast({message: '请求失败，数据错误，请稍候重试!', position: 'center', duration: 3000})
+        console.log(err)
       })
     },
     dealGame (par) { // 要展示的单词
@@ -69,7 +71,6 @@ export default {
       par.forEach((item, index) => {
         if (item.words_array && item.words_array.length !== 0) {
           item.words_array.forEach((k, i) => {
-            // this.game.push(k)
             arr.push(k)
           })
         }
@@ -81,7 +82,6 @@ export default {
       let ret = []
       let json = {}
       let length = arr.length
-
       for (var i = 0; i < length; i++) {
         let val = arr[i].id
         if (!json[val]) {

@@ -22,26 +22,29 @@ export default {
     }
   },
   computed: {
-    ...mapState('learnWords', ['step', 'moreIndex']),
+    ...mapState('learnWords', ['moreIndex']),
     ...mapGetters('learnWords', ['getIndexWord'])
   },
   created () {
     this.wordDeal()
   },
-  mounted () {
-    // this.wordDeal()
-  },
   methods: {
     wordDeal () {
-      console.log(this.getIndexWord.type)
-      console.log(this.moreIndex)
       if (this.getIndexWord.syllable.relation.length > 1) {
         this.dat.push(this.getIndexWord.type[this.moreIndex])
       } else {
         this.dat = this.getIndexWord.type
       }
+      let str = this.getIndexWord.syllable.syllable
+      let string = this.dat[0].word
+      if (str.length > 1) {
+        this.comparStartLength = string.indexOf(str)
+        this.comparEndLength = this.comparStartLength + str.length
+      } else {
+        this.comparEndLength = null
+      }
     }
   }
 }
 </script>
-
+    

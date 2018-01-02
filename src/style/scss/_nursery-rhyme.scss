@@ -23,6 +23,7 @@ $word-cr: rgb(131, 195, 34);
       margin: px2rem(166px) auto 0; height: px2rem(142px); width: px2rem(624px);
       font-size: px2rem(72px); color: $word-cr; line-height: px2rem(142px); text-align: center;
       background: #fff; border-radius: px2rem(20px);
+      box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
     }
     // 图片列表
     .img-list {
@@ -31,6 +32,7 @@ $word-cr: rgb(131, 195, 34);
         margin-top: px2rem(38px); width: 100%; height: px2rem(190px);
         // 图片列表子项
         .img-list-item {
+          box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
           height: px2rem(190px); width: px2rem(280px); margin: 0 auto; padding: px2rem(6px);
           box-sizing: border-box; background: #fff; border-radius: px2rem(12px); position: relative;
           img { width: 100%; height: 100%; }

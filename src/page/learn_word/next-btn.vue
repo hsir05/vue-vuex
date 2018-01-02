@@ -9,7 +9,7 @@
           <audio src="static/audio/error.mp3"  ref="error" > </audio>
         </span>
         <span class="sound" v-if="flag !== 3" @click="soundOpen(flag)">
-          <img src="static/img/btn_sound.png" alt="" >
+          <img src="static/img/btn_sound.png" ref="soundImg" alt="" >
         </span>
 
           <div v-for="(item, index) in getIndexWord.syllable.audio_right"  v-if="flag === 1 && index === 0">
@@ -24,6 +24,7 @@
 </template>
 <script>
 import { mapGetters, mapState } from 'vuex'
+import { Toast } from 'mint-ui'
 import PreventClickMixin from '../../mixins/prevent-click.js'
 import AuddioAutoPlay from '../../mixins/audio-auto-play.js'
 export default {
@@ -35,7 +36,8 @@ export default {
       dat: []
     }
   },
-  created () {},
+  created () {
+  },
   mounted () {
     this.soundOpen()
     if (document.getElementById('audio1')) {
@@ -43,17 +45,17 @@ export default {
     } else {
       this.playAudio('audio2')
     }
-    if (this.getIndexWord.syllable.relation.length > 1) {
+    if (this.getIndexWord && this.getIndexWord.syllable.relation.length >= 1) {
       this.audioSecond = this.getIndexWord.type[this.moreIndex]
-    } else {
+    } else if (this.getIndexWord) {
       this.audioSecond = this.getIndexWord.type[0]
+    } else {
+      Toast({message: '没有数据，请稍候再试!!', position: 'center', duration: 3000})
     }
   },
   watch: {
     flag () {
-      setTimeout(() => {
-        this.soundOpen()
-      })
+      this.soundOpen()
       if (this.flag === 1) {
         this.playAudio('audio1')
       } else if (this.flag === 2) {
@@ -65,7 +67,6 @@ export default {
         this.audioSecond = this.getIndexWord.type[0]
       }
     }
-
   },
   computed: {
     ...mapGetters('learnWords', ['getIndexWord']),
@@ -76,7 +77,7 @@ export default {
     /* @this.preventClick()  公用mixin 防止重复点击
      */
       if (this.preventClick(2000)) {
-        if (this.flag !== 3) { // 第一步  第二部时执行
+        if (this.flag !== 3) { // 第一步  第二步时执行
           let flags = null
           flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
           this.$store.commit('learnWords/FLAG', { flag: flags })
@@ -85,20 +86,23 @@ export default {
             this.$refs.right.play()
             this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 0})
             setTimeout(() => {
-              let flags = null
-              flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
-              this.$store.commit('learnWords/FLAG', { flag: flags })
-              this.$store.commit('learnWords/SEINDEX', {seIndex: null})
-              this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
-              this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
               this.three()
-          }, 2000)
+              this.setTime()
+            }, 2000)
           } else { // 选择错误
             this.$refs.error.play()
             this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 1})
           }
         }
       }
+    },
+    setTime () {
+      let flags = null
+      flags = this.flag === 1 ? flags = 2 : (this.flag === 2 ? flags = 3 : flags = 1)
+      this.$store.commit('learnWords/FLAG', { flag: flags })
+      this.$store.commit('learnWords/SEINDEX', {seIndex: null})
+      this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: null })
+      this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
     },
     three () {
       if (this.reationLength <= 1) {  // 说明关联单词是一个
@@ -111,7 +115,8 @@ export default {
           this.$store.commit('learnWords/SHOWEND', { bool: true })
         }
       } else { // 多个关联单词
-        if (this.moreIndex + 1 < this.words[0].course_content[this.index].syllable.relation.length) {
+        let length = this.words[0].course_content[this.index].syllable.relation.length
+        if (this.moreIndex + 1 < length) {
           this.$store.commit('learnWords/MOREINDEX', { moreIndex: this.moreIndex + 1 })
         } else {
           if (this.index + 1 < this.wordLength) {

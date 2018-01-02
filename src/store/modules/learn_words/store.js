@@ -20,23 +20,13 @@ const state = {
 // getters
 const getters = {
   getIndexWord (state, getters, rootState, rootGetters) {
-    let length = state.words[0].course_content[state.index].syllable.relation.length
-    if (length > 1 && state.moreIndex < length) {
-      // let dat = []
-      // dat = state.words[0].course_content[state.index]
-      // dat.syllable.relation.unshift(dat.syllable.relation[state.moreIndex])
-      // dat.type.unshift(dat.type[state.moreIndex])
-      // return dat
-      return state.words[0].course_content[state.index]
-    } else {
-      return state.words[0].course_content[state.index]
-    }
-  },
-  getIndexWordMore (state, getters, rootState, rootGetters) {
-    let length = state.words[0].course_content[state.index].syllable.relation.length
-    if (length < state.moreIndex) {
-      return state.words[0].course_content[state.index].type[state.moreIndex]
-    }
+  //   if (!state.words[0] || !state.word[0].course_content || state.word[0].course_content.length === 0 || !state.word[0].course_content[0].syllable.syllable) {
+  //     console.log(33333)
+  //     return false
+  //   } else {
+  //     return state.words[0].course_content[state.index]
+  //   }
+    return state.words[0].course_content[state.index]
   }
 }
 
@@ -100,17 +90,6 @@ const mutations = {
 // actions
 /* eslint-disable prefer-promise-reject-errors */
 const actions = {
-  getWords (context) {
-    // 请求works
-    context.commit(types.DATA_RESET) // 数据重置
-    return new Promise((resolve, reject) => {
-      REQUEST.get('weixin_words_view', {kinds: '单词'}, r => {
-        context.commit(types.WORDS, { words: r.data.list })
-        resolve()
-      })
-    })
-  },
-  // 000
   getWordsId (context) {
     // 请求works
     context.commit(types.DATA_RESET) // 数据重置

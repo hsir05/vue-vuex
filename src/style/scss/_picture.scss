@@ -50,11 +50,13 @@
   // padding: px2rem(60px) 0; box-sizing: border-box;
   .picture-head {
     height: px2rem(110px); width: 100%;
+
     .home-btn {
       position: fixed; top: px2rem(20px); left: px2rem(20px); z-index: 100;
       width: px2rem(72px); height: px2rem(72px);
       font-size: px2rem(34px); color: rgb(132, 201, 39); border-radius: 50%; text-align: center;
       // line-height: px2rem(72px);
+      box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
       img { width: 100%; height: 100%; }
     }
     .picture-infor-sign {
@@ -69,6 +71,7 @@
       // margin-top: px2rem(20px);
       .picbook-body-img-bg {
         width: px2rem(556px); height: px2rem(556px);
+        box-shadow: 0 7px 18px rgba(223, 179, 17, 0.3);
       }
     }
     .picbook-body-title {
@@ -85,6 +88,7 @@
       .picbook-body-img-bg {
         // width: px2rem(400px); height: px2rem(400px);
         padding: px2rem(6px); display: block; margin: 0 auto;
+        box-shadow: 0 7px 18px rgba(223, 179, 17, 0.3);
         img { width: 100%; height: 100%; }
       }
     }
@@ -113,6 +117,7 @@
         margin: px2rem(30px) 0;
         .picbook-sentence-btn {
           height: px2rem(66px); width: px2rem(198px); border-radius: px2rem(33px); display: inline-block;
+          box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
           img { width: 100%; height: 100%; }
         }
       }
@@ -128,6 +133,7 @@
     position: absolute; bottom: 0; left: 0; z-index: 3; box-sizing: border-box;
     .btn-cont-img {
       height: px2rem(90px);  float: left; border-radius: px2rem(20px);
+      box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
       &:not(:last-child) {margin-right: px2rem(38px);}
       img {
         height: px2rem(74px); width: px2rem(74px); display: block; margin: px2rem(8px) auto;;

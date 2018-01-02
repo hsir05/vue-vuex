@@ -13,12 +13,11 @@
 
 <script>
 import { mapActions, mapState, mapGetters } from 'vuex'
-import GamesFooter from './games-footer.vue'
 import PictureShow from './picture-show.vue'
 import GetScore from './get-score.vue'
 import HeaderProgress from '@/page/common/header-progress.vue'
 export default {
-  components: { GamesFooter, GetScore, PictureShow, HeaderProgress },
+  components: { GetScore, PictureShow, HeaderProgress },
   data () {
     return {}
   },

@@ -1,21 +1,19 @@
 <template>
         <div class="word-img" >
             <img src="static/img/bg_normal.png" alt="" class="people" v-if="rightShow === 2">
-             <img src="static/img/bg_good.png" alt="" class="people" v-else-if="rightShow === 0">
+              <img src="static/img/bg_good.png" alt="" class="people" v-else-if="rightShow === 0">
               <img src="static/img/bg_wrong.png" alt="" class="people" v-else>
             <div class="show-word" >
 
-                  <div class="answer " v-for="(item, index) in answerShow">
-                        <i class="answer-sel answer-init" ref="checkSel"  @click="selAnswer(index)"></i>
-                       <img src="static/img/bg_voice.png" alt="" class="answer-p" ref="animat" @click="showAudio(index)">
-                        <audio :src="preUrl + '/'+ item.url" ref="selRight"></audio>
-                </div>
+              <div class="answer " v-for="(item, index) in answerShow">
+                    <i class="answer-sel answer-init" ref="checkSel"  @click="selAnswer(index)"></i>
+                    <img src="static/img/bg_voice.png" alt="" class="answer-p" ref="animat" @click="showAudio(index)">
+                    <audio :src="preUrl + '/'+ item.url" ref="selRight"></audio>
+              </div>
 
-                  <span class="img-step3"  v-for="val in dat">
-                    {{val.word}}
-                  </span>
-          </div>
+            <span class="img-step3"  v-for="val in dat">{{val.word}}</span>
         </div>
+    </div>
 </template>
 <script>
 import { mapGetters, mapState } from 'vuex'
@@ -39,7 +37,6 @@ export default {
     }
   },
   created () {
-    // this.dat.push(this.getIndexWord.type[0])
     if (this.getIndexWord.syllable.relation.length > 1) {
       this.dat.push(this.getIndexWord.type[this.moreIndex])
     } else {
@@ -63,16 +60,17 @@ export default {
       this.$store.commit('learnWords/RIGHTINDEX', { rightIndex: this.m })
     },
     showAudio (index) {  // 选择正确之后添加的样式
+      this.$refs.animat[index].src = 'static/img/bg_voice.gif'
       this.$refs.selRight[index].play()
       this.$refs.animat[index].classList.add('sel-answer')
       setTimeout(() => {
         this.$refs.animat[index].classList.remove('sel-answer')
-      }, 200)
+        this.$refs.animat[index].src = 'static/img/bg_voice.png'
+      }, 1000)
       this.selAnswer(index)
     },
     answer () {  // 产生随机答案
       this.m = Math.floor(Math.random() * 2)
-
       if (this.m === 0) {
         this.answerShow[this.m].url = this.dat[0].audio_right[0]
         this.answerShow[1].url = this.dat[0].audio_error[0]

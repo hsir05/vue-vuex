@@ -85,7 +85,7 @@
   @mixin pict {
     z-index: 2;
     top: px2rem(60px);
-    height: px2rem(188px);
+    height: px2rem(199px);
     transition: All 0.3s ease;
   }
   .show-cal {
@@ -94,17 +94,20 @@
   }
   .img-0 {
     @include pict;
-    left: px2rem(70px);
+    left: px2rem(50px);
+    box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
   }
   .img-2 {
     @include pict;
-    right: px2rem(70px);
+    right: px2rem(50px);
+    box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
   }
   .img-1 {
     z-index: 4;
     left: 50%;
     transform: translateX(-50%);
     transition: All 0.3s ease;
+    box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
   }
 }
 .word-img{
@@ -173,7 +176,8 @@
     font-size: 24px;
     background: white;
     color: rgb(132, 201, 39);
-    border-radius: px2rem(22px);
+    border-radius: px2rem(8px);
+    box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
   }
   .first-0 {
     margin-right: px2rem(50px);

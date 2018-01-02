@@ -24,7 +24,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { Indicator } from 'mint-ui'
+import { Indicator, Toast } from 'mint-ui'
 import WordsShow from './words-show.vue'
 import PictureShow from './picture-show.vue'
 import SelectShow from './select-show.vue'
@@ -48,10 +48,12 @@ export default {
       let len = this.words[0].course_content.length
       this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
       this.$store.commit('learnWords/WORDlENGTH', {wordLength: len})
+    }).catch((err) => {
+      Toast({message: '请求失败，数据错误，请稍候重试!', position: 'center', duration: 3000})
+      console.log(err)
     })
   },
   computed: {
-    // ...mapGetters('common/wordsStore', ['getAllWords', 'getFirstDealWords']),
     ...mapState('learnWords', ['autoPlay', 'index', 'words', 'flag', 'showEnd'])
   },
   methods: {}
