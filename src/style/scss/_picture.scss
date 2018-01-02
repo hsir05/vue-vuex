@@ -110,7 +110,9 @@
       padding: 0 px2rem(60px);
       // 句子词组
       .picbook-sentence {
-        line-height: px2rem(50px); font-size: px2rem(30px);
+        font-family:'Heiti sc';
+        color:rgb(71,69,59);
+        line-height: px2rem(50px); font-size: 15px;
       }
       // 句子控制面板
       .picbook-sentence-control-panel {
@@ -122,6 +124,8 @@
         }
       }
       .picbook-sentence-cn {
+        font-family:'Heiti sc';
+        color:rgb(71,69,59);
         line-height: px2rem(50px); font-size: px2rem(30px);
       }
     }
