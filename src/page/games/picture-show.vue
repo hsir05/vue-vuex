@@ -3,8 +3,8 @@
       <div class="game-t-img" >
         <ul >
           <li v-for="(pict, p) in picts" class="show-cal" :class="'img-'+p" v-if="pict">
-                   <transition name="fade" mode="in-out" >
-                      <img :src="preUrl +'/'+ pict.url"   width="100%"height="100%" @click="clickPict(p)">
+                   <transition name="slide-fade" >
+                      <img :src="preUrl +'/'+ pict.url"   width="100%"height="100%" @click="clickPict(p)" v-if="show">
                   </transition>
           </li>
         </ul>
@@ -28,6 +28,7 @@ export default {
     return {
       game: [],
       num: [],
+      show: true,
       rightAudio: '',
       pictNum: '',
       preUrl: process.env.API_PIC,
