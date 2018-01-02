@@ -82,7 +82,7 @@ const Filters = require('@/global/filters.js')
 // 引入微信js sdk
 var wx = require('weixin-js-sdk')
 Vue.prototype.wx = wx
-console.log(wx)
+// console.log(wx)
 
 import store from '@/store/root.js' // state
 
