@@ -12,8 +12,8 @@
       <div class="game-wo">
         <span class="first " ref="animat" :class="'first-' + i + ' ' " v-for="(val, i) in showWord"  @click="pictSel(i)"> {{val}}</span>
       </div>
-        <audio src="static/audio/right.wav" ref="succ"></audio>
-        <audio src="static/audio/error.wav" ref="error"></audio>
+        <audio src="static/audio/right.mp3" ref="succ"></audio>
+        <audio src="static/audio/error.mp3" ref="error"></audio>
         <audio :src="preUrl +'/'+ rightAudio" id="clickpictAudio" ref="clickpictAudio"></audio>
     </div>
 </template>
@@ -76,7 +76,6 @@ export default {
           })
         }
       })
-
       this.game = this.distinct(arr)
     },
     distinct (arr) { //  去重
@@ -94,7 +93,8 @@ export default {
     },
     clickPict (index) {
       if (index === 1) {
-        this.$refs.clickpictAudio.play()
+        // this.$refs.clickpictAudio.play()
+        document.getElementById('clickpictAudio').play()
       }
     },
     pictSel (par) {  // 对点击按钮作出反应
