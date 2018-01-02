@@ -43,11 +43,15 @@ export default {
     })
     this.$store.dispatch('learnWords/getWordsId').then(() => {
       Indicator.close()
-      this.$store.commit('learnWords/AUTO_PLAY', { bool: true })
-      let length = this.words[0].course_content[this.index].syllable.relation.length
-      let len = this.words[0].course_content.length
-      this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
-      this.$store.commit('learnWords/WORDlENGTH', {wordLength: len})
+      if (this.words.length === 0) {
+        Toast({message: '没有多的数据了，请稍后重试!', position: 'center', duration: 3000})
+      } else {
+        this.$store.commit('learnWords/AUTO_PLAY', { bool: true })
+        let length = this.words[0].course_content[this.index].syllable.relation.length
+        let len = this.words[0].course_content.length
+        this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
+        this.$store.commit('learnWords/WORDlENGTH', {wordLength: len})
+      }
     }).catch((err) => {
       Toast({message: '请求失败，数据错误，请稍候重试!', position: 'center', duration: 3000})
       console.log(err)
