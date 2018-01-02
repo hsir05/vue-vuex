@@ -1,8 +1,8 @@
 <template>
         <div class="word-img" >
-            <img src="static/img/bg_normal.png" alt="" class="people" v-if="rightShow === 2">
-              <img src="static/img/bg_good.png" alt="" class="people" v-else-if="rightShow === 0">
-              <img src="static/img/bg_wrong.png" alt="" class="people" v-else>
+              <img src="static/img/bg_normal.png" alt="" class="people" v-if="rightShow === 2">
+              <img src="static/img/bg_good.png" alt="" class="people worong-p" v-else-if="rightShow === 0">
+              <img src="static/img/bg_wrong.png" alt="" class="people success-p" v-else>
             <div class="show-word" >
 
               <div class="answer " v-for="(item, index) in answerShow">
