@@ -9,11 +9,11 @@
   overflow:hidden;
   .picture-books-read { // 绘本阅读
     width: 100%; height: px2rem(105px); padding: px2rem(40px) 0;
-    position: fixed; top: 0; left: 0;
+    position: fixed; top: px2rem(15px); left: 0;
     img {width: px2rem(322px); height: 100%; margin: 0 auto;display: block;}
   }
   .picture-books-box { // 列表盒子
-    position: fixed; top: px2rem(185px); bottom: 0; left: 0; right: 0;
+    position: fixed; top: px2rem(220px); bottom: 0; left: 0; right: 0;
     width: 100%; display: block; overflow-y: auto;
     // 列表内容
     .picture-books-lists {
@@ -23,13 +23,15 @@
         margin-bottom: px2rem(24px);
         .item-img {
           display: block; float: left; height: 100%; width: px2rem(172px);
-          img {width: px2rem(172px); height: px2rem(172px); margin: px2rem(32px) 0;}
+          img {width: px2rem(180px); height: px2rem(180px); margin: px2rem(32px) 0;}
         }
         .item-infor {
+          font-family:'Heiti Sc';
           display: block; float: right; width: px2rem(314px); height: 100%; padding: px2rem(32px) 0; box-sizing: border-box;
           h3 {
             font-size: px2rem(30px); margin: 0; padding: 0; height: px2rem(108px);
             line-height: px2rem(54px); overflow: hidden; color: $brown;
+            font-weight:400;
             // color: rgb(102, 38, 0);
           }
           button {
