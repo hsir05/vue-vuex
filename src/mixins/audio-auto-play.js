@@ -11,10 +11,11 @@ module.exports = {
         wx.getNetworkType({
           success: function (res) {
             alert(document.getElementById(ElemId).paused)
-            if (!document.getElementById(ElemId).paused) {
+            if (document.getElementById(ElemId).paused) {
+              document.getElementById(ElemId).play()
+            } else {
               document.getElementById(ElemId).play()
             }
-            document.getElementById(ElemId).play()
           },
           fail: function (res) {
             document.getElementById(ElemId).play()
