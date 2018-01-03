@@ -8,7 +8,6 @@ module.exports = {
   methods: {
     playAudio (ElemId) {
       if (window.WeixinJSBridge) {
-        alert(document.getElementById(ElemId).paused)
         wx.getNetworkType({
           success: function (res) {
             alert(document.getElementById(ElemId).paused)
