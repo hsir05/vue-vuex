@@ -10,8 +10,10 @@ module.exports = {
       if (window.WeixinJSBridge) {
         wx.getNetworkType({
           success: function (res) {
-            alert(1 + ElemId)
             document.getElementById(ElemId).play()
+            if (!document.getElementById(ElemId).paused) {
+              document.getElementById(ElemId).play()
+            }
           },
           fail: function (res) {
             document.getElementById(ElemId).play()

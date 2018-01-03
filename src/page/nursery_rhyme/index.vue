@@ -8,7 +8,7 @@
       <!-- 儿歌句子 -->
       <sentence v-else></sentence>
     </template>
-    <audio-play :src="currAudioSrc" :autoplay="true"  id="nursery"></audio-play>
+    <audio-play :src="currAudioSrc"  :autoplay="true"  id="nursery"></audio-play>
   </div>
 </template>
 
