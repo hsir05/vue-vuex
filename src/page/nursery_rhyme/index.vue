@@ -8,7 +8,7 @@
       <!-- 儿歌句子 -->
       <sentence v-else></sentence>
     </template>
-    <audio-play :src="currAudioSrc" :autoplay="true" id="nursery"></audio-play>
+    <audio-play :src="currAudioSrc"  id="nursery"></audio-play>
   </div>
 </template>
 
@@ -34,9 +34,11 @@ export default {
       Indicator.close()
       // this.$store.dispatch('nurseryRhyme/delayChildSongs')
       this.$store.dispatch('nurseryRhyme/timeWait').then(() => {
-        this.playAudio('nursery')// mixin 微信自动播放
         this.$store.dispatch('nurseryRhyme/delayChildSongs')
       })
+      console.log(document.getElementById('nursery'))
+      document.getElementById('nursery').play()
+      this.playAudio('nursery')// mixin 微信自动播放
     })
     window.onpopstate = function () { // 当url发生变化时，清除页面所有的定时器
       var end = setTimeout(function () {}, 1)
