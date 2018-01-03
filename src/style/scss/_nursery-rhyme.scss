@@ -37,7 +37,8 @@ $word-cr: rgb(131, 195, 34);
         .img-list-item {
           box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
           height: px2rem(190px); width: px2rem(280px); margin: 0 auto; padding: px2rem(6px);
-          box-sizing: border-box; background: #fff; border-radius: px2rem(12px); position: relative;
+          border:px2rem(6px) solid white;
+          box-sizing: border-box; background: #fff; border-radius: px2rem(10px); position: relative;
           img { width: 100%; height: 100%; }
           // 遮罩单词信息
           .mask-word-infor {
