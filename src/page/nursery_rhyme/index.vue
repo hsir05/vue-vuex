@@ -8,7 +8,7 @@
       <!-- 儿歌句子 -->
       <sentence v-else></sentence>
     </template>
-    <audio-play :src="currAudioSrc"  id="nursery"></audio-play>
+    <audio-play :src="currAudioSrc" :autoplay="true"  id="nursery"></audio-play>
   </div>
 </template>
 
@@ -24,6 +24,12 @@ export default {
   mixins: [AuddioAutoPlay],
   components: {
     Openings, StartEnter, Sentence
+  },
+  watch: {
+    currAudioSrc () {
+      document.getElementById('nursery').play()
+      this.playAudio('nursery')// mixin 微信自动播放
+    }
   },
   created () {
     Indicator.open({
