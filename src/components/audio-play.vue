@@ -1,7 +1,6 @@
 <template lang="html">
   <audio :id="audio_id" :src="src" @ended="endedEvent" @play="playEvent"   @pause="pauseEvent"
-    :controls="controls" :autoplay="autoplay"
-  >
+    :controls="controls" :autoplay="autoplay">
     不支持播放音频
   </audio>
 </template>
