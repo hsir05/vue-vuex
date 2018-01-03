@@ -14,7 +14,6 @@ module.exports = {
             document.getElementById(ElemId).play()
           },
           fail: function (res) {
-            alert(11 + ElemId)
             document.getElementById(ElemId).play()
           }
         })
@@ -22,11 +21,9 @@ module.exports = {
         document.addEventListener('WeixinJSBridgeReady', function () {
           wx.getNetworkType({
             success: function (res) {
-              alert(2 + ElemId)
               document.getElementById(ElemId).play()
             },
             fail: function (res) {
-              alert(22 + ElemId)
               document.getElementById(ElemId).play()
             }
           })

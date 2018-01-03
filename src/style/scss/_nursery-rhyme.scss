@@ -20,13 +20,13 @@ $word-cr: rgb(131, 195, 34);
   .openings {
     // 词组
     .change-word-phrase {
-      margin: px2rem(166px) auto 0; height: px2rem(150px);
-      width: px2rem(650px);
+      margin: px2rem(166px) auto 0; height: px2rem(142px);
+      width: px2rem(624px);
       font-size: px2rem(72px); color: $word-cr; line-height: px2rem(142px); text-align: center;
       background: #fff;
-      box-shadow: 4px 3px 5px rgba(223, 179, 17, 0.3);
       font-family:'Heiti sc';font-weight: bolder;
-      background:url('../static/img/bg_viewingarea.png') no-repeat left;
+      background:url('../static/img/bg_viewingarea.png') no-repeat;
+      background-size:contain;
     }
     // 图片列表
     .img-list {
