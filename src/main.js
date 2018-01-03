@@ -79,10 +79,9 @@ const Directive = require('@/global/directive.js')
 const Filters = require('@/global/filters.js')
 // 自定义全局过滤--------------------------
 
-// 引入微信js sdk
-var wx = require('weixin-js-sdk')
-Vue.prototype.wx = wx
-// console.log(wx)
+// // 引入微信js sdk
+// var wx = require('weixin-js-sdk')
+// Vue.prototype.wx = wx
 
 import store from '@/store/root.js' // state
 
