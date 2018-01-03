@@ -12,6 +12,7 @@ module.exports = {
           success: function (res) {
             document.getElementById(ElemId).play()
             if (!document.getElementById(ElemId).paused) {
+              alert(document.getElementById(ElemId).paused)
               document.getElementById(ElemId).play()
             }
           },
