@@ -11,8 +11,8 @@ module.exports = {
         wx.getNetworkType({
           success: function (res) {
             document.getElementById(ElemId).play()
+            alert(document.getElementById(ElemId).paused)
             if (!document.getElementById(ElemId).paused) {
-              alert(document.getElementById(ElemId).paused)
               document.getElementById(ElemId).play()
             }
           },
