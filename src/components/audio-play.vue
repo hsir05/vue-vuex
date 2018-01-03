@@ -71,8 +71,6 @@ export default {
       let playMedia = document.getElementById(this.audio_id)
       // console.log('play', playMedia.currentSrc)
       playMedia.play()
-      // console.log(444)
-      // console.log(this.audio_id)
       this.playAudio(this.audio_id)
       let playCurrTime = setInterval(() => {
         if (playMedia.ended) {

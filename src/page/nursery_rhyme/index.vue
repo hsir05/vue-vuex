@@ -35,8 +35,8 @@ export default {
       // this.$store.dispatch('nurseryRhyme/delayChildSongs')
       this.$store.dispatch('nurseryRhyme/timeWait').then(() => {
         this.$store.dispatch('nurseryRhyme/delayChildSongs')
+        this.playAudio('nursery')// mixin引入
       })
-      this.playAudio('nursery')// mixin引入
     })
     window.onpopstate = function () { // 当url发生变化时，清除页面所有的定时器
       var end = setTimeout(function () {}, 1)
