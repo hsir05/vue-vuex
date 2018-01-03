@@ -37,14 +37,13 @@ export default {
       spinnerType: 'fading-circle'
     })
     this.$store.dispatch('nurseryRhyme/getNurseryRhyme').then(() => {
-      Indicator.close()
       // this.$store.dispatch('nurseryRhyme/delayChildSongs')
       this.$store.dispatch('nurseryRhyme/timeWait').then(() => {
         this.$store.dispatch('nurseryRhyme/delayChildSongs')
       })
-      console.log(document.getElementById('nursery'))
       document.getElementById('nursery').play()
       this.playAudio('nursery')// mixin 微信自动播放
+      Indicator.close()
     })
     window.onpopstate = function () { // 当url发生变化时，清除页面所有的定时器
       var end = setTimeout(function () {}, 1)

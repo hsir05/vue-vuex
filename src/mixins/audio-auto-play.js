@@ -10,6 +10,7 @@ module.exports = {
       if (window.WeixinJSBridge) {
         wx.getNetworkType({
           success: function (res) {
+            alert(1 + ElemId)
             document.getElementById(ElemId).play()
           },
           fail: function (res) {
@@ -20,6 +21,7 @@ module.exports = {
         document.addEventListener('WeixinJSBridgeReady', function () {
           wx.getNetworkType({
             success: function (res) {
+              alert(2 + ElemId)
               document.getElementById(ElemId).play()
             },
             fail: function (res) {
