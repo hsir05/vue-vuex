@@ -34,8 +34,8 @@ export default {
       Indicator.close()
       // this.$store.dispatch('nurseryRhyme/delayChildSongs')
       this.$store.dispatch('nurseryRhyme/timeWait').then(() => {
+        this.playAudio('nursery')// mixin 微信自动播放
         this.$store.dispatch('nurseryRhyme/delayChildSongs')
-        this.playAudio('nursery')// mixin引入
       })
     })
     window.onpopstate = function () { // 当url发生变化时，清除页面所有的定时器
