@@ -1,5 +1,5 @@
 <template lang="html">
-  <audio :id="audio_id" :src="src" @ended="endedEvent" @play="playEvent" @pause="pauseEvent"
+  <audio :id="audio_id" :src="src" @ended="endedEvent" @play="playEvent"   @pause="pauseEvent"
     :controls="controls" :autoplay="autoplay"
   >
     不支持播放音频
@@ -27,7 +27,6 @@ export default {
     }
   },
   created () {
-    console.log(this.src)
     this.audio_id = 'audio-play-id-' + new Date().getTime()
   },
   mounted () {
@@ -72,6 +71,9 @@ export default {
       let playMedia = document.getElementById(this.audio_id)
       // console.log('play', playMedia.currentSrc)
       playMedia.play()
+      // console.log(444)
+      // console.log(this.audio_id)
+      this.playAudio(this.audio_id)
       let playCurrTime = setInterval(() => {
         if (playMedia.ended) {
           clearInterval(playCurrTime)
