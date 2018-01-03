@@ -97,6 +97,7 @@
     height: px2rem(326px);
     width: px2rem(480px);
     position: absolute;
+    text-align: center;
     // top:2px;
     border: px2rem(6px) solid white;
     background:white;
@@ -223,7 +224,7 @@
   bottom: 0;
   background: #000;
   z-index: 6;
-  opacity: 0.9;
+  opacity: 0.8;
   text-align: center;
   .score_bg {
     width: px2rem(640px);

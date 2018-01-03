@@ -3,9 +3,9 @@
       <div class="game-t-img" >
         <ul >
           <li v-for="(pict, p) in picts" class="show-cal" :class="'img-'+p" v-if="pict">
-                   <transition name="slide-fade" >
-                      <img :src="preUrl +'/'+ pict.url"   width="100%"height="100%" @click="clickPict(p)" v-if="show">
-                  </transition>
+                <transition name="slide-fade" >
+                  <img :src="preUrl +'/'+ pict.url"   width="65%"height="100%" @click="clickPict(p)" v-if="show">
+              </transition>
           </li>
         </ul>
       </div>
