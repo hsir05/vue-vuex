@@ -207,6 +207,8 @@
     color: rgb(132, 201, 39);
     border-radius: px2rem(8px);
     box-shadow: 0 3px 5px rgba(223, 179, 17, 0.3);
+    font-weight:bolder;
+    font-family: 'Heiti sc';
   }
   .first-0 {
     margin-right: px2rem(50px);
@@ -263,13 +265,14 @@
     a{
       position: absolute;
       left:50%;
-      top:50%;
+      top:55%;
       width: 100%;
       transform: translate(-50%,-50%);
       color: rgb(59,148,0);
       display: inline-block;
       width: 100%;
       height: 100%;
+      font-weight: bolder;
     }
   }
   .btn-score{

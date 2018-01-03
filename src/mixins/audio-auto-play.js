@@ -31,9 +31,9 @@ module.exports = {
     }
   }
 }
-/* 解决ios微信下自动播放问题
-*使用此方法必须传入音频的id  -- ElemId
+/* 解决ios微信下音频自动播放问题
+*使用此方法必须传入音频的id  -- ElemId （'id'）
 *参考文档 https://www.npmjs.com/package/weixin-js-sdk
 *且在项目中引入 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>  或
-* npm install weixin-js-sdk  ------使用  var wx = require('weixin-js-sdk')
+* npm install weixin-js-sdk  ------使用  let wx = require('weixin-js-sdk')
 */
