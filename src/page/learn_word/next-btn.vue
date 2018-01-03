@@ -40,11 +40,15 @@ export default {
   },
   mounted () {
     this.soundOpen()
+    this.$refs.soundImg.src = 'static/img/sounnds.gif'
     if (document.getElementById('audio1')) {
       this.playAudio('audio1')
     } else {
       this.playAudio('audio2')
     }
+    setTimeout(() => {
+      this.$refs.soundImg.src = 'static/img/btn_sound.png'
+    }, 900)
     if (this.getIndexWord && this.getIndexWord.syllable.relation.length >= 1) {
       this.audioSecond = this.getIndexWord.type[this.moreIndex]
     } else if (this.getIndexWord) {
@@ -56,11 +60,15 @@ export default {
   watch: {
     flag () {
       this.soundOpen()
+      this.$refs.soundImg.src = 'static/img/sounnds.gif'
       if (this.flag === 1) {
         this.playAudio('audio1')
       } else if (this.flag === 2) {
         this.playAudio('audio2')
       }
+      setTimeout(() => {
+        this.$refs.soundImg.src = 'static/img/btn_sound.png'
+      }, 900)
       if (this.getIndexWord.syllable.relation.length > 1) {
         this.audioSecond = this.getIndexWord.type[this.moreIndex]
       } else {
@@ -130,9 +138,13 @@ export default {
       }
     },
     soundOpen () { // 播放音频
+      this.$refs.soundImg.src = 'static/img/sounnds.gif'
       if (this.$refs.syll[0]) {
         this.$refs.syll[0].play()
       }
+      setTimeout(() => {
+        this.$refs.soundImg.src = 'static/img/btn_sound.png'
+      }, 900)
     }
   }
 }
