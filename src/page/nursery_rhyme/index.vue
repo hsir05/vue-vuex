@@ -43,8 +43,8 @@ export default {
       })
       Indicator.close()
     })
-    document.getElementById('nursery').play()
-    this.playAudio('nursery')// mixin 微信自动播放
+    // document.getElementById('nursery').play()
+    // this.playAudio('nursery')// mixin 微信自动播放
     window.onpopstate = function () { // 当url发生变化时，清除页面所有的定时器
       var end = setTimeout(function () {}, 1)
       var start = (end - 100) > 0 ? end - 100 : 0
