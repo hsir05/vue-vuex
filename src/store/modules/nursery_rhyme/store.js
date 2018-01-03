@@ -157,10 +157,10 @@ const actions = {
       context.dispatch('setCurrPicPage', { index: currPicPage }) // 设置当前pic索引
       context.dispatch('setProgress') // 设置进度
     } else {
-      context.commit(types.DATA_RESET) // 数据重置
-      context.dispatch('nurseryRhyme/getNurseryRhyme').then(() => {
-        context.dispatch('nurseryRhyme/timeWait').then(() => {
-          context.dispatch('nurseryRhyme/delayChildSongs')
+      context.commit(types.DATA_RESET) // 数据重置getNurseryRhyme
+      context.dispatch('getNurseryRhyme').then(() => {
+        context.dispatch('timeWait').then(() => {
+          context.dispatch('delayChildSongs')
         })
       })
     }
