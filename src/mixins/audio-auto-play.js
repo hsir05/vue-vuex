@@ -8,13 +8,14 @@ module.exports = {
   methods: {
     playAudio (ElemId) {
       if (window.WeixinJSBridge) {
+        alert(document.getElementById(ElemId).paused)
         wx.getNetworkType({
           success: function (res) {
+            alert(document.getElementById(ElemId).paused)
             if (!document.getElementById(ElemId).paused) {
               document.getElementById(ElemId).play()
             }
             document.getElementById(ElemId).play()
-            alert(document.getElementById(ElemId).paused)
           },
           fail: function (res) {
             document.getElementById(ElemId).play()
