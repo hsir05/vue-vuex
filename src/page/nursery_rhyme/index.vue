@@ -25,12 +25,6 @@ export default {
   components: {
     Openings, StartEnter, Sentence
   },
-  // watch: {
-  //   currAudioSrc () {
-  //     document.getElementById('nursery').play()
-  //     this.playAudio('nursery')// mixin 微信自动播放
-  //   }
-  // },
   created () {
     Indicator.open({
       text: '加载中...',
