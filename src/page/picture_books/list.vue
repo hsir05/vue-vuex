@@ -19,7 +19,7 @@
             <template v-for="(item, index) in getPicBooksList">
               <div class="picture-books-item white-bg">
                 <div class="item-img">
-                  <img :src="$Constant.GET_FILE_URL + item.cover_img_url[0]" alt="">
+                  <img :src="$Constant.GET_FILE_URL + item.cover_img_url[0]" alt="" v-if="item.cover_img_url">
                 </div>
                 <div class="item-infor">
                   <h3 v-text="item.title"></h3>
@@ -53,6 +53,8 @@ export default {
       spinnerType: 'fading-circle'
     })
     this.$store.dispatch('pictureBooks/list/getPicBooksList').then(() => {
+      console.log(333333)
+      console.log(this.getPicBooksList[0])
       if (this.getPicBooksList.length === 0) {
         Toast({message: '没有数据了，请稍后重试', position: 'center', duration: 3000})
       }
