@@ -105,8 +105,11 @@ export default {
       this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
     },
     three () {
-      if (this.index > this.wordLength || this.reationLength <= 1) {  // 说明关联单词是一个
-        if (this.index < this.wordLength) {
+      // console.log(this.index)
+      // console.log(this.wordLength)
+      if (this.reationLength <= 1) {  // 说明关联单词是一个
+        // console.log(333)
+        if (this.index + 1 < this.wordLength) {
           this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
           let length = this.words[0].course_content[this.index].syllable.relation.length
           this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
@@ -115,6 +118,7 @@ export default {
           this.$store.commit('learnWords/SHOWEND', { bool: true })
         }
       } else { // 多个关联单词
+        // console.log(222)
         let length = this.words[0].course_content[this.index].syllable.relation.length
         if (this.moreIndex + 1 < length) {
           this.$store.commit('learnWords/MOREINDEX', { moreIndex: this.moreIndex + 1 })
