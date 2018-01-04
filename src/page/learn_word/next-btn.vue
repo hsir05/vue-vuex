@@ -105,7 +105,7 @@ export default {
       this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
     },
     three () {
-      if (this.reationLength <= 1) {  // 说明关联单词是一个
+      if (this.index > this.wordLength || this.reationLength <= 1) {  // 说明关联单词是一个
         if (this.index < this.wordLength) {
           this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
           let length = this.words[0].course_content[this.index].syllable.relation.length
