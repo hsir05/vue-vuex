@@ -14,7 +14,7 @@
       </div>
         <audio src="static/audio/right.mp3" ref="succ"></audio>
         <audio src="static/audio/error.mp3" ref="error"></audio>
-        <audio :src="preUrl +'/'+ rightAudio" id="clickpictAudio" ref="clickpictAudio"></audio>
+        <audio :src="preUrl +'/'+ rightAudio" id="clickpictAudio" autoplay ref="clickpictAudio"></audio>
     </div>
 </template>
 <script>
@@ -102,7 +102,6 @@ export default {
     },
     clickPict (index) {
       if (index === 1) {
-        // this.$refs.clickpictAudio.play()
         document.getElementById('clickpictAudio').play()
       }
     },
@@ -190,7 +189,7 @@ export default {
         }
         this.rightAudio = this.game[this.num[1]].audio_right[0] // 点击图片正确音频
         this.playAudio('clickpictAudio')
-        this.clickPict(1)
+        // this.clickPict(1)
       }
     }
   }

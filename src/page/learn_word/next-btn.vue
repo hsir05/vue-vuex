@@ -105,8 +105,6 @@ export default {
       this.$store.commit('learnWords/RIGHTSHOW', {rightShow: 2})
     },
     three () {
-      // console.log(this.index)
-      // console.log(this.wordLength)
       if (this.reationLength <= 1) {  // 说明关联单词是一个
         // console.log(333)
         if (this.index + 1 < this.wordLength) {
