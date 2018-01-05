@@ -71,7 +71,7 @@ export default {
         this.$store.commit('games/DATA_RESET')
         Indicator.close()
       }).catch((err) => {
-        Toast({message: '请求失败或数据错误，请稍候重试!', position: 'center', duration: 3000})
+        // Toast({message: '请求失败或数据错误，请稍候重试!', position: 'center', duration: 3000})
         Indicator.close()
         console.log(err)
       })
