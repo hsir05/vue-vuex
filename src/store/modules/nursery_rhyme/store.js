@@ -124,7 +124,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       // setTimeout(() => {
       // grade: null, unit: null
-      REQUEST.get('weixin_words_view', {kinds: '儿歌', sort: 'create_time'}, r => {
+      REQUEST.get('weixin_words_view', {kinds: '儿歌', state: 0}, r => {
         // context.commit(types.NURSERY_RHYME, { infor: NurseryRhyme.data.list[0] })
         // console.log(NurseryRhyme.data.list[0])
         context.commit(types.NURSERY_RHYME, { infor: r.data.list[0] })

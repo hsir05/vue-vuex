@@ -66,7 +66,7 @@ const actions = {
     context.commit(types.REQ_LOADING, { bool: true }) // 请求加载
     return new Promise((resolve, reject) => {
       // setTimeout(() => {
-      REQUEST.get('course', {kinds: '绘本'}, r => {
+      REQUEST.get('course', {kinds: '绘本', state: 0, sort: 'create_time'}, r => {
         // let list = PicbooksList.data.list
         let list = r.data.list
         context.commit(types.PIC_BOOKS_LIST, { list: list }) // 获取绘本列表

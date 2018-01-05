@@ -143,6 +143,7 @@ export default {
   display: block; line-height: 1;
   .sentence-word-group {
     display: inline-block; margin: 0 0.03rem; line-height: 1; padding: 0.03rem;
+    word-wrap: break-word;
     // background: #fff;
   }
   .sentence-word-light {

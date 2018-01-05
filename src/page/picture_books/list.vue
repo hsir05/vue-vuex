@@ -19,7 +19,7 @@
             <template v-for="(item, index) in getPicBooksList">
               <div class="picture-books-item white-bg">
                 <div class="item-img">
-                  <img :src="$Constant.GET_FILE_URL + item.cover_img_url[0]" alt="" v-if="item.cover_img_url">
+                  <img :src="$Constant.GET_FILE_URL + item.cover_img_url[0]"  v-if="item.cover_img_url">
                 </div>
                 <div class="item-infor">
                   <h3 v-text="item.title"></h3>
