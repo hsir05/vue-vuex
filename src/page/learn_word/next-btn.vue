@@ -45,12 +45,13 @@ export default {
     } else {
       this.playAudio('audio2')
     }
-    if (this.getIndexWord && this.getIndexWord.syllable.relation.length >= 1) {
+    // if (this.getIndexWord && this.getIndexWord.syllable.relation.length >= 1) {
+    if (this.getIndexWord && this.getIndexWord.type.length >= 1) {
       this.audioSecond = this.getIndexWord.type[this.moreIndex]
     } else if (this.getIndexWord) {
       this.audioSecond = this.getIndexWord.type[0]
     } else {
-      Toast({message: '没有数据，请稍候再试!!', position: 'center', duration: 3000})
+      Toast({message: '没有更多的数据了，请稍后重试!', position: 'center', duration: 3000})
     }
   },
   watch: {
@@ -61,7 +62,8 @@ export default {
       } else if (this.flag === 2) {
         this.playAudio('audio2')
       }
-      if (this.getIndexWord.syllable.relation.length > 1) {
+      if (this.getIndexWord.type.length > 1) {
+        //  if (this.getIndexWord.syllable.relation.length > 1) {
         this.audioSecond = this.getIndexWord.type[this.moreIndex]
       } else {
         this.audioSecond = this.getIndexWord.type[0]
@@ -106,19 +108,22 @@ export default {
     },
     three () {
       if (this.reationLength <= 1) {  // 说明关联单词是一个
-        // console.log(333)
+        console.log(333)
         if (this.index + 1 < this.wordLength) {
           this.$store.commit('learnWords/INDEX', { index: this.index + 1 })
-          let length = this.words[0].course_content[this.index].syllable.relation.length
+          let length = this.words[0].course_content[this.index].type.length
+          // let length = this.words[0].course_content[this.index].syllable.relation.length
           this.$store.commit('learnWords/RELATlENGTH', {reationLength: length})
         } else {
           this.$store.commit('learnWords/DATA_RESET')
           this.$store.commit('learnWords/SHOWEND', { bool: true })
         }
       } else { // 多个关联单词
-        // console.log(222)
-        let length = this.words[0].course_content[this.index].syllable.relation.length
+        console.log(222)
+        let length = this.words[0].course_content[this.index].type.length
+        // let length = this.words[0].course_content[this.index].syllable.relation.length
         if (this.moreIndex + 1 < length) {
+          console.log(222111)
           this.$store.commit('learnWords/MOREINDEX', { moreIndex: this.moreIndex + 1 })
         } else {
           if (this.index + 1 < this.wordLength) {
@@ -132,13 +137,9 @@ export default {
       }
     },
     soundOpen () { // 播放音频
-      // this.$refs.soundImg.src = 'static/img/sounnds.gif'
       if (this.$refs.syll[0]) {
         this.$refs.syll[0].play()
       }
-      // setTimeout(() => {
-      //   this.$refs.soundImg.src = 'static/img/btn_sound.png'
-      // }, 900)
     }
   }
 }

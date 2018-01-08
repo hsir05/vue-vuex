@@ -53,8 +53,6 @@ export default {
       spinnerType: 'fading-circle'
     })
     this.$store.dispatch('pictureBooks/list/getPicBooksList').then(() => {
-      console.log(333333)
-      console.log(this.getPicBooksList[0])
       if (this.getPicBooksList.length === 0) {
         Toast({message: '没有数据了，请稍后重试', position: 'center', duration: 3000})
       }

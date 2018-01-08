@@ -111,7 +111,7 @@
       height: px2rem(48px); line-height: px2rem(48px);  display: block; padding: 0 px2rem(60px);
     }
     .picbook-sentence-wrapper { // 句子
-      height:40%;
+      height:39%;
       overflow: scroll;
       padding: 0 px2rem(60px);
       // 句子词组
@@ -133,6 +133,8 @@
         font-family:'Heiti sc';
         color:rgb(71,69,59);
         line-height: px2rem(50px); font-size: px2rem(30px);
+        word-wrap:break-word;
+        white-space: pre-wrap;
       }
     }
   }
