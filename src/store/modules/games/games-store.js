@@ -86,7 +86,7 @@ const actions = {
     // 请求works
     context.commit(types.DATA_RESET) // 数据重置
     return new Promise((resolve, reject) => {
-      REQUEST.get('weixin_words_view', {kinds: '游戏', state: 0}, r => {
+      REQUEST.get('weixin_words_view', {kinds: '游戏', state: 0, sort: 'create_time'}, r => {
         context.commit(types.WORDS, { words: r.data.list })
         resolve()
       })
